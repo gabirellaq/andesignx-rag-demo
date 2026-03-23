@@ -1,0 +1,91 @@
+2026-03-20 18:16:03,126 [INFO] Processed: SKILL.md (URL: https://raw.githubusercontent.com/ant-design/x/main/.codefuse/skills/components/SKILL.md)
+2026-03-20 18:16:03,126 [WARNING] Empty content in document: PULL_REQUEST_TEMPLATE.md
+2026-03-20 18:16:03,126 [WARNING] Empty content in document: PULL_REQUEST_TEMPLATE_CN.md
+2026-03-20 18:16:03,126 [WARNING] Empty content in document: CHANGELOG.en-US.md
+2026-03-20 18:16:03,126 [WARNING] Empty content in document: CHANGELOG.zh-CN.md
+2026-03-20 18:16:03,126 [INFO] Processed: README-zh_CN.md (URL: https://raw.githubusercontent.com/ant-design/x/main/README-zh_CN.md)
+2026-03-20 18:16:03,126 [INFO] Processed: README.md (URL: https://raw.githubusercontent.com/ant-design/x/main/README.md)
+2026-03-20 18:16:03,126 [INFO] Processed: README-zh_CN.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-markdown/README-zh_CN.md)
+2026-03-20 18:16:03,126 [INFO] Processed: README.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-markdown/README.md)
+2026-03-20 18:16:03,126 [INFO] Processed: README.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-markdown/src/XMarkdown/__benchmark__/README.md)
+2026-03-20 18:16:03,126 [INFO] Processed: test.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-markdown/src/XMarkdown/__benchmark__/tests/test.md)
+2026-03-20 18:16:03,126 [WARNING] Empty content in document: README-zh_CN.md
+2026-03-20 18:16:03,126 [WARNING] Empty content in document: README.md
+2026-03-20 18:16:03,126 [INFO] Processed: README-zh_CN.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/README-zh_CN.md)
+2026-03-20 18:16:03,126 [INFO] Processed: README.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/README.md)
+2026-03-20 18:16:03,126 [INFO] Processed: SKILL.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/use-x-chat/SKILL.md)
+2026-03-20 18:16:03,126 [WARNING] Empty content in document: API.md
+2026-03-20 18:16:03,126 [WARNING] Empty content in document: CORE.md
+2026-03-20 18:16:03,127 [INFO] Processed: EXAMPLES.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/use-x-chat/reference/EXAMPLES.md)
+2026-03-20 18:16:03,127 [INFO] Processed: SKILL.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-chat-provider/SKILL.md)
+2026-03-20 18:16:03,127 [WARNING] Empty content in document: EXAMPLES.md
+2026-03-20 18:16:03,127 [INFO] Processed: SKILL.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-markdown/SKILL.md)
+2026-03-20 18:16:03,127 [WARNING] Empty content in document: API.md
+2026-03-20 18:16:03,127 [INFO] Processed: CORE.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-markdown/reference/CORE.md)
+2026-03-20 18:16:03,127 [INFO] Processed: EXTENSIONS.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-markdown/reference/EXTENSIONS.md)
+2026-03-20 18:16:03,127 [INFO] Processed: STREAMING.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-markdown/reference/STREAMING.md)
+2026-03-20 18:16:03,127 [INFO] Processed: SKILL.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-request/SKILL.md)
+2026-03-20 18:16:03,127 [WARNING] Empty content in document: API.md
+2026-03-20 18:16:03,127 [INFO] Processed: CORE.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-request/reference/CORE.md)
+2026-03-20 18:16:03,127 [WARNING] Empty content in document: EXAMPLES_SERVICE_PROVIDER.md
+2026-03-20 18:16:03,127 [INFO] Processed: SKILL.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/use-x-chat/SKILL.md)
+2026-03-20 18:16:03,127 [WARNING] Empty content in document: API.md
+2026-03-20 18:16:03,127 [WARNING] Empty content in document: CORE.md
+2026-03-20 18:16:03,127 [INFO] Processed: EXAMPLES.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/use-x-chat/reference/EXAMPLES.md)
+2026-03-20 18:16:03,127 [INFO] Processed: SKILL.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-chat-provider/SKILL.md)
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: EXAMPLES.md
+2026-03-20 18:16:03,128 [INFO] Processed: SKILL.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-markdown/SKILL.md)
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: API.md
+2026-03-20 18:16:03,128 [INFO] Processed: CORE.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-markdown/reference/CORE.md)
+2026-03-20 18:16:03,128 [INFO] Processed: EXTENSIONS.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-markdown/reference/EXTENSIONS.md)
+2026-03-20 18:16:03,128 [INFO] Processed: STREAMING.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-markdown/reference/STREAMING.md)
+2026-03-20 18:16:03,128 [INFO] Processed: SKILL.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-request/SKILL.md)
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: API.md
+2026-03-20 18:16:03,128 [INFO] Processed: CORE.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-request/reference/CORE.md)
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: EXAMPLES_SERVICE_PROVIDER.md
+2026-03-20 18:16:03,128 [INFO] Processed: README-zh_CN.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x/README-zh_CN.md)
+2026-03-20 18:16:03,128 [INFO] Processed: README.md (URL: https://raw.githubusercontent.com/ant-design/x/main/packages/x/README.md)
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: basic.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: fadeIn.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: preset.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: sub.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: variant.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: index.en-US.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: index.zh-CN.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: basic.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: overflow.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: placeholder.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: select-files.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: with-sender.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: index.en-US.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: index.zh-CN.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: animation.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: basic.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: custom-content.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: divider.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: editable.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: footer.md
+2026-03-20 18:16:03,128 [WARNING] Empty content in document: gpt-vis.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: header.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: list-extra.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: list-scroll.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: list.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: loading.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: markdown.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: semantic-list-custom.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: sider-and-placement.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: stream.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: system.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: variant-and-shape.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: index.en-US.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: index.zh-CN.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: index.en-US.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: index.zh-CN.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: basic.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: controlled-collapsible.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: controlled-mode.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: custom-new-chat.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: group-collapsible.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: group.md
+2026-03-20 18:16:03,129 [WARNING] Empty content in document: infinite-load.md
+2026-03-20 18:16:03,129 [INFO] Successfully created /Users/xiahaha/工作/cursorAi/andesignx-rag-demo/Search/antdesignx.txt

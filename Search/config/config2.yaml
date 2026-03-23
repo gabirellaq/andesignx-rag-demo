@@ -1,0 +1,5 @@
+llm:
+  api_type: "openai"  # 或 "groq" 等
+  model: ""
+  api_key: ""
+  base_url: ""  # 或其他LLM服务URL

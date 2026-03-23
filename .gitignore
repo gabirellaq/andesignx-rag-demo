@@ -1,0 +1,19 @@
+#忽略test文件
+test/
+
+#忽略用户数据
+data/
+
+#忽略 faiss_index_scratch
+faiss_index_scratch/
+
+
+Search/test
+
+test/key/
+
+# 忽略本地环境变量文件
+.env
+.gradio/
+__pycache__/
+.idea/

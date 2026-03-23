@@ -1,0 +1,5664 @@
+一级标题：Ant Design X 组件开发规范指南
+二级标题：无
+内容：
+基于 antd 组件库最佳实践的完整开发规范，涵盖命名、架构、样式、测试等各个方面。
+################
+一级标题：Ant Design X 组件开发规范指南
+二级标题：1. 项目架构规范
+内容：
+### 1.1 目录结构
+
+```
+components/[组件名]/
+├── index.tsx           # 组件入口文件
+├── [组件名].tsx        # 主组件实现
+├── [子组件].tsx        # 子组件实现
+├── style/
+│   ├── index.ts        # 样式入口
+│   ├── token.ts        # Token 定义
+│   └── [其他样式文件].ts
+├── demo/               # 示例代码
+│   ├── basic.tsx       # 基础示例
+│   └── [其他示例].tsx
+├── __tests__/          # 测试文件
+│   └── index.test.tsx  # 单元测试
+└── index.zh-CN.md      # 中文文档
+```
+
+### 1.2 文件命名规范
+
+- 组件文件：PascalCase（如 `Button.tsx`）
+- 样式文件：camelCase（如 `buttonStyle.ts`）
+- 测试文件：`index.test.tsx` 或 `[组件名].test.tsx`
+- 示例文件：kebab-case（如 `basic.tsx`、`custom-filter.tsx`）
+################
+一级标题：Ant Design X 组件开发规范指南
+二级标题：2. 命名规范与语义化
+内容：
+### 2.1 组件命名
+
+- **完整名称**：使用完整单词，避免缩写
+- **PascalCase**：组件名使用大驼峰命名
+- **语义化**：名称应准确描述组件功能
+
+```typescript
+// ✅ 正确
+interface ButtonProps {}
+interface TypographyTextProps {}
+
+// ❌ 错误
+interface BtnProps {} // 缩写
+interface TxtProps {} // 缩写
+interface MyComponentProps {} // 语义不清
+```
+
+### 2.2 Props 命名规范
+
+#### 基础属性
+
+- **类型属性**：`type`（如 `type="primary"`）
+- **状态属性**：`disabled`、`loading`、`open`
+- **尺寸属性**：`size`（`large` | `middle` | `small`）
+- **默认值**：`default` + 属性名（如 `defaultValue`）
+
+#### 功能属性
+
+- **可编辑**：`editable`（布尔或配置对象）
+- **可复制**：`copyable`（布尔或配置对象）
+- **可展开**：`expandable`（布尔或配置对象）
+
+#### 事件属性
+
+- **触发事件**：`on` + 事件名（如 `onClick`、`onChange`）
+- **子组件事件**：`on` + 子组件名 + 事件名（如 `onPanelClick`）
+- **前置事件**：`before` + 事件名（如 `beforeUpload`）
+- **后置事件**：`after` + 事件名（如 `afterClose`）
+
+### 2.3 CSS 类名规范
+
+```typescript
+// 组件前缀
+const prefixCls = getPrefixCls('button', customizePrefixCls);
+
+// 状态类名
+`${prefixCls}-${type}` // 类型类名
+`${prefixCls}-disabled` // 禁用状态
+`${prefixCls}-loading` // 加载状态
+`${prefixCls}-${sizeCls}` // 尺寸类名
+// 组合类名
+`${prefixCls}-icon-only` // 仅图标按钮
+`${prefixCls}-two-chinese-chars`; // 中文字符间距
+```
+################
+一级标题：Ant Design X 组件开发规范指南
+二级标题：3. TypeScript 类型设计
+内容：
+### 3.1 Props 接口定义
+
+```typescript
+// 基础 Props 接口
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  // 类型定义
+  type?: 'primary' | 'default' | 'dashed' | 'text' | 'link';
+  size?: 'large' | 'middle' | 'small';
+
+  // 状态控制
+  loading?: boolean | { delay?: number };
+  disabled?: boolean;
+
+  // 内容相关
+  icon?: React.ReactNode;
+  children?: React.ReactNode;
+
+  // 样式相关
+  className?: string;
+  style?: React.CSSProperties;
+
+  // 事件处理
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+// 配置对象类型
+export interface CopyConfig {
+  text?: string | (() => string | Promise<string>);
+  onCopy?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
+  icon?: React.ReactNode;
+  tooltips?: React.ReactNode;
+  format?: 'text/plain' | 'text/html';
+}
+```
+
+### 3.2 泛型组件设计
+
+```typescript
+// 泛型组件支持不同元素类型
+export interface BlockProps<
+  C extends keyof JSX.IntrinsicElements = keyof JSX.IntrinsicElements,
+> extends TypographyProps<C> {
+  component?: C;
+  // 其他属性...
+}
+
+// 使用示例
+const Base = React.forwardRef<HTMLElement, BlockProps>((props, ref) => {
+  const { component = 'div' as C, ...rest } = props;
+  return React.createElement(component, rest);
+});
+```
+
+### 3.3 类型安全实践
+
+```typescript
+// 使用联合类型而非 enum
+type ButtonType = 'primary' | 'default' | 'dashed' | 'text' | 'link';
+
+// 使用 as const 定义常量
+const BUTTON_TYPES = ['primary', 'default', 'dashed', 'text', 'link'] as const;
+
+// 精确的类型定义
+interface EllipsisConfig {
+  rows?: number;
+  expandable?: boolean | 'collapsible';
+  suffix?: string;
+  symbol?: React.ReactNode | ((expanded: boolean) => React.ReactNode);
+}
+```
+################
+一级标题：Ant Design X 组件开发规范指南
+二级标题：4. 组件架构模式
+内容：
+### 4.1 复合组件模式
+
+```typescript
+// 主组件
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+  // 实现...
+});
+
+// 子组件
+Button.Group = ButtonGroup;
+Button.__ANT_BUTTON = true;
+
+// 使用
+<Button.Group>
+  <Button>按钮1</Button>
+  <Button>按钮2</Button>
+</Button.Group>
+```
+
+### 4.2 配置合并模式
+
+```typescript
+// 使用 useMergedConfig 合并布尔值和配置对象
+const [enableEdit, editConfig] = useMergedConfig<EditConfig>(editable);
+
+// 实现 useMergedConfig
+function useMergedConfig<T>(config: boolean | T): [boolean, T] {
+  const enable = Boolean(config);
+  const mergedConfig = React.useMemo(() => {
+    if (config === true) return {} as T;
+    if (config === false) return {} as T;
+    return config || ({} as T);
+  }, [config]);
+  return [enable, mergedConfig];
+}
+```
+
+### 4.3 受控与非受控模式
+
+```typescript
+// 使用 useControlledState 处理受控/非受控状态
+const [editing, setEditing] = useControlledState(false, editConfig.editing);
+
+// useControlledState 实现
+function useControlledState<T>(defaultValue: T, controlledValue?: T): [T, (value: T) => void] {
+  const [internalValue, setInternalValue] = React.useState<T>(defaultValue);
+  const isControlled = controlledValue !== undefined;
+  const value = isControlled ? controlledValue : internalValue;
+
+  const setValue = React.useCallback(
+    (newValue: T) => {
+      if (!isControlled) {
+        setInternalValue(newValue);
+      }
+    },
+    [isControlled],
+  );
+
+  return [value, setValue];
+}
+```
+################
+一级标题：Ant Design X 组件开发规范指南
+二级标题：5. 样式系统规范
+内容：
+### 5.1 CSS-in-JS 架构
+
+```typescript
+// Token 定义
+export interface ComponentToken {
+  // 颜色相关
+  colorPrimary?: string;
+  colorBgContainer?: string;
+
+  // 尺寸相关
+  controlHeight?: number;
+  controlHeightSM?: number;
+  controlHeightLG?: number;
+
+  // 间距相关
+  padding?: number;
+  paddingSM?: number;
+  paddingLG?: number;
+}
+
+// 样式生成函数
+const genButtonStyle = (token: ButtonToken): CSSInterpolation => {
+  return [
+    // 基础样式
+    genSharedButtonStyle(token),
+    // 尺寸样式
+    genSizeBaseButtonStyle(token),
+    genSizeSmallButtonStyle(token),
+    genSizeLargeButtonStyle(token),
+    // 变体样式
+    genVariantStyle(token),
+  ];
+};
+
+// 样式导出
+export default genStyleHooks('Button', genButtonStyle, prepareComponentToken, {
+  unitless: { fontWeight: true },
+});
+```
+
+### 5.2 响应式设计
+
+```typescript
+// 使用 CSS 逻辑属性支持 RTL
+const styles = {
+  marginInlineStart: token.marginXS, // 替代 marginLeft
+  marginInlineEnd: token.marginXS, // 替代 marginRight
+  paddingBlock: token.paddingSM, // 替代 paddingTop/paddingBottom
+  paddingInline: token.paddingSM, // 替代 paddingLeft/paddingRight
+};
+
+// 响应式断点
+const responsiveStyles = {
+  [token.screenXS]: {
+    fontSize: token.fontSizeSM,
+  },
+  [token.screenMD]: {
+    fontSize: token.fontSize,
+  },
+  [token.screenLG]: {
+    fontSize: token.fontSizeLG,
+  },
+};
+```
+
+### 5.3 主题定制支持
+
+```typescript
+// 支持 ConfigProvider 主题定制
+const { getPrefixCls, direction } = React.useContext(ConfigContext);
+const prefixCls = getPrefixCls('button', customizePrefixCls);
+
+// 支持语义化 className 和 style
+export interface ButtonSemanticClassNames {
+  root?: string;
+  icon?: string;
+  content?: string;
+}
+
+export interface ButtonSemanticStyles {
+  root?: React.CSSProperties;
+  icon?: React.CSSProperties;
+  content?: React.CSSProperties;
+}
+```
+################
+一级标题：Ant Design X 组件开发规范指南
+二级标题：6. 可访问性规范
+内容：
+### 6.1 ARIA 属性
+
+```typescript
+// 正确的 ARIA 属性使用
+<button
+  aria-label={ariaLabel}
+  aria-disabled={mergedDisabled}
+  aria-expanded={expanded}
+  aria-busy={innerLoading}
+  tabIndex={mergedDisabled ? -1 : 0}
+>
+  {children}
+</button>
+
+// 键盘导航支持
+const handleKeyDown = (event: React.KeyboardEvent) => {
+  switch (event.key) {
+    case 'Enter':
+    case ' ':
+      event.preventDefault();
+      handleClick();
+      break;
+    case 'Escape':
+      handleCancel();
+      break;
+  }
+};
+```
+
+### 6.2 焦点管理
+
+```typescript
+// 焦点状态样式
+const focusStyles = {
+  '&:focus-visible': {
+    outline: `${token.lineWidthFocus}px solid ${token.colorPrimaryBorder}`,
+    outlineOffset: 1,
+  },
+};
+
+// 程序化焦点管理
+const buttonRef = React.useRef<HTMLButtonElement>(null);
+React.useEffect(() => {
+  if (autoFocus && buttonRef.current) {
+    buttonRef.current.focus();
+  }
+}, [autoFocus]);
+```
+################
+一级标题：Ant Design X 组件开发规范指南
+二级标题：7. 性能优化规范
+内容：
+### 7.1 React 优化
+
+```typescript
+// 使用 React.memo 避免不必要的重渲染
+const Button = React.memo(
+  React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+    // 组件实现
+  }),
+);
+
+// 使用 useMemo 缓存计算结果
+const classes = React.useMemo(() => {
+  return clsx(prefixCls, `${prefixCls}-${type}`, `${prefixCls}-${size}`, className);
+}, [prefixCls, type, size, className]);
+
+// 使用 useCallback 缓存函数
+const handleClick = React.useCallback(
+  (event: React.MouseEvent) => {
+    if (!disabled && !loading) {
+      onClick?.(event);
+    }
+  },
+  [disabled, loading, onClick],
+);
+```
+
+### 7.2 样式优化
+
+```typescript
+// 避免不必要的样式重计算
+const useStyle = genStyleHooks(
+  'Button',
+  (token) => {
+    // 样式计算逻辑
+  },
+  prepareComponentToken,
+);
+
+// 使用 CSS containment
+const containerStyles = {
+  contain: 'layout style paint',
+  contentVisibility: 'auto',
+};
+```
+################
+一级标题：Ant Design X 组件开发规范指南
+二级标题：8. 测试规范
+内容：
+### 8.1 测试文件结构
+
+```typescript
+// __tests__/index.test.tsx
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import Button from '../index';
+
+describe('Button', () => {
+  it('should render correctly', () => {
+    const { container } = render(<Button>Test</Button>);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('should handle click events', () => {
+    const handleClick = jest.fn();
+    render(<Button onClick={handleClick}>Click me</Button>);
+
+    fireEvent.click(screen.getByText('Click me'));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('should be disabled when disabled prop is true', () => {
+    render(<Button disabled>Disabled</Button>);
+    expect(screen.getByText('Disabled')).toBeDisabled();
+  });
+});
+```
+
+### 8.2 测试覆盖率要求
+
+- 单元测试覆盖率：100%
+- 集成测试：主要使用场景
+- 可访问性测试：键盘导航、屏幕阅读器
+- 视觉回归测试：UI 变化检测
+################
+一级标题：Ant Design X 组件开发规范指南
+二级标题：9. 文档规范
+内容：
+### 9.1 API 文档格式
+
+```markdown
+| 参数     | 说明             | 类型                                                   | 默认值    |
+| -------- | ---------------- | ------------------------------------------------------ | --------- |
+| type     | 设置按钮类型     | `primary` \| `default` \| `dashed` \| `text` \| `link` | `default` |
+| size     | 设置按钮大小     | `large` \| `middle` \| `small`                         | `middle`  |
+| disabled | 按钮失效状态     | boolean                                                | false     |
+| loading  | 设置按钮载入状态 | boolean \| { delay: number }                           | false     |
+| onClick  | 点击按钮时的回调 | (event) => void                                        | -         |
+```
+
+### 9.2 示例代码规范
+
+```typescript
+// demo/basic.tsx
+import React from 'react';
+import { Button } from 'antd';
+
+const App: React.FC = () => (
+  <>
+    <Button type="primary">Primary Button</Button>
+    <Button>Default Button</Button>
+    <Button type="dashed">Dashed Button</Button>
+    <Button type="text">Text Button</Button>
+    <Button type="link">Link Button</Button>
+  </>
+);
+
+export default App;
+```
+################
+一级标题：Ant Design X 组件开发规范指南
+二级标题：10. 国际化规范
+内容：
+### 10.1 本地化配置
+
+```typescript
+// locale/zh_CN.ts
+export default {
+  Text: {
+    edit: '编辑',
+    copy: '复制',
+    copied: '复制成功',
+    expand: '展开',
+    collapse: '收起',
+  },
+};
+
+// 使用 useLocale 获取本地化
+const [textLocale] = useLocale('Text', enUS.Text);
+```
+
+### 10.2 动态文本处理
+
+```typescript
+// 支持模板变量的本地化
+const messages = {
+  selected: '已选择 ${count} 项',
+};
+
+// 使用
+const message = messages.selected.replace('${count}', count.toString());
+```
+################
+一级标题：Ant Design X 组件开发规范指南
+二级标题：11. 版本兼容规范
+内容：
+### 11.1 向下兼容
+
+- 避免破坏性变更
+- 提供迁移指南
+- 保持 API 稳定性
+- 使用废弃警告
+
+```typescript
+// 废弃警告
+if (process.env.NODE_ENV !== 'production') {
+  const warning = devUseWarning('Button');
+  warning.deprecated(!iconPosition, 'iconPosition', 'iconPlacement');
+}
+```
+
+### 11.2 浏览器兼容
+
+- 支持 Chrome 80+
+- 支持服务端渲染
+- 支持 TypeScript 4.0+
+- 支持 React 18 ~ 19
+################
+一级标题：Ant Design X 组件开发规范指南
+二级标题：12. 发布规范
+内容：
+### 12.1 版本管理
+
+- 遵循语义化版本（SemVer）
+- 主版本：破坏性变更
+- 次版本：新功能
+- 修订版本：Bug 修复
+
+### 12.2 变更日志
+
+```markdown
+################
+一级标题：Ant Design X 组件开发规范指南
+二级标题：5.0.0
+内容：
+### 重大变更
+
+- 移除废弃的 `icon` 字符串用法
+- 重构样式系统，使用 CSS-in-JS
+
+### 新功能
+
+- 新增 `variant` 属性支持多种按钮变体
+- 新增语义化 className 和 style 支持
+
+### Bug 修复
+
+- 修复按钮在 disabled 状态下仍可点击的问题
+```
+
+---
+
+这套规范基于 antd 组件库的最佳实践，涵盖了从项目结构到发布流程的完整开发规范。遵循这些规范可以确保组件的一致性、可维护性和高质量。
+################
+一级标题：安装 utoo
+二级标题：无
+内容：
+$ npm i -g utoo
+
+# 安装项目依赖 (by utoo)
+$ ut [install]
+
+# 启动项目
+$ ut start # 方式一: 通过主包的 script 启动
+$ ut start --workspace packages/x # 方式二: 通过 workspace 参数启动
+$ ut start --workspace @ant-design/x # 方式三: 通过 package.name 启动 (utoo only)
+$ cd packages/x && ut start # 方式四: 进入子包目录单独启动
+
+
+# 添加依赖
+$ ut install [pkg@version] # 为主包添加依赖
+$ ut install [pkg@version] --workspace packages/x # 为子包添加依赖
+$ cd packages/x && ut install [pkg@version] # 为子包添加依赖
+
+# 依赖更新
+$ ut update # utoo only
+```
+################
+一级标题：安装 utoo
+二级标题：如何贡献
+内容：
+在任何形式的参与前，请先阅读 [贡献者文档](https://github.com/ant-design/ant-design/blob/master/.github/CONTRIBUTING.md)。如果你希望参与贡献，欢迎提交 [Pull Request](https://github.com/ant-design/ant-design/pulls)，或给我们 [报告 Bug](http://new-issue.ant.design/)。
+
+> 强烈推荐阅读 [《提问的智慧》](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way)、[《如何向开源社区提问题》](https://github.com/seajs/seajs/issues/545) 和 [《如何有效地报告 Bug》](http://www.chiark.greenend.org.uk/%7Esgtatham/bugs-cn.html)、[《如何向开源项目提交无法解答的问题》](https://zhuanlan.zhihu.com/p/25795393)，更好的问题更容易获得帮助。
+################
+一级标题：安装 utoo
+二级标题：社区互助
+内容：
+如果您在使用的过程中碰到问题，可以通过下面几个途径寻求帮助，同时我们也鼓励资深用户通过下面的途径给新人提供帮助。
+
+通过 GitHub Discussions 提问时，建议使用 `Q&A` 标签。
+
+1. [GitHub Discussions](https://github.com/ant-design/x/discussions)
+2. [GitHub Issues](https://github.com/ant-design/x/issues)
+
+<a href="https://openomy.app/github/ant-design/x" target="_blank" style="display: block; width: 100%;" align="center">
+  <img src="https://openomy.app/svg?repo=ant-design/x&chart=bubble&latestMonth=3" target="_blank" alt="Contribution Leaderboard" style="display: block; width: 100%;" />
+ </a>
+################
+一级标题：Install utoo
+二级标题：无
+内容：
+$ npm i -g utoo
+
+# Install project dependencies (by utoo)
+$ ut [install]
+
+# Start project
+$ ut start # Method 1: Start via main package script
+$ ut start --workspace packages/x # Method 2: Start via workspace param
+$ ut start --workspace @ant-design/x # Method 3: Start via package.name (utoo only)
+$ cd packages/x && ut start # Method 4: Enter subpackage dir and start
+
+# Add dependency
+$ ut install [pkg@version] # Add to main package
+$ ut install [pkg@version] --workspace packages/x # Add to subpackage
+$ cd packages/x && ut install [pkg@version] # Add to subpackage
+
+# Update dependencies
+$ ut update # utoo only
+```
+################
+一级标题：Install utoo
+二级标题：How to Contribute
+内容：
+Before participating in any form, please read the [Contributor Guide](https://github.com/ant-design/ant-design/blob/master/.github/CONTRIBUTING.md). If you wish to contribute, feel free to submit a [Pull Request](https://github.com/ant-design/ant-design/pulls) or [report a Bug](http://new-issue.ant.design/).
+
+> We highly recommend reading [How To Ask Questions The Smart Way](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way), [How to Ask Questions in Open Source Community](https://github.com/seajs/seajs/issues/545), [How to Report Bugs Effectively](http://www.chiark.greenend.org.uk/%7Esgtatham/bugs.html), and [How to Submit Unanswerable Questions to Open Source Projects](https://zhuanlan.zhihu.com/p/25795393). Better questions are more likely to get help.
+################
+一级标题：Install utoo
+二级标题：Community Support
+内容：
+If you encounter problems during use, you can seek help through the following channels. We also encourage experienced users to help newcomers through these channels.
+
+When asking questions on GitHub Discussions, it is recommended to use the `Q&A` tag.
+
+1. [GitHub Discussions](https://github.com/ant-design/x/discussions)
+2. [GitHub Issues](https://github.com/ant-design/x/issues)
+
+<a href="https://openomy.app/github/ant-design/x" target="_blank" style="display: block; width: 100%;" align="center">
+  <img src="https://openomy.app/svg?repo=ant-design/x&chart=bubble&latestMonth=3" target="_blank" alt="Contribution Leaderboard" style="display: block; width: 100%;" />
+ </a>
+################
+一级标题：Hello World
+二级标题：无
+内容：
+### 欢迎使用 XMarkdown！
+
+- 项目1
+- 项目2
+- 项目3
+`;
+
+const App = () => <XMarkdown content={content} />;
+
+export default App;
+```
+################
+一级标题：Hello World
+二级标题：插件
+内容：
+`@ant-design/x-markdown` 提供了丰富的插件，你可以通过 `plugins` 属性来使用这些插件。插件详情查看[插件集](../x/docs/x-markdown/plugins.zh-CN.md)。
+################
+一级标题：Hello World
+二级标题：主题
+内容：
+`@ant-design/x-markdown` 提供了主题可供选择。主题详情查看[主题](../x/docs/x-markdown/themes.zh-CN.md)。
+################
+一级标题：Hello World
+二级标题：🌈 开箱即用的大模型企业级组件
+内容：
+`@ant-design/x` 基于 RICH 交互范式，在不同的交互阶段提供了大量的原子组件，帮助你灵活搭建你的 AI 应用，详情点击[这里](packages/x/README-zh_CN.md)。
+################
+一级标题：Hello World
+二级标题：⚡️ 对接模型智能体服务 & 高效管理数据流
+内容：
+`@ant-design/x-sdk` 提供了一系列的工具API，旨在提供开发者开箱即用的管理AI应用数据流，详情点击[这里](packages/x-sdk/README-zh_CN.md)。
+################
+一级标题：Hello World
+二级标题：如何贡献
+内容：
+在任何形式的参与前，请先阅读 [贡献者文档](https://github.com/ant-design/ant-design/blob/master/.github/CONTRIBUTING.md)。如果你希望参与贡献，欢迎提交 [Pull Request](https://github.com/ant-design/ant-design/pulls)，或给我们 [报告 Bug](http://new-issue.ant.design/)。
+
+> 强烈推荐阅读 [《提问的智慧》](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way)、[《如何向开源社区提问题》](https://github.com/seajs/seajs/issues/545) 和 [《如何有效地报告 Bug》](http://www.chiark.greenend.org.uk/%7Esgtatham/bugs-cn.html)、[《如何向开源项目提交无法解答的问题》](https://zhuanlan.zhihu.com/p/25795393)，更好的问题更容易获得帮助。
+################
+一级标题：Hello World
+二级标题：社区互助
+内容：
+如果您在使用的过程中碰到问题，可以通过下面几个途径寻求帮助，同时我们也鼓励资深用户通过下面的途径给新人提供帮助。
+
+通过 GitHub Discussions 提问时，建议使用 `Q&A` 标签。
+
+1. [GitHub Discussions](https://github.com/ant-design/x/discussions)
+2. [GitHub Issues](https://github.com/ant-design/x/issues)
+
+<a href="https://openomy.app/github/ant-design/x" target="_blank" style="display: block; width: 100%;" align="center">
+  <img src="https://openomy.app/svg?repo=ant-design/x&chart=bubble&latestMonth=3" target="_blank" alt="Contribution Leaderboard" style="display: block; width: 100%;" />
+ </a>
+################
+一级标题：Hello World
+二级标题：无
+内容：
+### Welcome to XMarkdown!
+
+- Item 1
+- Item 2
+- Item 3
+`;
+
+const App = () => <XMarkdown content={content} />;
+
+export default App;
+```
+################
+一级标题：Hello World
+二级标题：Plugins
+内容：
+`@ant-design/x-markdown` provides a rich set of plugins. You can use them via the `plugins` prop. See [Plugins Collection](../x/docs/x-markdown/plugins.md) for details.
+################
+一级标题：Hello World
+二级标题：Themes
+内容：
+`@ant-design/x-markdown` provides several themes. See [Themes](../x/docs/x-markdown/themes.md) for details.
+################
+一级标题：Hello World
+二级标题：🌈 Enterprise-level LLM Components Out of the Box
+内容：
+`@ant-design/x` provides a rich set of atomic components for different interaction stages based on the RICH interaction paradigm, helping you flexibly build your AI applications. See details [here](../x/README.md).
+################
+一级标题：Hello World
+二级标题：⚡️ Connect to Model Agents & Efficiently Manage Data Streams
+内容：
+`@ant-design/x-sdk` provides a set of utility APIs to help developers manage AI application data streams out of the box. See details [here](../x-sdk/README.md).
+################
+一级标题：Hello World
+二级标题：How to Contribute
+内容：
+Before participating in any form, please read the [Contributor Guide](https://github.com/ant-design/ant-design/blob/master/.github/CONTRIBUTING.md). If you wish to contribute, feel free to submit a [Pull Request](https://github.com/ant-design/ant-design/pulls) or [report a Bug](http://new-issue.ant.design/).
+
+> We highly recommend reading [How To Ask Questions The Smart Way](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way), [How to Ask Questions in Open Source Community](https://github.com/seajs/seajs/issues/545), [How to Report Bugs Effectively](http://www.chiark.greenend.org.uk/%7Esgtatham/bugs.html), and [How to Submit Unanswerable Questions to Open Source Projects](https://zhuanlan.zhihu.com/p/25795393). Better questions are more likely to get help.
+################
+一级标题：Hello World
+二级标题：Community Support
+内容：
+If you encounter problems during use, you can seek help through the following channels. We also encourage experienced users to help newcomers through these channels.
+
+When asking questions on GitHub Discussions, it is recommended to use the `Q&A` tag.
+
+1. [GitHub Discussions](https://github.com/ant-design/x/discussions)
+2. [GitHub Issues](https://github.com/ant-design/x/issues)
+
+<a href="https://openomy.app/github/ant-design/x" target="_blank" style="display: block; width: 100%;" align="center">
+  <img src="https://openomy.app/svg?repo=ant-design/x&chart=bubble&latestMonth=3" target="_blank" alt="Contribution Leaderboard" style="display: block; width: 100%;" />
+ </a>
+################
+一级标题：Markdown 渲染器性能基准测试
+二级标题：无
+内容：
+> 流式渲染场景下的性能对比分析
+################
+一级标题：Markdown 渲染器性能基准测试
+二级标题：🚀 快速开始
+内容：
+```bash
+cd packages/x-markdown
+npm run benchmark    # 一键运行完整测试
+```
+################
+一级标题：Markdown 渲染器性能基准测试
+二级标题：📊 支持的渲染器
+内容：
+| 渲染器             | 类型         | 特点               |
+| ------------------ | ------------ | ------------------ |
+| **marked**         | 传统解析器   | 流行度高，性能中等 |
+| **markdown-it**    | 可配置解析器 | 插件丰富，稍慢     |
+| **react-markdown** | React组件    | 集成度高，性能较低 |
+| **x-markdown**     | 高性能渲染器 | 本项目优化版本     |
+| **streamdown**     | 流式渲染     | 专为流式场景设计   |
+################
+一级标题：Markdown 渲染器性能基准测试
+二级标题：📈 性能指标
+内容：
+| 指标          | 说明         | 理想值   |
+| ------------- | ------------ | -------- |
+| **渲染时长**  | 完整渲染耗时 | 越低越好 |
+| **平均FPS**   | 渲染流畅度   | >45 FPS  |
+| **FPS标准差** | 帧率稳定性   | <10      |
+| **内存峰值**  | 最大内存占用 | 越低越好 |
+| **内存增量**  | 新增内存使用 | 越低越好 |
+################
+一级标题：Markdown 渲染器性能基准测试
+二级标题：📁 输出报告
+内容：
+### 标准报告
+
+- `benchmark-report.html` - 主要性能报告
+- `benchmark-results.json` - 原始数据
+
+### 增强报告
+
+- `benchmark-comparison.html` - 详细对比分析
+- `benchmark-historical.html` - 历史趋势
+- `benchmark-history.json` - 历史数据
+################
+一级标题：Markdown 渲染器性能基准测试
+二级标题：🎯 示例结果
+内容：
+```
+┌─────────┬────────────────┬──────────────┬──────────┬─────────────┐
+│ 排名    │ 渲染器         │ 时长(ms)     │ FPS      │ 内存(MB)    │
+├─────────┼────────────────┼──────────────┼──────────┼─────────────┤
+│ 🥇     │ streamdown     │ 3,987        │ 58.3     │ 20.12       │
+│ 🥈     │ x-markdown     │ 4,456        │ 52.8     │ 22.34       │
+│ 🥉     │ marked         │ 5,234        │ 45.2     │ 25.43       │
+│ 4       │ markdown-it    │ 6,123        │ 38.7     │ 28.91       │
+│ 5       │ react-markdown │ 7,891        │ 32.1     │ 35.67       │
+└─────────┴────────────────┴──────────────┴──────────┴─────────────┘
+```
+################
+一级标题：Markdown 渲染器性能基准测试
+二级标题：⚙️ 自定义测试
+内容：
+编辑 `performance.spec.tsx`：
+
+```typescript
+const RUN_COUNT = 3;           // 运行次数
+const renderers = [...];       // 测试的渲染器
+const updateInterval = 100;    // 更新频率(ms)
+```
+################
+一级标题：Markdown 渲染器性能基准测试
+二级标题：🔧 环境要求
+内容：
+- **Node.js**: ≥ 16.0.0
+- **内存**: ≥ 4GB 可用
+- **浏览器**: Chromium (自动安装)
+- **系统**: macOS/Linux/Windows
+################
+一级标题：Markdown 渲染器性能基准测试
+二级标题：🚨 故障排除
+内容：
+| 问题       | 解决方案                 |
+| ---------- | ------------------------ |
+| 依赖错误   | `npm install`            |
+| 浏览器缺失 | `npx playwright install` |
+| 内存不足   | 关闭其他程序             |
+| 权限问题   | 使用管理员权限运行       |
+################
+一级标题：Markdown 渲染器性能基准测试
+二级标题：💡 最佳实践
+内容：
+1. **测试前**：关闭无关应用，清理浏览器缓存
+2. **测试中**：避免系统干扰，保持网络稳定
+3. **测试后**：保存结果，建立性能基线
+################
+一级标题：Performance Test Document - Complex Markdown Structure Benchmark
+二级标题：无
+内容：
+
+################
+一级标题：Performance Test Document - Complex Markdown Structure Benchmark
+二级标题：1. Introduction and Overview
+内容：
+This document is specifically designed to test the performance of Markdown parsers, containing various complex Markdown structures and large amounts of content. By parsing this document, we can comprehensively evaluate the parser's performance metrics when handling large-scale, complex structures.
+
+### 1.1 Test Objectives
+
+- Evaluate the parser's ability to handle large files
+- Test parsing efficiency of complex nested structures
+- Verify support for various Markdown extended syntax
+- Measure memory usage and CPU utilization
+
+### 1.2 Document Structure Description
+
+This document contains the following main sections:
+
+1. Multi-level heading structure
+2. Large text content
+3. Complex table structures
+4. Various code blocks and syntax highlighting
+5. Nested list structures
+6. Quotes and annotations
+7. Links and images
+8. Mathematical formulas (if supported)
+################
+一级标题：Performance Test Document - Complex Markdown Structure Benchmark
+二级标题：2. Technical Specifications and Standards
+内容：
+### 2.1 Markdown Standard Support
+
+| Feature       | Standard Support | Extended Support | Notes                         |
+| ------------- | ---------------- | ---------------- | ----------------------------- |
+| Basic Syntax  | ✅               | ✅               | Fully supported               |
+| Tables        | ✅               | ✅               | Support alignment and nesting |
+| Code Blocks   | ✅               | ✅               | Support syntax highlighting   |
+| Task Lists    | ❌               | ✅               | Requires extended support     |
+| Math Formulas | ❌               | ✅               | Requires MathJax or KaTeX     |
+| Flowcharts    | ❌               | ✅               | Requires Mermaid support      |
+| Footnotes     | ❌               | ✅               | Requires extended syntax      |
+
+### 2.2 Performance Benchmark Requirements
+
+```yaml
+performance:
+  parsing:
+    max_time: 1000ms
+    max_memory: 50MB
+  rendering:
+    max_time: 2000ms
+    max_memory: 100MB
+  file_size:
+    min: 100KB
+    max: 1MB
+```
+################
+一级标题：Performance Test Document - Complex Markdown Structure Benchmark
+二级标题：3. Detailed Content Sections
+内容：
+### 3.1 Long-form Content Test
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+
+Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+
+### 3.2 Nested Structure Test
+
+#### 3.2.1 Three-level Nested Headings
+
+##### 3.2.1.1 Four-level Nested Headings
+
+###### 3.2.1.1.1 Five-level Nested Headings
+
+This is a deeply nested heading structure used to test the parser's ability to handle deep-level headings.
+
+#### 3.2.2 List Nesting Test
+
+1. First-level list item
+   - Second-level unordered list
+     - Third-level unordered list
+       1. Fourth-level ordered list
+          - Fifth-level mixed list
+            - Sixth-level deep nesting
+              - Seventh-level extreme nesting
+                - Eighth-level test
+                  - Ninth-level boundary test
+                    - Tenth-level maximum nesting
+
+2. Complex list item content test
+   - **Bold text** in lists
+   - _Italic text_ in lists
+   - `Code snippets` in lists
+   - [Link text](https://example.com) in lists
+   - ![Image alt](https://via.placeholder.com/50x50) in lists
+
+### 3.3 Code Block Test
+
+#### 3.3.1 Multi-language Code Highlighting
+
+```javascript
+// JavaScript code example
+class PerformanceTest {
+  constructor(name) {
+    this.name = name;
+    this.startTime = Date.now();
+  }
+
+  measureTime() {
+    const endTime = Date.now();
+    return endTime - this.startTime;
+  }
+
+  async runTests() {
+    const results = [];
+    for (let i = 0; i < 1000; i++) {
+      results.push(await this.singleTest(i));
+    }
+    return results;
+  }
+}
+
+const test = new PerformanceTest('markdown-parser');
+test.runTests().then(console.log);
+```
+
+```python
+# Python code example
+import asyncio
+import time
+from typing import List, Dict
+
+class MarkdownBenchmark:
+    def __init__(self, file_path: str):
+        self.file_path = file_path
+        self.results = []
+
+    async def parse_file(self) -> Dict[str, float]:
+        start_time = time.time()
+        # Simulate complex markdown parsing process
+        with open(self.file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+            # Complex parsing logic would be here
+            parsed = self._complex_parse(content)
+
+        end_time = time.time()
+        return {
+            'duration': end_time - start_time,
+            'file_size': len(content),
+            'parsed_length': len(parsed)
+        }
+
+    def _complex_parse(self, content: str) -> str:
+        # Simulate complex parsing process
+        return content.upper()
+
+if __name__ == "__main__":
+    benchmark = MarkdownBenchmark("test.md")
+    asyncio.run(benchmark.parse_file())
+```
+
+```sql
+-- SQL query example
+SELECT
+    p.id,
+    p.title,
+    p.content,
+    p.created_at,
+    COUNT(c.id) as comment_count,
+    AVG(r.rating) as avg_rating
+FROM
+    posts p
+LEFT JOIN
+    comments c ON p.id = c.post_id
+LEFT JOIN
+    ratings r ON p.id = r.post_id
+WHERE
+    p.status = 'published'
+    AND p.created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+GROUP BY
+    p.id
+ORDER BY
+    avg_rating DESC,
+    comment_count DESC
+LIMIT 100;
+```
+
+```json
+{
+  "benchmark": {
+    "name": "markdown-parser-performance",
+    "version": "1.0.0",
+    "tests": [
+      {
+        "name": "parsing-speed",
+        "iterations": 1000,
+        "expected": {
+          "max_time_ms": 1000,
+          "max_memory_mb": 50
+        }
+      },
+      {
+        "name": "rendering-speed",
+        "iterations": 100,
+        "expected": {
+          "max_time_ms": 2000,
+          "max_memory_mb": 100
+        }
+      }
+    ],
+    "metrics": {
+      "file_size": "1MB",
+      "complexity": "high",
+      "structures": ["tables", "code", "lists", "quotes", "math"]
+    }
+  }
+}
+```
+
+#### 3.3.2 Line Number Display Test
+
+```javascript {1,3-5}
+// This line shows line numbers
+function test() {
+  // These lines also show line numbers
+  const a = 1;
+  const b = 2;
+  return a + b; // This line does not show line numbers
+}
+```
+
+### 3.4 Math Formula Test (if supported)
+
+#### 3.4.1 Inline Formulas
+
+This is an inline math formula: $E=mc^2$, it should render correctly.  
+Inline formula with Greek: $\alpha + \beta = \gamma$.  
+Inline fraction: $\frac{a}{b} + \frac{c}{d} = \frac{ad+bc}{bd}$.
+
+#### 3.4.2 Block Formulas
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$
+
+$$
+\begin{align}
+\frac{d}{dx}\left( \int_{0}^{x} f(u)\,du\right) &= f(x) \\
+\frac{d}{dx}\left( \int_{a(x)}^{b(x)} f(u)\,du\right) &= f(b(x))b'(x) - f(a(x))a'(x)
+\end{align}
+$$
+
+$$
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+$$
+
+$$
+\mathbf{A} = \begin{pmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{pmatrix}
+$$
+
+$$
+\lim_{x \to 0} \frac{\sin x}{x} = 1
+$$
+
+### 3.5 Task List Test
+
+#### 3.5.1 Basic Task Lists
+
+- [x] Completed task
+- [ ] Incomplete task
+- [x] Another completed task
+- [ ] Todo item 1
+- [ ] Todo item 2
+
+#### 3.5.2 Nested Task Lists
+
+- [x] Main task
+  - [x] Subtask 1
+  - [ ] Subtask 2
+    - [x] Sub-subtask 1
+    - [ ] Sub-subtask 2
+- [ ] Independent task
+
+### 3.6 Table Complexity Test
+
+#### 3.6.1 Basic Complex Table
+
+| Header1         | Header2  | Header3  | Header4            | Header5                     |
+| --------------- | -------- | -------- | ------------------ | --------------------------- |
+| Cell1           | Cell2    | Cell3    | Cell4              | Cell5                       |
+| Merge cell test |          |          | Span three columns |                             |
+| New row1        | **Bold** | _Italic_ | `Code`             | [Link](https://example.com) |
+
+#### 3.6.2 Nested Content Table
+
+| Feature    | Description             | Example                                        | Status |
+| ---------- | ----------------------- | ---------------------------------------------- | ------ |
+| Images     | Support image insertion | ![Example](https://via.placeholder.com/100x50) | ✅     |
+| Math       | Support LaTeX           | $E=mc^2$                                       | ⚠️     |
+| Flowcharts | Support Mermaid         | `mermaid<br>graph LR<br>A-->B`                 | ❌     |
+| Tables     | Support complex tables  | As shown above                                 | ✅     |
+
+#### 3.6.3 Large Data Table
+
+| ID | Name | Type | Size | Created | Modified | Permissions | Owner | Group | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | document.md | file | 1024KB | 2024-01-01 10:00:00 | 2024-01-02 11:30:00 | 644 | user1 | group1 | Main document |
+| 2 | image.png | file | 2048KB | 2024-01-01 10:30:00 | 2024-01-01 10:30:00 | 755 | user2 | group2 | Example image |
+| 3 | folder | dir | 4096KB | 2024-01-01 09:00:00 | 2024-01-03 14:20:00 | 755 | user1 | group1 | Project folder |
+| 4 | script.js | file | 512KB | 2024-01-02 15:00:00 | 2024-01-02 15:30:00 | 700 | user3 | group3 | Config file |
+| 5 | data.json | file | 256KB | 2024-01-03 09:15:00 | 2024-01-03 09:15:00 | 644 | user1 | group1 | Data file |
+
+### 3.7 Quote and Annotation Test
+
+> This is a quote block used to test quote format parsing.
+>
+> Quotes can contain multi-line content and support internal formatting:
+>
+> - **Bold text** in quotes
+> - _Italic text_ in quotes
+> - `Code snippets` in quotes
+>
+> > Nested quote
+> >
+> > > Three-level nested quote
+> > >
+> > > This is the deepest quote content, containing [links](https://example.com) and **formatted text**.
+
+### 3.8 Link and Image Test
+
+#### 3.8.1 Various Link Formats
+
+- [Inline link](https://example.com)
+- [Link with title](https://example.com 'Link title')
+- [Relative link](../README.md)
+- [Anchor link](#introduction-and-overview)
+- <https://automatic-link.com>
+- [Reference link][reference]
+
+[reference]: https://example.com 'Reference link'
+
+#### 3.8.2 Image Test
+
+![Regular image](https://via.placeholder.com/200x100) ![Image with alt](https://via.placeholder.com/200x100 'Image title') ![Small icon](https://via.placeholder.com/16x16)
+################
+一级标题：Performance Test Document - Complex Markdown Structure Benchmark
+二级标题：4. Repetitive Content Test (increasing file size)
+内容：
+### 4.1 Repeated Paragraph 1
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+### 4.2 Repeated Paragraph 2
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+### 4.3 Repeated Paragraph 3
+
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+
+### 4.4 Repeated Paragraph 4
+
+Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+
+### 4.5 Repeated Paragraph 5
+
+Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+################
+一级标题：Performance Test Document - Complex Markdown Structure Benchmark
+二级标题：5. Large Table Data
+内容：
+### 5.1 Performance Test Data Table
+
+| Test Case        | File Size | Parse Time | Memory Usage | CPU Usage | Status |
+| ---------------- | --------- | ---------- | ------------ | --------- | ------ |
+| Small file       | 1KB       | 5ms        | 2MB          | 5%        | ✅     |
+| Medium file      | 10KB      | 25ms       | 5MB          | 15%       | ✅     |
+| Large file       | 100KB     | 150ms      | 15MB         | 45%       | ✅     |
+| Extra large file | 1MB       | 1200ms     | 50MB         | 85%       | ⚠️     |
+| Extreme file     | 10MB      | 15000ms    | 200MB        | 95%       | ❌     |
+
+### 5.2 Feature Support Matrix
+
+| Parser | Basic Syntax | Tables | Code Highlighting | Math Formulas | Flowcharts | Footnotes | Task Lists |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ParserA | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ |
+| ParserB | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ |
+| ParserC | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| ParserD | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ | ✅ |
+################
+一级标题：Performance Test Document - Complex Markdown Structure Benchmark
+二级标题：6. Complex Nested Structure Test
+内容：
+### 6.1 Code Blocks in Lists
+
+1. Code block in ordered list
+
+   ```python
+   def test_function():
+       print("This is a code block in an ordered list")
+       return True
+   ```
+
+2. Another code block
+   ```javascript
+   const listItemCode = () => {
+     console.log('JavaScript code in list item');
+   };
+   ```
+
+### 6.2 Lists in Quotes
+
+> Lists in quotes:
+>
+> 1. First item
+>    - Subitem 1
+>    - Subitem 2
+> 2. Second item
+>    - Subitem A
+>    - Subitem B
+
+### 6.3 Code in Tables
+
+| Language   | Example Code                        | Description     |
+| ---------- | ----------------------------------- | --------------- |
+| Python     | `print("Hello World")`              | Simple output   |
+| JavaScript | `console.log("Hello World")`        | Console output  |
+| Java       | `System.out.println("Hello World")` | Standard output |
+################
+一级标题：Performance Test Document - Complex Markdown Structure Benchmark
+二级标题：7. Boundary Test Cases
+内容：
+### 7.1 Special Character Test
+
+#### 7.1.1 Escape Characters
+
+\*This is not italic\* \*\*This is not bold\*\* \`This is not code\` \[This is not a link\](https://example.com)
+
+#### 7.1.2 HTML Entities
+
+<div>HTML entity test</div>
+&copy; 2024 Copyright
+&trade; Trademark symbol
+& " '
+
+### 7.2 Extreme Format Test
+
+**Bold text with _italic_ text** _Italic text with **bold** text_ ~~Strikethrough text with **bold** text~~
+
+### 7.3 Link Nesting Test
+
+- [Link with `code`](https://example.com)
+- [Link with **bold**](https://example.com)
+- [Link with _italic_](https://example.com)
+################
+一级标题：Performance Test Document - Complex Markdown Structure Benchmark
+二级标题：8. Summary
+内容：
+This document contains rich Markdown structures and content for comprehensive testing of Markdown parser performance. By parsing this document containing various complex elements, we can effectively evaluate the parser's performance in real-world application scenarios.
+
+### 8.1 Test Points Summary
+
+1. **Parsing Speed**: Document size is approximately 1MB, contains large amounts of complex structures
+2. **Memory Usage**: Requires processing large amounts of nested structures and formatted content
+3. **Feature Completeness**: Tests support for various Markdown extended syntax
+4. **Error Handling**: Includes boundary cases and special character tests
+
+### 8.2 Performance Metrics
+
+- Total document characters: ~15,000 characters
+- Maximum heading level: 6 levels
+- Number of tables: 10
+- Number of code blocks: 15
+- Maximum list nesting level: 10 levels
+- Number of images: 5
+- Number of links: 20
+
+---
+
+_This document was generated in 2024, specifically for Markdown parser performance testing._
+################
+一级标题：全局安装技能库
+二级标题：无
+内容：
+npm i -g @ant-design/x-skill
+
+# 智能注册到当前 IDE
+npx x-skill
+```
+
+### Claude Code 集成
+
+#### 插件市场安装（官方推荐）
+
+**步骤 1：注册插件市场**
+
+在 Claude Code 中执行以下命令，将本仓库添加为插件源：
+
+```bash
+/plugin marketplace add ant-design/x/blob/main/packages/x-skill/
+```
+
+**步骤 2：选择并安装技能**
+
+安装 x-skill 技能包含的技能。
+
+点击 `Install now` 完成安装。
+
+#### 快速安装
+
+也可以直接通过命令安装完整技能包：
+
+```bash
+/plugin install x-sdk-skills@x-agent-skills
+```
+
+### 手动安装
+
+适用于需要定制化配置的场景：
+
+- **全局安装**：将技能文件复制到 `~/.claude/skills` 目录，所有项目可用
+- **项目安装**：将技能文件复制到项目根目录下的 `.claude/skills` 目录，仅当前项目可用
+################
+一级标题：全局安装技能库
+二级标题：🔧 包含的技能
+内容：
+### use-x-chat
+
+对话 SDK 使用指南，帮助您快速集成 Ant Design X 的对话功能。
+
+### x-chat-provider
+
+聊天数据流管理，提供高效的数据流处理方案。
+
+### x-request
+
+网络请求最佳实践，优化 API 调用和数据处理。
+
+### x-markdown
+
+Markdown 渲染指南，覆盖流式输出、自定义组件映射、插件与主题。
+################
+一级标题：全局安装技能库
+二级标题：🎯 适用场景
+内容：
+- **🚀 新项目启动**：快速搭建 Ant Design X 项目框架，包含完整的配置和最佳实践
+- **⚙️ 功能开发**：获取组件使用、渲染与集成的最佳实践和代码示例，加速功能实现
+- **🔍 问题排查**：智能诊断和解决常见开发问题，提供专业的解决方案
+- **📈 性能优化**：获取性能调优的专业建议，提升应用性能
+################
+一级标题：全局安装技能库
+二级标题：🛠 开发
+内容：
+### 本地开发
+
+```bash
+# 克隆项目
+git clone https://github.com/ant-design/x.git
+
+# 进入技能目录
+cd packages/x-skill
+
+# 安装依赖
+npm install
+
+# 开发模式
+npm run dev
+```
+
+### 构建
+
+```bash
+# 构建项目
+npm run build
+
+# 运行测试
+npm test
+```
+################
+一级标题：全局安装技能库
+二级标题：🤝 如何贡献
+内容：
+我们欢迎所有形式的贡献，包括但不限于：
+
+- 🐛 [报告 Bug](https://github.com/ant-design/x/issues/new?template=bug-report.yml)
+- ✨ [提交功能请求](https://github.com/ant-design/x/issues/new?template=bug-feature-request.yml)
+- 📝 [改进文档](https://github.com/ant-design/x/pulls)
+- 💻 [提交代码](https://github.com/ant-design/x/pulls)
+
+在参与贡献之前，请阅读我们的[贡献指南](https://github.com/ant-design/ant-design/blob/master/.github/CONTRIBUTING.md)。
+################
+一级标题：全局安装技能库
+二级标题：📞 社区支持
+内容：
+如果您在使用过程中遇到问题，可以通过以下渠道寻求帮助：
+
+1. [GitHub Discussions](https://github.com/ant-design/x/discussions) - 讨论和问答
+2. [GitHub Issues](https://github.com/ant-design/x/issues) - 问题报告和功能请求
+################
+一级标题：全局安装技能库
+二级标题：📄 许可证
+内容：
+[MIT](./LICENSE)
+################
+一级标题：Install skill library globally
+二级标题：无
+内容：
+npm i -g @ant-design/x-skill
+
+# Smart registration to current IDE
+npx x-skill
+```
+
+### Claude Code Integration
+
+#### Plugin Marketplace Installation (Officially Recommended)
+
+**Step 1: Register Plugin Marketplace**
+
+Execute the following command in Claude Code to add this repository as a plugin source:
+
+```bash
+/plugin marketplace add ant-design/x/blob/main/packages/x-skill/
+```
+
+**Step 2: Select and Install Skills**
+
+Install the skills included in the x-skill package.
+
+Click `Install now` to complete the installation.
+
+#### Quick Installation
+
+You can also directly install the complete skill package through commands:
+
+```bash
+/plugin install x-sdk-skills@x-agent-skills
+```
+
+### Manual Installation
+
+Suitable for scenarios requiring customized configuration:
+
+- **Global Installation**: Copy skill files to the `~/.claude/skills` directory, available for all projects
+- **Project Installation**: Copy skill files to the `.claude/skills` directory in the project root, available only for the current project
+################
+一级标题：Install skill library globally
+二级标题：🔧 Included Skills
+内容：
+### use-x-chat
+
+Conversation SDK usage guide to help you quickly integrate Ant Design X conversation features.
+
+### x-chat-provider
+
+Chat data flow management, providing efficient data stream processing solutions.
+
+### x-request
+
+Network request best practices, optimizing API calls and data processing.
+
+### x-markdown
+
+Markdown rendering guide for streaming output, component mapping, plugins, and themes.
+################
+一级标题：Install skill library globally
+二级标题：🎯 Applicable Scenarios
+内容：
+- **🚀 New Project Startup**: Quickly set up Ant Design X project framework with complete configuration and best practices
+- **⚙️ Feature Development**: Get best practices and code examples for component usage, rendering, and integration to accelerate feature implementation
+- **🔍 Problem Troubleshooting**: Intelligent diagnosis and resolution of common development issues with professional solutions
+- **📈 Performance Optimization**: Get professional advice for performance tuning to improve application performance
+################
+一级标题：Install skill library globally
+二级标题：🛠 Development
+内容：
+### Local Development
+
+```bash
+# Clone the project
+git clone https://github.com/ant-design/x.git
+
+# Enter the skill directory
+cd packages/x-skill
+
+# Install dependencies
+npm install
+
+# Development mode
+npm run dev
+```
+
+### Build
+
+```bash
+# Build the project
+npm run build
+
+# Run tests
+npm test
+```
+################
+一级标题：Install skill library globally
+二级标题：🤝 How to Contribute
+内容：
+We welcome all forms of contribution, including but not limited to:
+
+- 🐛 [Report Bugs](https://github.com/ant-design/x/issues/new?template=bug-report.yml)
+- ✨ [Submit Feature Requests](https://github.com/ant-design/x/issues/new?template=bug-feature-request.yml)
+- 📝 [Improve Documentation](https://github.com/ant-design/x/pulls)
+- 💻 [Submit Code](https://github.com/ant-design/x/pulls)
+
+Before participating, please read our [Contributor Guide](https://github.com/ant-design/ant-design/blob/master/.github/CONTRIBUTING.md).
+################
+一级标题：Install skill library globally
+二级标题：📞 Community Support
+内容：
+If you encounter problems during use, you can seek help through the following channels:
+
+1. [GitHub Discussions](https://github.com/ant-design/x/discussions) - Discussions and Q&A
+2. [GitHub Issues](https://github.com/ant-design/x/issues) - Bug reports and feature requests
+################
+一级标题：Install skill library globally
+二级标题：📄 License
+内容：
+[MIT](./LICENSE)
+################
+一级标题：🎯 技能定位
+二级标题：无
+内容：
+> **核心定位**：使用 `useXChat` Hook 构建专业级 AI 对话应用 **前置要求**：已具备自定义 Chat Provider（参考 [x-chat-provider 技能](../x-chat-provider)）
+################
+一级标题：🎯 技能定位
+二级标题：目录导航
+内容：
+- [🚀 快速开始](#-快速开始)
+  - [依赖管理](#1-依赖管理)
+  - [三步集成](#2-三步集成)
+- [🧩 核心概念](#-核心概念)
+  - [技术栈架构](#技术栈架构)
+  - [数据模型](#数据模型)
+- [🔧 核心功能详解](#-核心功能详解)
+  - [消息管理](#1-消息管理)
+  - [请求控制](#2-请求控制)
+  - [错误处理](#3-错误处理)
+  - [完整示例项目](#-完整示例项目)
+- [📋 使用前提和依赖](#-使用前提和依赖)
+- [🚨 开发规则](#-开发规则)
+- [🔗 参考资源](#-参考资源)
+  - [📚 核心参考文档](#-核心参考文档)
+  - [🌐 SDK官方文档](#-SDK官方文档)
+  - [💻 示例代码](#-示例代码)
+
+# 🚀 快速开始
+################
+一级标题：🎯 技能定位
+二级标题：1. 依赖管理
+内容：
+### 🎯 自动依赖处理
+
+### 📋 系统要求
+
+- **@ant-design/x-sdk**: 2.2.2+（自动安装）
+- **@ant-design/x**: 最新版（UI组件，自动安装）
+
+### ⚠️ 版本问题自动修复
+
+如果检测到版本不匹配，技能会自动：
+
+- ✅ 提示当前版本状态
+- ✅ 提供修复建议
+- ✅ 使用相对路径确保兼容性
+
+#### 🎯 技能内置版本检查
+
+use-x-chat 技能已内置版本检查功能，启动时自动检查版本兼容性：
+
+**🔍 自动检查功能** 技能启动时会自动检查 `@ant-design/x-sdk` 版本是否符合要求（≥2.2.2）：
+
+**📋 检查内容包括：**
+
+- ✅ 当前安装的版本
+- ✅ 是否符合最低要求（≥2.2.2）
+- ✅ 自动提供修复建议
+- ✅ 友好的错误提示
+
+**🛠️ 版本问题修复** 如果检测到版本不匹配，技能会提供具体的修复命令：
+
+```bash
+# 自动提示的修复命令
+npm install @ant-design/x-sdk@^2.2.2
+
+# 或安装最新版本
+npm install @ant-design/x-sdk@latest
+```
+################
+一级标题：🎯 技能定位
+二级标题：2. 三步集成
+内容：
+### 步骤1：准备 Provider
+
+这部分由 x-chat-provider 技能负责
+
+```ts
+import { MyChatProvider } from './MyChatProvider';
+import { XRequest } from '@ant-design/x-sdk';
+
+// 推荐使用 XRequest 作为默认请求方式
+const provider = new MyChatProvider({
+  // 默认使用 XRequest，无需自定义 fetch
+  request: XRequest('https://your-api.com/chat'),
+  // 当设置 requestPlaceholder 时，会在请求开始前显示占位消息
+  requestPlaceholder: {
+    content: '正在思考中...',
+    role: 'assistant',
+    timestamp: Date.now(),
+  },
+  // 当设置 requestFallback 时，会在请求失败时显示兜底消息
+  requestFallback: (_, { error, errorInfo, messageInfo }) => {
+    if (error.name === 'AbortError') {
+      return {
+        content: messageInfo?.message?.content || '已取消回复',
+        role: 'assistant' as const,
+        timestamp: Date.now(),
+      };
+    }
+    return {
+      content: errorInfo?.error?.message || '网络异常，请稍后重试',
+      role: 'assistant' as const,
+      timestamp: Date.now(),
+    };
+  },
+});
+```
+
+### 步骤2：基础使用
+
+```tsx
+import { useXChat } from '@ant-design/x-sdk';
+
+const ChatComponent = () => {
+  const { messages, onRequest, isRequesting } = useXChat({ provider });
+
+  return (
+    <div>
+      {messages.map((msg) => (
+        <div key={msg.id}>
+          {msg.message.role}: {msg.message.content}
+        </div>
+      ))}
+      <button onClick={() => onRequest({ query: '你好' })}>发送</button>
+    </div>
+  );
+};
+```
+
+### 步骤3：UI集成
+
+```tsx
+import { Bubble, Sender } from '@ant-design/x';
+
+const ChatUI = () => {
+  const { messages, onRequest, isRequesting, abort } = useXChat({ provider });
+
+  return (
+    <div style={{ height: 600 }}>
+      <Bubble.List items={messages} />
+      <Sender
+        loading={isRequesting}
+        onSubmit={(content) => onRequest({ query: content })}
+        onCancel={abort}
+      />
+    </div>
+  );
+};
+```
+
+# 🧩 核心概念
+################
+一级标题：🎯 技能定位
+二级标题：技术栈架构
+内容：
+```mermaid
+graph TD
+    A[useXChat Hook] --> B[Chat Provider]
+    B --> C[XRequest]
+    A --> D[Ant Design X UI]
+    D --> E[Bubble组件]
+    D --> F[Sender组件]
+```
+
+### 数据模型
+
+> ⚠️ **重要提醒**：`messages` 类型是 `MessageInfo<MessageType>[]`，不是直接的 `MessageType`
+
+```ts
+interface MessageInfo<Message> {
+  id: number | string; // 消息唯一标识
+  message: Message; // 实际消息内容
+  status: MessageStatus; // 发送状态
+  extraInfo?: AnyObject; // 扩展信息
+}
+
+// 消息状态枚举
+type MessageStatus = 'local' | 'loading' | 'updating' | 'success' | 'error' | 'abort';
+```
+
+# 🔧 核心功能详解
+
+> 💡 **提示**：API可能会随版本更新，建议查看[官方文档](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/use-x-chat.zh-CN.md)获取最新信息
+
+核心功能参考内容 [CORE.md](reference/CORE.md)
+
+# 📋 使用前提和依赖
+################
+一级标题：🎯 技能定位
+二级标题：⚠️ 重要依赖
+内容：
+**use-x-chat 必须依赖以下技能之一：**
+
+| 依赖类型 | 技能 | 说明 | 是否必须 |
+| --- | --- | --- | --- |
+| **核心依赖** | **x-chat-provider** | 提供自定义 Provider 实例，默认使用 XRequest, **必须**配合 use-x-chat | **必须** |
+| **或** | **内置 Provider** | OpenAI/DeepSeek 等内置 Provider，默认使用 XRequest | **必须** |
+| **推荐依赖** | **x-request** | 配置请求参数和认证，作为默认请求方式 | **推荐** |
+################
+一级标题：🎯 技能定位
+二级标题：🎯 使用场景对照表
+内容：
+| 使用场景         | 需要的技能组合                           | 使用顺序               |
+| ---------------- | ---------------------------------------- | ---------------------- |
+| **私有API适配**  | x-chat-provider → use-x-chat             | 先创建Provider，再使用 |
+| **标准API使用**  | use-x-chat（内置Provider）               | 直接使用               |
+| **需要认证配置** | x-request → use-x-chat                   | 先配置请求，再使用     |
+| **完整自定义**   | x-chat-provider → x-request → use-x-chat | 完整工作流             |
+
+# 🚨 开发规则
+################
+一级标题：🎯 技能定位
+二级标题：使用 use-x-chat 前必须确认：
+内容：
+- [ ] **已有 Provider 来源**（以下二选一）：
+  - [ ] 已用 **x-chat-provider** 创建自定义 Provider
+  - [ ] 决定使用内置 Provider（OpenAI/DeepSeek）
+- [ ] 已安装 @ant-design/x-sdk
+- [ ] 已了解 MessageInfo 数据结构
+- [ ] 已准备好 UI 组件
+
+### 测试用例规则
+
+- **如果用户没有明确需要测试用例，则不要添加测试文件**
+- **仅在用户明确要求时才创建测试用例**
+
+### 代码质量规则
+
+- **完成编写后必须检查类型**：运行 `tsc --noEmit` 确保无类型错误
+- **保持代码整洁**：移除所有未使用的变量和导入
+
+# 🔗 参考资源
+################
+一级标题：🎯 技能定位
+二级标题：📚 核心参考文档
+内容：
+- [API.md](reference/API.md) - 完整的 API 参考文档
+- [EXAMPLES.md](reference/EXAMPLES.md) - 所有实战示例代码
+################
+一级标题：🎯 技能定位
+二级标题：🌐 SDK官方文档
+内容：
+- [useXChat 官方文档](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/use-x-chat.zh-CN.md)
+- [XRequest 官方文档](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/x-request.zh-CN.md)
+- [Chat Provider 官方文档](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/chat-provider.zh-CN.md)
+################
+一级标题：🎯 技能定位
+二级标题：💻 示例代码
+内容：
+- [custom-provider-width-ui.tsx](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/demos/chat-providers/custom-provider-width-ui.tsx) - 自定义 Provider 完整示例
+################
+一级标题：完整示例项目
+二级标题：无
+内容：
+
+################
+一级标题：完整示例项目
+二级标题：带有对话管理的完整项目
+内容：
+```tsx
+import React, { useRef, useState } from 'react';
+import { useXChat } from '@ant-design/x-sdk';
+import { chatProvider } from '../services/chatService';
+import type { ChatMessage } from '../providers/ChatProvider';
+import { Bubble, Sender, Conversations, type ConversationsProps } from '@ant-design/x';
+import { GetRef } from 'antd';
+
+const App: React.FC = () => {
+  const [conversations, setConversations] = useState([{ key: '1', label: '新对话' }]);
+  const [activeKey, setActiveKey] = useState('1');
+  const senderRef = useRef<GetRef<typeof Sender>>(null);
+  // 新建对话
+  const handleNewConversation = () => {
+    const newKey = Date.now().toString();
+    const newConversation = {
+      key: newKey,
+      label: `对话 ${conversations.length + 1}`,
+    };
+    setConversations((prev) => [...prev, newConversation]);
+    setActiveKey(newKey);
+  };
+
+  // 删除对话
+  const handleDeleteConversation = (key: string) => {
+    setConversations((prev) => {
+      const filtered = prev.filter((item) => item.key !== key);
+      if (filtered.length === 0) {
+        // 如果没有对话了，创建一个新的
+        const newKey = Date.now().toString();
+        return [{ key: newKey, label: '新对话' }];
+      }
+      return filtered;
+    });
+
+    // 如果删除的是当前激活的对话，切换到第一个
+    if (activeKey === key) {
+      setActiveKey(conversations[0]?.key || '1');
+    }
+  };
+
+  const { messages, onRequest, isRequesting, abort } = useXChat<
+    ChatMessage,
+    ChatMessage,
+    { query: string },
+    { content: string; time: string; status: 'success' | 'error' }
+  >({
+    provider: chatProvider,
+    conversationKey: activeKey,
+    requestFallback: (_, { error }) => {
+      if (error.name === 'AbortError') {
+        return { content: '已取消', role: 'assistant' as const, timestamp: Date.now() };
+      }
+      return { content: '请求失败', role: 'assistant' as const, timestamp: Date.now() };
+    },
+  });
+
+  const menuConfig: ConversationsProps['menu'] = (conversation) => ({
+    items: [
+      {
+        label: '删除',
+        key: 'delete',
+        danger: true,
+      },
+    ],
+    onClick: ({ key: menuKey }) => {
+      if (menuKey === 'delete') {
+        handleDeleteConversation(conversation.key);
+      }
+    },
+  });
+
+  return (
+    <div style={{ display: 'flex', height: '100vh' }}>
+      {/* 会话列表 */}
+      <div
+        style={{
+          width: 240,
+          borderRight: '1px solid #f0f0f0',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <Conversations
+          creation={{
+            onClick: handleNewConversation,
+          }}
+          items={conversations}
+          activeKey={activeKey}
+          menu={menuConfig}
+          onActiveChange={setActiveKey}
+        />
+      </div>
+
+      {/* 聊天区域 */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+        <div
+          style={{ padding: 16, borderBottom: '1px solid #f0f0f0', fontSize: 16, fontWeight: 500 }}
+        >
+          {conversations.find((c) => c.key === activeKey)?.label || '对话'}
+        </div>
+
+        <div style={{ flex: 1, padding: 16, overflow: 'auto' }}>
+          <Bubble.List
+            role={{
+              assistant: {
+                placement: 'start',
+              },
+              user: {
+                placement: 'end',
+              },
+            }}
+            items={messages.map((msg) => ({
+              key: msg.id,
+              content: msg.message.content,
+              role: msg.message.role,
+              loading: msg.status === 'loading',
+            }))}
+          />
+        </div>
+
+        <div style={{ padding: 16, borderTop: '1px solid #f0f0f0' }}>
+          <Sender
+            loading={isRequesting}
+            ref={senderRef}
+            onSubmit={(content: string) => {
+              onRequest({ query: content });
+              senderRef.current?.clear?.();
+            }}
+            onCancel={abort}
+            placeholder="输入消息..."
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+export default App;
+```
+################
+一级标题：完整示例项目
+二级标题：带状态管理的重新发送
+内容：
+```tsx
+import React, { useRef, useState } from 'react';
+import { useXChat } from '@ant-design/x-sdk';
+import { Bubble, Sender } from '@ant-design/x';
+import { Button, type GetRef } from 'antd';
+import { chatProvider } from '../services/chatService';
+import type { ChatMessage } from '../providers/ChatProvider';
+
+const ChatWithRegenerate: React.FC = () => {
+  const senderRef = useRef<GetRef<typeof Sender>>(null);
+  const { messages, onReload, isRequesting, onRequest, abort } = useXChat<
+    ChatMessage,
+    ChatMessage,
+    { query: string },
+    { content: string; time: string; status: 'success' | 'error' }
+  >({
+    provider: chatProvider,
+    requestPlaceholder: {
+      content: '正在思考中...',
+      role: 'assistant',
+      timestamp: Date.now(),
+    },
+    requestFallback: (_, { error, errorInfo, messageInfo }) => {
+      if (error.name === 'AbortError') {
+        return {
+          content: messageInfo?.message?.content || '已取消回复',
+          role: 'assistant' as const,
+          timestamp: Date.now(),
+        };
+      }
+      return {
+        content: errorInfo?.error?.message || '网络异常，请稍后重试',
+        role: 'assistant' as const,
+        timestamp: Date.now(),
+      };
+    },
+  });
+
+  // 跟踪正在重新生成的消息ID
+  const [regeneratingId, setRegeneratingId] = useState<string | number | null>(null);
+
+  const handleRegenerate = (messageId: string | number): void => {
+    setRegeneratingId(messageId);
+    onReload(
+      messageId,
+      {},
+      {
+        extraInfo: { regenerate: true },
+      },
+    );
+  };
+
+  return (
+    <div>
+      <Bubble.List
+        role={{
+          assistant: {
+            placement: 'start',
+          },
+          user: {
+            placement: 'end',
+          },
+        }}
+        items={messages.map((msg) => ({
+          key: msg.id,
+          content: msg.message.content,
+          role: msg.message.role,
+          loading: msg.status === 'loading',
+          footer: msg.message.role === 'assistant' && (
+            <Button
+              type="text"
+              size="small"
+              loading={regeneratingId === msg.id && isRequesting}
+              onClick={() => handleRegenerate(msg.id)}
+              disabled={isRequesting && regeneratingId !== msg.id}
+            >
+              {regeneratingId === msg.id ? '生成中...' : '重新生成'}
+            </Button>
+          ),
+        }))}
+      />
+      <div>
+        <Sender
+          loading={isRequesting}
+          onSubmit={(content: string) => {
+            onRequest({ query: content });
+            senderRef.current?.clear?.();
+          }}
+          onCancel={abort}
+          ref={senderRef}
+          placeholder="输入消息..."
+          allowSpeech
+          prefix={
+            <Sender.Header
+              title="AI 助手"
+              open={false}
+              styles={{
+                content: { padding: 0 },
+              }}
+            />
+          }
+        />
+      </div>
+    </div>
+  );
+};
+
+export default ChatWithRegenerate;
+```
+################
+一级标题：🎯 技能定位
+二级标题：无
+内容：
+**本技能专注解决一个问题**：如何将你的流式接口快速适配为 Ant Design X 的 Chat Provider。
+
+**不涉及的**：useXChat 的使用教程（那是另一个技能）。
+################
+一级标题：🎯 技能定位
+二级标题：目录导航
+内容：
+- [📦 技术栈概览](#-技术栈概览)
+  - [Ant Design X 生态](#ant-design-x-生态)
+  - [核心概念](#核心概念)
+- [🚀 快速开始](#-快速开始)
+  - [依赖管理](#依赖管理)
+  - [内置 Provider](#内置-provider)
+  - [何时需要自定义 Provider](#何时需要自定义-provider)
+- [📋 四步实现自定义 Provider](#-四步实现自定义-provider)
+  - [步骤1：分析接口格式](#步骤1分析接口格式)
+  - [步骤2：创建 Provider 类](#步骤2创建-provider-类)
+  - [步骤3：检查文件](#步骤3检查文件)
+  - [步骤4：使用 Provider](#步骤4使用-provider)
+- [🔧 常见场景适配](#-常见场景适配)
+- [📋 联合技能使用](#-联合技能使用)
+  - [场景1：完整AI对话应用](#场景1完整ai对话应用)
+  - [场景2：仅创建Provider](#场景2仅创建provider)
+  - [场景3：使用内置Provider](#场景3使用内置provider)
+- [⚠️ 重要提醒](#️-重要提醒)
+  - [强制规则：禁止自己写 request 方法](#强制规则禁止自己写-request-方法)
+- [⚡ 快速检查清单](#-快速检查清单)
+- [🚨 开发规则](#-开发规则)
+- [🔗 参考资源](#-参考资源)
+  - [📚 核心参考文档](#-核心参考文档)
+  - [🌐 SDK官方文档](#-SDK官方文档)
+  - [💻 示例代码](#-示例代码)
+
+# 📦 技术栈概览
+
+### 🏗️ Ant Design X 生态架构
+
+| 层级       | 包名                       | 核心作用        | 典型使用场景               |
+| ---------- | -------------------------- | --------------- | -------------------------- |
+| **UI层**   | **@ant-design/x**          | React UI 组件库 | 构建聊天界面、气泡、输入框 |
+| **逻辑层** | **@ant-design/x-sdk**      | 开发工具包      | 数据流管理、Provider、Hook |
+| **渲染层** | **@ant-design/x-markdown** | Markdown 渲染器 | 内容展示、代码高亮         |
+
+> ⚠️ **重要提醒**：这三个包功能定位不同，请务必从正确的包导入所需功能
+>
+> ```ts
+> // ✅ 正确导入示例
+> import { Bubble } from '@ant-design/x'; // UI组件
+> import { AbstractChatProvider } from '@ant-design/x-sdk'; // Provider基类
+> import { XRequest } from '@ant-design/x-sdk'; // 请求工具
+> ```
+
+### 🔑 核心概念解析
+
+```mermaid
+graph LR
+    A[原始API接口] -->|适配| B[Chat Provider]
+    B -->|提供数据| C[useXChat Hook]
+    C -->|渲染| D[Ant Design X UI]
+    E[XRequest] -->|网络请求| B
+```
+
+| 概念 | 角色定位 | 核心职责 | 使用场景 |
+| --- | --- | --- | --- |
+| **Chat Provider** | 🔄 数据适配器 | 将任意接口格式转换为Ant Design X标准格式 | 私有API适配、格式转换 |
+| **useXChat** | ⚛️ React Hook | 管理对话状态、消息流、请求控制 | 构建AI对话界面 |
+| **XRequest** | 🌐 请求工具 | 处理所有网络通信、认证、错误处理 | 统一请求管理 |
+
+# 🚀 快速开始
+
+### 📋 环境准备
+
+#### 系统要求
+
+| 依赖包                | 版本要求 | 自动安装 | 作用                        |
+| --------------------- | -------- | -------- | --------------------------- |
+| **@ant-design/x-sdk** | ≥2.2.2   | ✅       | 核心SDK，包含Provider和Hook |
+| **@ant-design/x**     | 最新版   | ✅       | UI组件库，构建聊天界面      |
+
+#### 🛠️ 一键环境检查
+
+```bash
+# 自动检查并修复版本
+npm ls @ant-design/x-sdk
+# 如版本不符，自动提示：
+npm install @ant-design/x-sdk@latest
+```
+
+#### 📊 版本兼容性矩阵
+
+| SDK版本 | 支持功能         | 兼容性      |
+| ------- | ---------------- | ----------- |
+| ≥2.2.2  | 完整Provider功能 | ✅ 推荐     |
+| 2.2.0   | 基础功能         | ⚠️ 部分兼容 |
+| <2.2.0  | 不支持           | ❌ 需升级   |
+
+### 🎯 Provider选择决策树
+
+```mermaid
+graph TD
+    A[开始] --> B{使用标准API?}
+    B -->|是| C[使用内置Provider]
+    B -->|否| D{私有API?}
+    D -->|是| E[自定义Provider]
+    D -->|否| F[特殊格式?]
+    F -->|是| E
+    F -->|否| C
+
+    C --> G[OpenAI/DeepSeek Provider]
+    E --> H[四步创建自定义Provider]
+```
+
+### 🏭 内置Provider速览
+
+#### 开箱即用的Provider
+
+| Provider类型          | 适用场景         | 使用方式     |
+| --------------------- | ---------------- | ------------ |
+| **OpenAI Provider**   | 标准OpenAI API   | 直接导入使用 |
+| **DeepSeek Provider** | 标准DeepSeek API | 直接导入使用 |
+
+#### 快速判断指南
+
+| 场景             | 推荐方案              | 示例                     |
+| ---------------- | --------------------- | ------------------------ |
+| 调用官方OpenAI   | 内置OpenAI Provider   | `new OpenAIProvider()`   |
+| 调用官方DeepSeek | 内置DeepSeek Provider | `new DeepSeekProvider()` |
+| 公司内部API      | 自定义Provider        | 见四步实现               |
+| 第三方非标API    | 自定义Provider        | 见四步实现               |
+
+# 📋 四步实现自定义 Provider
+################
+一级标题：🎯 技能定位
+二级标题：🎯 实现路径总览
+内容：
+```mermaid
+journey
+    title 自定义Provider实现路径
+    section 分析阶段
+      接口分析: 2: 用户
+    section 开发阶段
+      创建类: 5: 用户
+      检查验证: 1: 用户
+    section 集成阶段
+      配置使用: 1: 用户
+```
+################
+一级标题：🎯 技能定位
+二级标题：步骤1：分析接口格式 ⏱️ 2分钟
+内容：
+### 📋 接口信息收集表
+
+| 信息类型     | 示例值                      | 你的接口        |
+| ------------ | --------------------------- | --------------- |
+| **接口URL**  | `https://your-api.com/chat` | `_____________` |
+| **请求方法** | POST                        | `_____________` |
+| **请求格式** | JSON                        | `_____________` |
+| **响应格式** | Server-Sent Events          | `_____________` |
+| **认证方式** | Bearer Token                | `_____________` |
+
+### 🔍 接口格式模板
+
+#### ✅ 请求格式示例
+
+```ts
+// 你的实际请求格式
+interface MyAPIRequest {
+  query: string; // 用户问题
+  context?: string; // 对话历史（可选）
+  model?: string; // 模型选择（可选）
+  stream?: boolean; // 是否流式（可选）
+}
+```
+
+#### ✅ 响应格式示例
+
+```ts
+// 流式响应格式
+// 实际响应：data: {"content": "回答内容"}
+interface MyAPIResponse {
+  content: string; // 回答片段
+  finish_reason?: string; // 结束标记
+}
+
+// 结束标记：data: [DONE]
+```
+################
+一级标题：🎯 技能定位
+二级标题：步骤2：创建 Provider 类 ⏱️ 5分钟
+内容：
+### 🏗️ 代码模板（复制即用）
+
+```ts
+// MyChatProvider.ts
+import { AbstractChatProvider } from '@ant-design/x-sdk';
+
+// ====== 第1处修改：定义你的接口类型 ======
+interface MyInput {
+  query: string;
+  context?: string;
+  model?: string;
+  stream?: boolean;
+}
+
+interface MyOutput {
+  content: string;
+  finish_reason?: string;
+}
+
+interface MyMessage {
+  content: string;
+  role: 'user' | 'assistant';
+  timestamp: number;
+}
+
+// ====== 第2处修改：修改类名 ======
+export class MyChatProvider extends AbstractChatProvider<MyMessage, MyInput, MyOutput> {
+  // 参数转换：将useXChat参数转为你的API参数
+  transformParams(
+    requestParams: Partial<MyInput>,
+    options: XRequestOptions<MyInput, MyOutput, MyMessage>,
+  ): MyInput {
+    if (typeof requestParams !== 'object') {
+      throw new Error('requestParams must be an object');
+    }
+
+    return {
+      query: requestParams.query || '',
+      context: requestParams.context,
+      model: 'gpt-3.5-turbo', // 根据你的API调整
+      stream: true,
+      ...(options?.params || {}),
+    };
+  }
+
+  // 本地消息：用户发送的消息格式
+  transformLocalMessage(requestParams: Partial<MyInput>): MyMessage {
+    return {
+      content: requestParams.query || '',
+      role: 'user',
+      timestamp: Date.now(),
+    };
+  }
+
+  // ====== 第3处修改：响应数据转换 ======
+  transformMessage(info: { originMessage: MyMessage; chunk: MyOutput }): MyMessage {
+    const { originMessage, chunk } = info;
+
+    // 处理结束标记
+    if (!chunk?.content || chunk.content === '[DONE]') {
+      return { ...originMessage, status: 'success' as const };
+    }
+
+    // 累加响应内容
+    return {
+      ...originMessage,
+      content: `${originMessage.content || ''}${chunk.content || ''}`,
+      role: 'assistant' as const,
+      status: 'loading' as const,
+    };
+  }
+}
+```
+
+### 🚨 开发注意事项
+
+- ✅ **只改3个地方**：接口类型、类名、响应转换逻辑
+- ✅ **禁止实现request方法**：网络请求由XRequest处理
+- ✅ **保持类型安全**：使用TypeScript严格模式
+################
+一级标题：🎯 技能定位
+二级标题：步骤3：检查验证 ⏱️ 1分钟
+内容：
+### ✅ 快速检查清单
+
+| 检查项            | 状态 | 说明                        |
+| ----------------- | ---- | --------------------------- |
+| **类名正确**      | ⏳   | `MyChatProvider` → 你的类名 |
+| **类型匹配**      | ⏳   | 接口类型与实际API一致       |
+| **方法完整**      | ⏳   | 3个方法都已实现             |
+| **无request方法** | ⏳   | 确认没有实现request方法     |
+| **类型检查通过**  | ⏳   | `tsc --noEmit` 无错误       |
+
+### 🔍 验证代码
+
+```bash
+# 运行类型检查
+npx tsc --noEmit MyChatProvider.ts
+
+# 预期结果：无错误输出
+```
+################
+一级标题：🎯 技能定位
+二级标题：步骤4：配置使用 ⏱️ 1分钟
+内容：
+### 🔧 完整集成示例
+
+```ts
+// 1. 引入依赖
+import { MyChatProvider } from './MyChatProvider';
+import { XRequest } from '@ant-design/x-sdk';
+
+// 2. 配置XRequest（由x-request技能负责）
+const request = XRequest('https://your-api.com/chat', {
+  // 认证配置
+  headers: {
+    Authorization: 'Bearer your-token-here',
+    'Content-Type': 'application/json',
+  },
+
+  // 默认参数
+  params: {
+    model: 'gpt-3.5-turbo',
+    max_tokens: 1000,
+    temperature: 0.7,
+  },
+
+  // 流式配置
+  manual: true,
+});
+
+// 3. 创建Provider实例
+const provider = new MyChatProvider({
+  request, // 必须传入XRequest实例
+});
+
+// 4. 现在可以配合useXChat使用
+// 这部分由use-x-chat技能负责
+export { provider };
+```
+
+### 🎉 使用优势
+
+- **零网络代码**：XRequest处理所有网络细节
+- **类型安全**：完整的TypeScript支持
+- **易于测试**：可mock XRequest进行单元测试
+- **统一配置**：认证、参数、错误处理集中管理
+
+# 🔧 常见场景适配
+################
+一级标题：🎯 技能定位
+二级标题：📚 场景适配指南
+内容：
+| 场景类型 | 难度 | 示例链接 | 说明 |
+| --- | --- | --- | --- |
+| **标准OpenAI** | 🟢 简单 | [内置Provider示例](reference/EXAMPLES.md#场景1：OpenAI 格式) | 直接使用内置Provider |
+| **标准DeepSeek** | 🟢 简单 | [内置Provider示例](reference/EXAMPLES.md#场景2 DeepSeek 格式) | 直接使用内置Provider |
+| **私有API** | 🟡 中等 | [自定义Provider的一些细节场景](reference/EXAMPLES.md#场景3：自定义 provider) | 需要四步实现 |
+
+> 📖 **完整示例**：[EXAMPLES.md](reference/EXAMPLES.md) 包含所有实际场景的完整代码
+
+# 📋 联合技能使用指南
+################
+一级标题：🎯 技能定位
+二级标题：🎯 技能关系图谱
+内容：
+```mermaid
+graph TD
+    User[开发者] --> A{选择方案}
+
+    A -->|标准API| B[内置Provider]
+    A -->|私有API| C[自定义Provider]
+
+    B --> D[use-x-chat]
+    C --> E[x-chat-provider]
+    E --> D
+
+    D --> F[x-request]
+    F --> G[最终应用]
+```
+################
+一级标题：🎯 技能定位
+二级标题：📊 技能对照表
+内容：
+| 技能角色      | 技能名称            | 前置条件     | 核心职责           | 使用场景         |
+| ------------- | ------------------- | ------------ | ------------------ | ---------------- |
+| **🏗️ 创建者** | **x-chat-provider** | 无           | 创建自定义Provider | 适配私有/非标API |
+| **⚛️ 使用者** | **use-x-chat**      | 需要Provider | 构建AI对话界面     | React组件开发    |
+| **🔧 配置者** | **x-request**       | 无           | 配置请求参数认证   | 统一网络请求管理 |
+################
+一级标题：🎯 技能定位
+二级标题：🎯 组合使用场景详解
+内容：
+### 🚀 场景1：完整AI对话应用
+
+**适用**：从零构建完整的AI对话产品
+
+```mermaid
+sequenceDiagram
+    participant Dev as 开发者
+    participant CP as x-chat-provider
+    participant UX as use-x-chat
+    participant XR as x-request
+
+    Dev->>CP: 1. 创建自定义Provider
+    CP->>Dev: 返回适配后的Provider
+    Dev->>XR: 2. 配置XRequest参数
+    XR->>Dev: 返回配置好的request
+    Dev->>UX: 3. 使用Provider构建界面
+    UX->>Dev: 完整的AI对话应用
+```
+
+**实施步骤**：
+
+1. **x-chat-provider** → 创建自定义Provider（4步实现）
+2. **x-request** → 配置认证、参数、错误处理
+3. **use-x-chat** → 构建React聊天界面
+
+### 🎯 场景2：仅创建Provider
+
+**适用**：为其他框架或团队提供Provider
+
+```mermaid
+graph LR
+    A[私有API] -->|适配| B[自定义Provider]
+    B -->|导出| C[其他框架使用]
+    B -->|发布| D[NPM包]
+```
+
+**核心价值**：
+
+- 🔧 **解耦**：Provider与UI框架分离
+- 📦 **复用**：可被多个项目使用
+- 🚀 **效率**：一次开发，多处使用
+
+### ⚡ 场景3：使用内置Provider
+
+**适用**：快速原型开发或标准API调用
+
+```mermaid
+graph LR
+    A[标准API] -->|内置| B[OpenAI/DeepSeek Provider]
+    B -->|直接使用| C[use-x-chat]
+    C -->|配置| D[x-request]
+    D --> E[快速上线]
+```
+
+**优势**：
+
+- ⚡ **零开发**：无需自定义Provider
+- 🎯 **零配置**：内置最佳实践
+- 🚀 **极速上线**：5分钟即可完成
+################
+一级标题：🎯 技能定位
+二级标题：⚠️ 重要提醒
+内容：
+### 🚨 强制规则：禁止自己写 request 方法！
+
+**强制要求**：
+
+- 🚫 **绝对禁止**在 Provider 中实现 `request` 方法
+- ✅ **必须使用** XRequest 来处理所有网络请求
+- ✅ **只关注**数据转换逻辑（transformParams、transformLocalMessage、transformMessage）
+
+**❌ 严重错误（绝对禁止）**：
+
+```ts
+// ❌ 严重错误：自己实现 request 方法
+class MyProvider extends AbstractChatProvider {
+  async request(params: any) {
+    // 禁止自己写网络请求逻辑！
+    const response = await fetch(this.url, { ... });
+    return response;
+  }
+}
+```
+
+**✅ 强制要求（唯一正确方式）**：
+
+```ts
+// ✅ 强制要求：使用 XRequest，禁止实现 request 方法
+class MyProvider extends AbstractChatProvider {
+  // 禁止实现 request 方法！
+  transformParams(params) {
+    /* ... */
+  }
+  transformLocalMessage(params) {
+    /* ... */
+  }
+  transformMessage(info) {
+    /* ... */
+  }
+}
+
+// 强制使用 XRequest：
+const provider = new MyProvider({
+  request: XRequest('https://your-api.com/chat'),
+});
+```
+
+# ⚡ 快速检查清单
+
+创建 Provider 前，确认：
+
+- [ ] 已获取接口文档
+- [ ] 已确认请求/响应格式
+- [ ] 已定义好消息结构
+- [ ] 已测试接口可用性
+- [ ] **已决定使用 XRequest**（避免自己写 request 方法！）
+
+完成后：
+
+- [ ] Provider 类可以正常实例化
+- [ ] **只实现了三个必需方法**（transformParams、transformLocalMessage、transformMessage）
+- [ ] **绝对禁止实现 request 方法**（强制使用 XRequest 处理网络请求）
+- [ ] 已处理边界情况（空数据、错误响应）
+- [ ] **类型检查通过**（确保所有 TypeScript 类型正确）
+- [ ] **删除无用导出**（清理未使用的导出项）
+
+# 🚨 开发规则
+################
+一级标题：🎯 技能定位
+二级标题：测试用例规则
+内容：
+- **如果用户没有明确需要测试用例，则不要添加测试文件**
+- **仅在用户明确要求时才创建测试用例**
+################
+一级标题：🎯 技能定位
+二级标题：代码质量规则
+内容：
+- **完成编写后必须检查类型**：运行 `tsc --noEmit` 确保无类型错误
+- **保持代码整洁**：移除所有未使用的变量和导入
+
+# 🔗 参考资源
+################
+一级标题：🎯 技能定位
+二级标题：📚 核心参考文档
+内容：
+- [EXAMPLES.md](reference/EXAMPLES.md) - 实战示例代码
+################
+一级标题：🎯 技能定位
+二级标题：🌐 SDK官方文档
+内容：
+- [useXChat 官方文档](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/use-x-chat.zh-CN.md)
+- [XRequest 官方文档](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/x-request.zh-CN.md)
+- [Chat Provider 官方文档](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/chat-provider.zh-CN.md)
+################
+一级标题：🎯 技能定位
+二级标题：💻 示例代码
+内容：
+- [custom-provider-width-ui.tsx](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/demos/chat-providers/custom-provider-width-ui.tsx) - 自定义 Provider 完整示例
+################
+一级标题：🎯 技能定位
+二级标题：无
+内容：
+**本技能专注解决一个问题**：如何用 `@ant-design/x-markdown` 正确、稳定地渲染 Markdown 内容。
+
+覆盖范围包括：
+
+- 基础渲染与包职责边界
+- LLM 流式输出与不完整语法处理
+- 自定义组件映射与聊天富内容渲染
+- 插件、主题与安全默认配置
+################
+一级标题：🎯 技能定位
+二级标题：目录导航
+内容：
+- [📦 包职责边界](#-包职责边界)
+- [🚀 快速决策指南](#-快速决策指南)
+- [🛠 推荐工作流](#-推荐工作流)
+- [🚨 开发规则](#-开发规则)
+- [🤝 技能协作](#-技能协作)
+- [🔗 参考资源](#-参考资源)
+
+# 📦 包职责边界
+
+| 层级       | 包名                     | 职责                                            |
+| ---------- | ------------------------ | ----------------------------------------------- |
+| **UI层**   | `@ant-design/x`          | 聊天 UI、Bubble、Sender、交互组件               |
+| **数据层** | `@ant-design/x-sdk`      | Provider、请求、流式数据流、状态管理            |
+| **渲染层** | `@ant-design/x-markdown` | Markdown 解析、流式渲染、插件、主题、自定义渲染 |
+
+> ⚠️ `x-markdown` 不是聊天状态管理工具。它负责把已有消息内容渲染出来，不负责请求和消息流本身。
+
+# 🚀 快速决策指南
+
+| 当你需要... | 优先阅读 | 典型结果 |
+| --- | --- | --- |
+| 用最小配置渲染 Markdown | [CORE.md](reference/CORE.md) | 用 `XMarkdown` 渲染基础内容 |
+| 渲染 LLM 流式输出 | [STREAMING.md](reference/STREAMING.md) | 正确处理 `hasNextChunk`、占位符、尾部指示器 |
+| 把标签映射到业务组件 | [EXTENSIONS.md](reference/EXTENSIONS.md) | 为自定义标签、代码块、富内容组件建立稳定映射 |
+| 增加插件或主题定制 | [EXTENSIONS.md](reference/EXTENSIONS.md) | 完成插件导入、主题类名接入、最小 CSS 覆盖 |
+| 查看属性细节和默认值 | [API.md](reference/API.md) | 获取 `XMarkdown` 与 streaming 的完整属性表 |
+
+# 🛠 推荐工作流
+
+1. 先看 [CORE.md](reference/CORE.md)，先让基础渲染跑通。
+2. 只有在内容是分块到达时，才继续看 [STREAMING.md](reference/STREAMING.md)。
+3. 只有在需要自定义标签、插件、主题时，才继续看 [EXTENSIONS.md](reference/EXTENSIONS.md)。
+4. 属性名与默认值以 [API.md](reference/API.md) 为准，不要凭记忆猜。
+################
+一级标题：🎯 技能定位
+二级标题：最小使用示例
+内容：
+```tsx
+import { XMarkdown } from '@ant-design/x-markdown';
+
+export default () => <XMarkdown content="# Hello" />;
+```
+
+# 🚨 开发规则
+
+- `components` 映射尽量保持稳定，不要在每次渲染时创建新的内联组件对象。
+- 最后一块内容必须设置 `streaming.hasNextChunk = false`，否则不完整占位内容不会被刷新成最终结果。
+- 谨慎处理原始 HTML。如果只想保留文本展示，优先使用 `escapeRawHtml`。
+- 如果必须渲染 HTML，请显式审查 `dompurifyConfig`，不要依赖模糊默认行为。
+- 主题覆盖尽量最小化。先继承 `x-markdown-light` 或 `x-markdown-dark`，只改必要变量。
+- 如果自定义组件依赖完整语法，再在 `streamStatus === 'done'` 时执行昂贵逻辑。
+
+# 🤝 技能协作
+
+| 场景 | 推荐技能组合 | 原因 |
+| --- | --- | --- |
+| 聊天中的富文本回答 | `x-chat-provider` → `x-request` → `use-x-chat` → `x-markdown` | 前三者负责数据流，`x-markdown` 负责最终内容渲染 |
+| 内置 Provider + Markdown 回复 | `x-request` → `use-x-chat` → `x-markdown` | 请求配置与渲染职责分离 |
+| 独立的 Markdown 页面或文档视图 | `x-markdown` | 不需要聊天状态管理 |
+################
+一级标题：🎯 技能定位
+二级标题：边界规则
+内容：
+- 适配接口格式，用 **`x-chat-provider`**
+- 配置传输、认证、重试、流分隔，用 **`x-request`**
+- 管理 React 聊天状态，用 **`use-x-chat`**
+- 处理 Markdown 解析、流式恢复和富组件渲染，用 **`x-markdown`**
+
+# 🔗 参考资源
+
+- [CORE.md](reference/CORE.md) - 包职责、安装与起步、安全默认值、常见渲染模式
+- [STREAMING.md](reference/STREAMING.md) - 分块渲染、不完整语法恢复、loading/done 行为
+- [EXTENSIONS.md](reference/EXTENSIONS.md) - 组件映射、插件、主题、自定义标签建议
+- [API.md](reference/API.md) - 从官方 `x-markdown` 文档生成的 API 参考
+################
+一级标题：🎯 技能定位
+二级标题：官方文档
+内容：
+- [XMarkdown 介绍](https://github.com/ant-design/x/blob/main/packages/x/docs/x-markdown/introduce.zh-CN.md)
+- [XMarkdown 示例](https://github.com/ant-design/x/blob/main/packages/x/docs/x-markdown/examples.zh-CN.md)
+- [XMarkdown 流式渲染](https://github.com/ant-design/x/blob/main/packages/x/docs/x-markdown/streaming.zh-CN.md)
+- [XMarkdown Components](https://github.com/ant-design/x/blob/main/packages/x/docs/x-markdown/components.zh-CN.md)
+- [XMarkdown 插件](https://github.com/ant-design/x/blob/main/packages/x/docs/x-markdown/plugins.zh-CN.md)
+- [XMarkdown 主题](https://github.com/ant-design/x/blob/main/packages/x/docs/x-markdown/themes.zh-CN.md)
+################
+一级标题：核心指南
+二级标题：无
+内容：
+
+################
+一级标题：核心指南
+二级标题：包职责边界
+内容：
+| 需求                          | 对应包                   |
+| ----------------------------- | ------------------------ |
+| 把消息内容渲染成 Markdown     | `@ant-design/x-markdown` |
+| 构建聊天 UI 容器              | `@ant-design/x`          |
+| 管理 Provider、请求与消息状态 | `@ant-design/x-sdk`      |
+################
+一级标题：核心指南
+二级标题：安装与最小渲染
+内容：
+```bash
+npm install @ant-design/x-markdown
+```
+
+```tsx
+import { XMarkdown } from '@ant-design/x-markdown';
+
+const content = `
+# Hello
+
+- item 1
+- item 2
+`;
+
+export default () => <XMarkdown content={content} />;
+```
+################
+一级标题：核心指南
+二级标题：安全默认值
+内容：
+- `content` 和 `children` 二选一即可，不要同时传。
+- 先让纯 Markdown 渲染正确，再加插件或自定义组件。
+- 当模型输出可能包含外链时，优先开启 `openLinksInNewTab`。
+- 如果原始 HTML 只需要保留文本展示，优先使用 `escapeRawHtml`。
+- 如果必须渲染真实 HTML，请显式检查 `dompurifyConfig`。
+################
+一级标题：核心指南
+二级标题：常见集成模式
+内容：
+### 基础内容块
+
+```tsx
+<XMarkdown content={message} className="x-markdown-light" />
+```
+
+### 聊天消息渲染
+
+在 `useXChat` 产出消息列表之后，再用 `XMarkdown` 负责内容展示。
+
+```tsx
+<XMarkdown content={message.message.content} openLinksInNewTab escapeRawHtml />
+```
+
+### 最小检查清单
+
+- 先确认内容本身真的是 Markdown，而不是结构化组件协议。
+- 不要把渲染逻辑塞进 Provider。
+- 不要把请求逻辑塞进 `XMarkdown`。
+- 主题和自定义组件放在基础渲染稳定之后再加。
+################
+一级标题：核心指南
+二级标题：何时继续阅读其他参考
+内容：
+- 内容是流式分块到达时，阅读 [STREAMING.md](STREAMING.md)
+- 需要自定义标签、代码块、插件、主题时，阅读 [EXTENSIONS.md](EXTENSIONS.md)
+- 需要完整属性表时，阅读 `API.md`
+################
+一级标题：扩展指南
+二级标题：无
+内容：
+
+################
+一级标题：扩展指南
+二级标题：Components
+内容：
+`components` 是主要扩展入口，可把 Markdown 或自定义 HTML 标签映射到 React 组件。
+
+```tsx
+import { Mermaid, Sources, Think } from '@ant-design/x';
+import { XMarkdown } from '@ant-design/x-markdown';
+
+<XMarkdown
+  content={content}
+  components={{
+    mermaid: Mermaid,
+    think: Think,
+    sources: Sources,
+  }}
+/>;
+```
+
+### 组件映射规则
+
+- 映射对象尽量保持稳定，避免每次渲染创建新对象。
+- 用 `streamStatus` 区分临时 loading UI 和最终渲染结果。
+- 如果自定义组件内部包含块级元素，必要时用 `paragraphTag` 避免非法嵌套。
+- 自定义标签应语义明确，避免混乱的 Markdown/HTML 混写。
+################
+一级标题：扩展指南
+二级标题：插件
+内容：
+内置插件从 `@ant-design/x-markdown/plugins/...` 导入，并通过 `config` 接入。
+
+```tsx
+import Latex from '@ant-design/x-markdown/plugins/Latex';
+
+<XMarkdown
+  content={content}
+  config={{
+    extensions: Latex(),
+  }}
+/>;
+```
+
+当需求属于“新增解析语法”时用插件；仅仅是替换已渲染节点的视觉表现时，用 `components` 更合适。
+################
+一级标题：扩展指南
+二级标题：主题
+内容：
+先从内置主题样式开始。
+
+```tsx
+import '@ant-design/x-markdown/themes/light.css';
+
+<XMarkdown className="x-markdown-light" content={content} />;
+```
+
+如果要定制：
+
+1. 保留内置主题类名
+2. 额外加一个自定义类名
+3. 只覆盖真正需要的 CSS 变量
+################
+一级标题：扩展指南
+二级标题：自定义标签建议
+内容：
+- 保持自定义标签结构完整
+- 除非语法有意为之，否则避免在自定义 HTML 块内部插入多余空行
+- 如果自定义标签内换行需要保留，检查 `protectCustomTagNewlines`
+################
+一级标题：扩展指南
+二级标题：如何选工具
+内容：
+- 用 `components` 替换渲染后的节点
+- 用插件扩展 Markdown 解析能力
+- 用主题控制排版、间距和颜色
+- 用 `dompurifyConfig` 与 `escapeRawHtml` 处理安全，不要拿它们做视觉定制
+################
+一级标题：流式渲染指南
+二级标题：无
+内容：
+
+################
+一级标题：流式渲染指南
+二级标题：适用场景
+内容：
+当 Markdown 内容以分块方式持续追加，并且中途可能出现不完整语法时，使用 streaming 模式。
+
+典型场景包括：
+
+- 半截链接，如 `[docs](https://example`
+- 半截表格
+- 尚未闭合的代码块
+- 回答仍在生成时的尾部光标
+################
+一级标题：流式渲染指南
+二级标题：核心规则
+内容：
+`hasNextChunk` 必须真实反映流状态：
+
+- 还有后续 chunk 时为 `true`
+- 最后一块必须为 `false`，这样缓存的不完整片段才会被刷新为最终内容
+################
+一级标题：流式渲染指南
+二级标题：最小配置
+内容：
+```tsx
+<XMarkdown
+  content={content}
+  streaming={{
+    hasNextChunk,
+    enableAnimation: true,
+    tail: true,
+  }}
+/>
+```
+################
+一级标题：流式渲染指南
+二级标题：不完整语法处理
+内容：
+如果不完整片段需要展示自定义 loading UI，而不是直接显示破损 Markdown，可使用 `incompleteMarkdownComponentMap`。
+
+```tsx
+<XMarkdown
+  content={content}
+  streaming={{
+    hasNextChunk,
+    incompleteMarkdownComponentMap: {
+      link: 'link-loading',
+      table: 'table-loading',
+    },
+  }}
+  components={{
+    'link-loading': LinkSkeleton,
+    'table-loading': TableSkeleton,
+  }}
+/>
+```
+################
+一级标题：流式渲染指南
+二级标题：Loading 与 Done
+内容：
+自定义组件会收到 `streamStatus`：
+
+- `loading`：语法可能还未完整
+- `done`：最终内容已经稳定
+
+如果组件内部需要做昂贵解析或请求，优先等到 `streamStatus === 'done'`。
+################
+一级标题：流式渲染指南
+二级标题：聊天场景建议
+内容：
+- 只有在回答仍在生成时才显示 tail 指示器。
+- 占位组件尽量轻量。
+- 如果组件依赖闭合代码块或完整结构块，等到 `done` 再解析。
+- 不要让 `hasNextChunk` 长期停留在 `true`，否则最终内容无法收敛。
+################
+一级标题：流式渲染指南
+二级标题：排查清单
+内容：
+- 最终结果仍然残缺：确认最后一次渲染把 `hasNextChunk` 设为 `false`
+- 占位组件不消失：确认映射的标签名已在 `components` 中注册
+- 性能不稳定：先关闭动画和占位组件，再逐个加回
+################
+一级标题：🎯 技能定位
+二级标题：无
+内容：
+**本技能专注解决**：如何正确配置 XRequest 来适配各种流式接口需求。
+
+# 目录导航
+
+- [🚀 快速开始](#-快速开始) - 3分钟上手
+  - [依赖管理](#依赖管理)
+  - [基础配置](#基础配置)
+- [📦 技术栈概览](#-技术栈概览)
+- [🔧 核心配置详解](#-核心配置详解)
+  - [全局配置](#1-全局配置)
+  - [安全配置](#2-安全配置)
+  - [流式配置](#3-流式配置)
+- [🛡️ 安全指南](#️-安全指南)
+  - [环境安全配置](#环境安全配置)
+  - [认证方式对比](#认证方式对比)
+- [🔍 调试与测试](#-调试与测试)
+  - [调试配置](#调试配置)
+  - [配置验证](#配置验证)
+- [📋 使用场景](#-使用场景)
+  - [独立使用](#独立使用)
+  - [配合其他技能](#配合其他技能)
+- [🚨 开发规则](#-开发规则)
+- [🔗 参考资源](#-参考资源)
+  - [📚 核心参考文档](#-核心参考文档)
+  - [🌐 SDK官方文档](#-SDK官方文档)
+  - [💻 示例代码](#-示例代码)
+
+# 🚀 快速开始
+################
+一级标题：🎯 技能定位
+二级标题：依赖管理
+内容：
+### 📋 系统要求
+
+| 依赖包                | 版本要求 | 自动安装 | 作用                      |
+| --------------------- | -------- | -------- | ------------------------- |
+| **@ant-design/x-sdk** | ≥2.2.2   | ✅       | 核心SDK，包含XRequest工具 |
+
+### 🛠️ 一键安装
+
+```bash
+# 推荐使用 tnpm
+tnpm install @ant-design/x-sdk
+
+# 或使用 npm
+npm add @ant-design/x-sdk
+
+# 检查版本
+npm ls @ant-design/x-sdk
+```
+################
+一级标题：🎯 技能定位
+二级标题：基础配置
+内容：
+### 最简单的使用方式
+
+```typescript
+import { XRequest } from '@ant-design/x-sdk';
+
+// 最简配置：仅需提供API地址
+const request = XRequest('https://api.example.com/chat');
+
+// 如需手动控制（用于Provider场景）
+const providerRequest = XRequest('https://api.example.com/chat', {
+  manual: true, // 仅此项通常需要显式配置
+});
+```
+
+> 💡 **提示**：XRequest 已内置合理的默认配置，大多数情况下只需提供API地址即可使用。
+
+# 📦 技术栈概览
+################
+一级标题：🎯 技能定位
+二级标题：🏗️ 技术栈架构
+内容：
+```mermaid
+graph TD
+    A[XRequest] --> B[网络请求]
+    A --> C[认证管理]
+    A --> D[错误处理]
+    A --> E[流式处理]
+    B --> F[fetch封装]
+    C --> G[Token管理]
+    D --> H[重试机制]
+    E --> I[Server-Sent Events]
+```
+################
+一级标题：🎯 技能定位
+二级标题：🔑 核心概念
+内容：
+| 概念         | 角色定位    | 核心职责                         | 使用场景     |
+| ------------ | ----------- | -------------------------------- | ------------ |
+| **XRequest** | 🌐 请求工具 | 处理所有网络通信、认证、错误处理 | 统一请求管理 |
+| **全局配置** | ⚙️ 配置中心 | 一次配置，多处使用               | 减少重复代码 |
+| **流式配置** | 🔄 流式处理 | 支持SSE和JSON响应格式            | AI对话场景   |
+
+# 🔧 核心配置详解
+
+核心功能参考内容 [CORE.md](reference/CORE.md)
+
+# 🛡️ 安全指南
+################
+一级标题：🎯 技能定位
+二级标题：环境安全配置
+内容：
+### 🌍 不同环境的安全策略
+
+| 运行环境        | 安全等级 | 配置方式        | 风险说明             |
+| --------------- | -------- | --------------- | -------------------- |
+| **浏览器前端**  | 🔴 高危  | ❌ 禁止配置密钥 | 密钥会直接暴露给用户 |
+| **Node.js后端** | 🟢 安全  | ✅ 环境变量配置 | 密钥存储在服务器端   |
+| **代理服务**    | 🟢 安全  | ✅ 同域代理转发 | 密钥由代理服务管理   |
+
+### 🔐 认证方式对比
+
+| 认证方式           | 适用环境 | 配置示例                        | 安全性  |
+| ------------------ | -------- | ------------------------------- | ------- |
+| **Bearer Token**   | Node.js  | `Bearer ${process.env.API_KEY}` | ✅ 安全 |
+| **API Key Header** | Node.js  | `X-API-Key: ${process.env.KEY}` | ✅ 安全 |
+| **代理转发**       | 浏览器   | `/api/proxy/service`            | ✅ 安全 |
+| **直接配置**       | 浏览器   | `Bearer sk-xxx`                 | ❌ 危险 |
+
+# 🔍 调试与测试
+################
+一级标题：🎯 技能定位
+二级标题：调试配置
+内容：
+### 🛠️ 调试模板
+
+**Node.js调试配置**:
+
+```typescript
+// 安全的调试配置（Node.js 环境）
+const debugRequest = XRequest('https://your-api.com/chat', {
+  headers: {
+    Authorization: `Bearer ${process.env.DEBUG_API_KEY}`,
+  },
+  params: { query: '测试消息' },
+});
+```
+
+**前端调试配置**:
+
+```typescript
+// 安全的调试配置（前端环境）
+const debugRequest = XRequest('/api/debug/chat', {
+  params: { query: '测试消息' },
+});
+```
+################
+一级标题：🎯 技能定位
+二级标题：配置验证
+内容：
+### ✅ 安全检查工具
+
+```typescript
+// 安全配置验证函数
+const validateSecurity = (config: any) => {
+  const isBrowser = typeof window !== 'undefined';
+  const hasAuth = config.headers?.Authorization || config.headers?.authorization;
+
+  if (isBrowser && hasAuth) {
+    throw new Error('❌ 前端环境禁止配置 Authorization，存在密钥泄漏风险！');
+  }
+
+  console.log('✅ 安全配置检查通过');
+  return true;
+};
+
+// 使用示例
+validateSecurity({
+  headers: {
+    // 不要包含 Authorization
+  },
+});
+```
+
+# 📋 使用场景
+################
+一级标题：🎯 技能定位
+二级标题：独立使用
+内容：
+### 🎯 直接发起请求
+
+```typescript
+import { XRequest } from '@ant-design/x-sdk';
+
+// 测试接口可用性
+const testRequest = XRequest('https://httpbin.org/post', {
+  params: { test: 'data' },
+});
+
+// 立即发送请求
+const response = await testRequest();
+console.log(response);
+```
+################
+一级标题：🎯 技能定位
+二级标题：配合其他技能
+内容：
+### 🔄 技能协作流程
+
+```mermaid
+graph TD
+    A[x-request] -->|配置请求| B[x-chat-provider]
+    A -->|配置请求| C[use-x-chat]
+    B -->|提供Provider| C
+    A --> D[直接请求]
+```
+
+| 使用方式 | 配合技能 | 作用 | 示例 |
+| --- | --- | --- | --- |
+| **独立使用** | 无 | 直接发起网络请求 | 测试接口可用性 |
+| **配合 x-chat-provider** | x-chat-provider | 为自定义 Provider 配置请求 | 配置私有 API |
+| **配合 use-x-chat** | use-x-chat | 为内置 Provider 配置请求 | 配置 OpenAI API |
+| **完整 AI 应用** | x-request → x-chat-provider → use-x-chat | 为整个系统配置请求 | 完整 AI 对话应用 |
+
+### ⚠️ useXChat 集成安全警告
+
+**重要警告：useXChat 仅用于前端环境，XRequest 配置中禁止包含 Authorization！**
+
+**❌ 错误配置（危险）**:
+
+```typescript
+// 极度危险：密钥会直接暴露给浏览器
+const unsafeRequest = XRequest('https://api.openai.com/v1/chat/completions', {
+  headers: {
+    Authorization: 'Bearer sk-xxxxxxxxxxxxxx', // ❌ 危险！
+  },
+  manual: true,
+});
+```
+
+**✅ 正确配置（安全）**:
+
+```typescript
+// 前端安全配置：使用代理服务
+const safeRequest = XRequest('/api/proxy/openai', {
+  params: {
+    model: 'gpt-3.5-turbo',
+    stream: true,
+  },
+  manual: true,
+});
+```
+
+# 🚨 开发规则
+################
+一级标题：🎯 技能定位
+二级标题：测试用例规则
+内容：
+- **如果用户没有明确需要测试用例，则不要添加测试文件**
+- **仅在用户明确要求时才创建测试用例**
+################
+一级标题：🎯 技能定位
+二级标题：代码质量规则
+内容：
+- **完成编写后必须检查类型**：运行 `tsc --noEmit` 确保无类型错误
+- **保持代码整洁**：移除所有未使用的变量和导入
+################
+一级标题：🎯 技能定位
+二级标题：✅ 配置检查清单
+内容：
+使用 XRequest 前请确认以下配置已正确设置：
+
+### 🔍 配置检查清单
+
+| 检查项         | 状态            | 说明                                                     |
+| -------------- | --------------- | -------------------------------------------------------- |
+| **API 地址**   | ✅ 必须配置     | `XRequest('https://api.xxx.com')`                        |
+| **认证信息**   | ⚠️ 环境相关     | 前端❌禁止，Node.js✅可用                                |
+| **manual配置** | ✅ Provider场景 | 在Provider中需要设为`true`，其他场景需要根据实际情况设置 |
+| **其他配置**   | ❌ 无需配置     | 已内置合理默认值                                         |
+| **接口可用性** | ✅ 建议测试     | 使用调试配置验证                                         |
+
+### 🛠️ 快速验证脚本
+
+```typescript
+// 运行前检查配置
+const checkConfig = () => {
+  const checks = [
+    {
+      name: '全局配置',
+      test: () => {
+        // 检查是否已设置全局配置
+        return true; // 根据实际情况检查
+      },
+    },
+    {
+      name: '安全配置',
+      test: () => validateSecurity(globalConfig),
+    },
+    {
+      name: '类型检查',
+      test: () => {
+        // 运行 tsc --noEmit
+        return true;
+      },
+    },
+  ];
+
+  checks.forEach((check) => {
+    console.log(`${check.name}: ${check.test() ? '✅' : '❌'}`);
+  });
+};
+```
+################
+一级标题：🎯 技能定位
+二级标题：🎯 技能协作
+内容：
+```mermaid
+graph LR
+    A[x-request] -->|配置请求| B[x-chat-provider]
+    A -->|配置请求| C[use-x-chat]
+    B -->|提供Provider| C
+```
+
+### 📊 技能使用对照表
+
+| 使用场景 | 所需技能 | 使用顺序 | 完成时间 |
+| --- | --- | --- | --- |
+| **测试接口** | x-request | 直接使用 | 2分钟 |
+| **私有API适配** | x-request → x-chat-provider | 先配置请求，再创建Provider | 10分钟 |
+| **标准AI应用** | x-request → use-x-chat | 先配置请求，再构建界面 | 15分钟 |
+| **完整自定义** | x-request → x-chat-provider → use-x-chat | 完整工作流 | 30分钟 |
+
+# 🔗 参考资源
+################
+一级标题：🎯 技能定位
+二级标题：📚 核心参考文档
+内容：
+- [API.md](reference/API.md) - 完整的 API 参考文档
+- [EXAMPLES_SERVICE_PROVIDER.md](reference/EXAMPLES_SERVICE_PROVIDER.md) - 各服务商配置示例
+################
+一级标题：🎯 技能定位
+二级标题：🌐 SDK官方文档
+内容：
+- [useXChat 官方文档](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/use-x-chat.zh-CN.md)
+- [XRequest 官方文档](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/x-request.zh-CN.md)
+- [Chat Provider 官方文档](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/chat-provider.zh-CN.md)
+################
+一级标题：🎯 技能定位
+二级标题：💻 示例代码
+内容：
+- [custom-provider-width-ui.tsx](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/demos/chat-providers/custom-provider-width-ui.tsx) - 自定义 Provider 完整示例
+################
+一级标题：1. 内置默认配置
+二级标题：无
+内容：
+XRequest 已内置合理的默认配置，**无需额外配置即可使用**。
+
+**内置默认值**:
+
+- `method: 'POST'`
+- `headers: { 'Content-Type': 'application/json' }`
+
+# 2. 安全配置
+################
+一级标题：1. 内置默认配置
+二级标题：🔐 认证配置对比
+内容：
+| 环境类型       | 配置方式        | 安全性 | 示例                  |
+| -------------- | --------------- | ------ | --------------------- |
+| **前端浏览器** | ❌ 禁止直接配置 | 危险   | 密钥会暴露给用户      |
+| **Node.js**    | ✅ 环境变量     | 安全   | `process.env.API_KEY` |
+| **代理服务**   | ✅ 同域代理     | 安全   | `/api/proxy/chat`     |
+################
+一级标题：1. 内置默认配置
+二级标题：🛡️ 安全配置模板
+内容：
+**Node.js环境安全配置**:
+
+```typescript
+const nodeConfig = {
+  baseURL: 'https://api.openai.com/v1',
+  headers: {
+    Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+  },
+};
+```
+
+**前端环境安全配置**:
+
+```typescript
+const browserConfig = {
+  baseURL: '/api/proxy/openai', // 通过同域代理
+};
+```
+
+# 3. 基础使用
+
+```typescript
+import { XRequest } from '@ant-design/x-sdk';
+
+// ⚠️ 注意：以下示例适用于 Node.js 环境
+// 前端环境请使用代理服务避免 token 泄漏
+const request = XRequest('https://your-api.com/chat', {
+  headers: {
+    Authorization: 'Bearer your-token', // ⚠️ 仅 Node.js 环境使用
+  },
+  params: {
+    query: '你好',
+  },
+  manual: true, // ⚠️ 在provider中使用时必须设置为true
+  callbacks: {
+    onSuccess: (messages) => {
+      setStatus('success');
+      console.log('onSuccess', messages);
+    },
+    onError: (error) => {
+      setStatus('error');
+      console.error('onError', error);
+    },
+    onUpdate: (msg) => {
+      setLines((pre) => [...pre, msg]);
+      console.log('onUpdate', msg);
+    },
+  },
+});
+```
+
+> ⚠️ **重要提醒**：当 XRequest 用于 x-chat-provider 或 use-x-chat 的 provider 中时，`manual: true` 是必须的配置项，否则会立即发送请求而不是等待调用。
+
+````
+
+### 带 URL 参数
+
+```typescript
+const request = XRequest('https://your-api.com/chat', {
+  method: 'GET',
+  params: {
+    model: 'gpt-3.5-turbo',
+    max_tokens: 1000,
+  },
+});
+````
+
+# 4. 流式配置
+################
+一级标题：1. 内置默认配置
+二级标题：🔄 流式响应配置
+内容：
+```typescript
+// 流式响应配置（AI对话场景）
+const streamConfig = {
+  params: {
+    stream: true, // 启用流式响应
+    model: 'gpt-3.5-turbo',
+    max_tokens: 1000,
+  },
+  manual: true, // 手动控制请求
+};
+
+// 非流式响应配置（普通API场景）
+const jsonConfig = {
+  params: {
+    stream: false, // 禁用流式响应
+  },
+};
+```
+
+# 5. 动态请求头
+
+```typescript
+// ❌ 不安全：前端直接暴露 API key
+// const request = XRequest('https://your-api.com/chat', {
+//   headers: {
+//     'Authorization': `Bearer ${apiKey}`, // 不要这样做！
+//   },
+//   params: {
+//     messages: [{ role: 'user', content: '你好' }],
+//   },
+// });
+
+// ✅ 安全：Node.js 环境使用环境变量
+const request = XRequest('https://your-api.com/chat', {
+  headers: {
+    Authorization: `Bearer ${process.env.API_KEY}`, // Node.js 环境安全
+  },
+  params: {
+    messages: [{ role: 'user', content: '你好' }],
+  },
+});
+
+// ✅ 安全：前端使用代理服务
+const request = XRequest('/api/proxy/chat', {
+  headers: {
+    // 不需要 Authorization，由后端代理处理
+  },
+  params: {
+    messages: [{ role: 'user', content: '你好' }],
+  },
+});
+```
+
+# 6.自定义流转换器
+
+当 AI 服务商返回非标准格式时，使用 `transformStream` 自定义数据转换。
+
+#### 基础示例
+
+```typescript
+const request = XRequest('https://api.example.com/chat', {
+  params: { message: '你好' },
+  transformStream: () =>
+    new TransformStream({
+      transform(chunk, controller) {
+        // TextDecoder 将二进制数据转换为字符串
+        const text = new TextDecoder().decode(chunk);
+        const lines = text.split('\n');
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const data = line.slice(6);
+            if (data !== '[DONE]') {
+              // TextEncoder 将字符串转回二进制
+              controller.enqueue(new TextEncoder().encode(data));
+            }
+          }
+        }
+      },
+    }),
+});
+```
+
+#### 常用转换模板
+
+```typescript
+// OpenAI 格式
+const openaiStream = () =>
+  new TransformStream({
+    transform(chunk, controller) {
+      const text = new TextDecoder().decode(chunk);
+      const data = JSON.parse(text);
+      const content = data.choices?.[0]?.delta?.content || '';
+      controller.enqueue(new TextEncoder().encode(content));
+    },
+  });
+
+// 使用示例
+const request = XRequest(url, {
+  params: { message: '你好' },
+  transformStream: openaiStream,
+});
+```
+
+> ⚠️ **注意**：ReadableStream 只能被一个 reader 锁定，避免重复使用同一实例。
+
+#### 🔍 TextDecoder/TextEncoder 说明
+
+**什么时候需要它们？**
+
+| 场景               | 数据类型            | 是否需要转换        |
+| ------------------ | ------------------- | ------------------- |
+| **标准 fetch API** | `Uint8Array` 二进制 | ✅ 需要 TextDecoder |
+| **XRequest 封装**  | 可能是字符串        | ❌ 可能不需要       |
+| **自定义流处理**   | 取决于实现          | 🤔 需要判断类型     |
+
+**实际使用建议：**
+
+```typescript
+transformStream: () =>
+  new TransformStream({
+    transform(chunk, controller) {
+      // 安全做法：先判断类型
+      const text = typeof chunk === 'string' ? chunk : new TextDecoder().decode(chunk);
+
+      // 现在 text 一定是字符串了
+      controller.enqueue(text);
+    },
+  });
+```
+################
+一级标题：🎯 Skill Positioning
+二级标题：无
+内容：
+> **Core Positioning**: Use the `useXChat` Hook to build professional AI conversation applications **Prerequisites**: Already have a custom Chat Provider (refer to [x-chat-provider skill](../x-chat-provider))
+################
+一级标题：🎯 Skill Positioning
+二级标题：Table of Contents
+内容：
+- [🚀 Quick Start](#-quick-start)
+  - [Dependency Management](#1-dependency-management)
+  - [Three-step Integration](#2-three-step-integration)
+- [🧩 Core Concepts](#-core-concepts)
+  - [Technology Stack Architecture](#technology-stack-architecture)
+  - [Data Model](#data-model)
+- [🔧 Core Function Details](#-core-function-details)
+  - [Message Management](#1-message-management)
+  - [Request Control](#2-request-control)
+  - [Error Handling](#3-error-handling)
+  - [Complete Example Project](#-complete-example-project)
+- [📋 Prerequisites and Dependencies](#-prerequisites-and-dependencies)
+- [🚨 Development Rules](#-development-rules)
+- [🔗 Reference Resources](#-reference-resources)
+  - [📚 Core Reference Documentation](#-core-reference-documentation)
+  - [🌐 SDK Official Documentation](#-sdk-official-documentation)
+  - [💻 Example Code](#-example-code)
+
+# 🚀 Quick Start
+################
+一级标题：🎯 Skill Positioning
+二级标题：1. Dependency Management
+内容：
+### 🎯 Automatic Dependency Handling
+
+### 📋 System Requirements
+
+- **@ant-design/x-sdk**: 2.2.2+ (automatically installed)
+- **@ant-design/x**: latest version (UI components, automatically installed)
+
+### ⚠️ Version Issue Auto-fix
+
+If version mismatch is detected, the skill will automatically:
+
+- ✅ Prompt current version status
+- ✅ Provide fix suggestions
+- ✅ Use relative paths to ensure compatibility
+
+#### 🎯 Built-in Version Check
+
+The use-x-chat skill has built-in version checking functionality, automatically checking version compatibility on startup:
+
+**🔍 Auto-check Function** The skill will automatically check if the `@ant-design/x-sdk` version meets requirements (≥2.2.2) on startup:
+
+**📋 Check Contents:**
+
+- ✅ Currently installed version
+- ✅ Whether it meets minimum requirements (≥2.2.2)
+- ✅ Automatically provide fix suggestions
+- ✅ Friendly error prompts
+
+**🛠️ Version Issue Fix** If version mismatch is detected, the skill will provide specific fix commands:
+
+```bash
+# Auto-prompted fix commands
+npm install @ant-design/x-sdk@^2.2.2
+
+# Or install latest version
+npm install @ant-design/x-sdk@latest
+```
+################
+一级标题：🎯 Skill Positioning
+二级标题：2. Three-step Integration
+内容：
+### Step 1: Prepare Provider
+
+This part is handled by the x-chat-provider skill
+
+```ts
+import { MyChatProvider } from './MyChatProvider';
+import { XRequest } from '@ant-design/x-sdk';
+
+// Recommended to use XRequest as the default request method
+const provider = new MyChatProvider({
+  // Default use XRequest, no need for custom fetch
+  request: XRequest('https://your-api.com/chat'),
+  // When requestPlaceholder is set, placeholder message will be displayed before request starts
+  requestPlaceholder: {
+    content: 'Thinking...',
+    role: 'assistant',
+    timestamp: Date.now(),
+  },
+  // When requestFallback is set, fallback message will be displayed when request fails
+  requestFallback: (_, { error, errorInfo, messageInfo }) => {
+    if (error.name === 'AbortError') {
+      return {
+        content: messageInfo?.message?.content || 'Reply cancelled',
+        role: 'assistant' as const,
+        timestamp: Date.now(),
+      };
+    }
+    return {
+      content: errorInfo?.error?.message || 'Network error, please try again later',
+      role: 'assistant' as const,
+      timestamp: Date.now(),
+    };
+  },
+});
+```
+
+### Step 2: Basic Usage
+
+```tsx
+import { useXChat } from '@ant-design/x-sdk';
+
+const ChatComponent = () => {
+  const { messages, onRequest, isRequesting } = useXChat({ provider });
+
+  return (
+    <div>
+      {messages.map((msg) => (
+        <div key={msg.id}>
+          {msg.message.role}: {msg.message.content}
+        </div>
+      ))}
+      <button onClick={() => onRequest({ query: 'Hello' })}>Send</button>
+    </div>
+  );
+};
+```
+
+### Step 3: UI Integration
+
+```tsx
+import { Bubble, Sender } from '@ant-design/x';
+
+const ChatUI = () => {
+  const { messages, onRequest, isRequesting, abort } = useXChat({ provider });
+
+  return (
+    <div style={{ height: 600 }}>
+      <Bubble.List items={messages} />
+      <Sender
+        loading={isRequesting}
+        onSubmit={(content) => onRequest({ query: content })}
+        onCancel={abort}
+      />
+    </div>
+  );
+};
+```
+
+# 🧩 Core Concepts
+################
+一级标题：🎯 Skill Positioning
+二级标题：Technology Stack Architecture
+内容：
+```mermaid
+graph TD
+    A[useXChat Hook] --> B[Chat Provider]
+    B --> C[XRequest]
+    A --> D[Ant Design X UI]
+    D --> E[Bubble Component]
+    D --> F[Sender Component]
+```
+
+### Data Model
+
+> ⚠️ **Important Reminder**: `messages` type is `MessageInfo<MessageType>[]`, not direct `MessageType`
+
+```ts
+interface MessageInfo<Message> {
+  id: number | string; // Message unique identifier
+  message: Message; // Actual message content
+  status: MessageStatus; // Sending status
+  extraInfo?: AnyObject; // Extended information
+}
+
+// Message status enum
+type MessageStatus = 'local' | 'loading' | 'updating' | 'success' | 'error' | 'abort';
+```
+
+# 🔧 Core Function Details
+
+> 💡 **Tip**: API may update with versions, it is recommended to check [official documentation](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/use-x-chat.en-US.md) for the latest information
+
+Core functionality reference content [CORE.md](reference/CORE.md)
+
+# 📋 Prerequisites and Dependencies
+################
+一级标题：🎯 Skill Positioning
+二级标题：⚠️ Important Dependencies
+内容：
+**use-x-chat must depend on one of the following skills:**
+
+| Dependency Type | Skill | Description | Required |
+| --- | --- | --- | --- |
+| **Core Dependency** | **x-chat-provider** | Provides custom Provider instance, default uses XRequest, **must** be used with use-x-chat | **Required** |
+| **Or** | **Built-in Provider** | OpenAI/DeepSeek and other built-in Providers, default uses XRequest | **Required** |
+| **Recommended Dependency** | **x-request** | Configure request parameters and authentication, as the default request method | **Recommended** |
+################
+一级标题：🎯 Skill Positioning
+二级标题：🎯 Usage Scenario Comparison Table
+内容：
+| Usage Scenario | Required Skill Combination | Usage Order |
+| --- | --- | --- |
+| **Private API Adaptation** | x-chat-provider → use-x-chat | Create Provider first, then use |
+| **Standard API Usage** | use-x-chat (built-in Provider) | Direct use |
+| **Authentication Configuration Needed** | x-request → use-x-chat | Configure request first, then use |
+| **Complete Customization** | x-chat-provider → x-request → use-x-chat | Complete workflow |
+
+# 🚨 Development Rules
+################
+一级标题：🎯 Skill Positioning
+二级标题：Before using use-x-chat, must confirm:
+内容：
+- [ ] **Has Provider source** (choose one of the following):
+  - [ ] Has created custom Provider with **x-chat-provider**
+  - [ ] Decided to use built-in Provider (OpenAI/DeepSeek)
+- [ ] @ant-design/x-sdk is installed
+- [ ] Understand MessageInfo data structure
+- [ ] UI components are ready
+
+### Test Case Rules
+
+- **If the user does not explicitly need test cases, do not add test files**
+- **Only create test cases when the user explicitly requests them**
+
+### Code Quality Rules
+
+- **After completion, must check types**: Run `tsc --noEmit` to ensure no type errors
+- **Keep code clean**: Remove all unused variables and imports
+
+# 🔗 Reference Resources
+################
+一级标题：🎯 Skill Positioning
+二级标题：📚 Core Reference Documentation
+内容：
+- [API.md](reference/API.md) - Complete API reference documentation
+- [EXAMPLES.md](reference/EXAMPLES.md) - All practical example code
+################
+一级标题：🎯 Skill Positioning
+二级标题：🌐 SDK Official Documentation
+内容：
+- [useXChat Official Documentation](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/use-x-chat.en-US.md)
+- [XRequest Official Documentation](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/x-request.en-US.md)
+- [Chat Provider Official Documentation](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/chat-provider.en-US.md)
+################
+一级标题：🎯 Skill Positioning
+二级标题：💻 Example Code
+内容：
+- [custom-provider-width-ui.tsx](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/demos/chat-providers/custom-provider-width-ui.tsx) - Complete example of custom Provider
+################
+一级标题：Complete Example Projects
+二级标题：无
+内容：
+
+################
+一级标题：Complete Example Projects
+二级标题：Project with Conversation Management
+内容：
+```tsx
+import React, { useRef, useState } from 'react';
+import { useXChat } from '@ant-design/x-sdk';
+import { chatProvider } from '../services/chatService';
+import type { ChatMessage } from '../providers/ChatProvider';
+import { Bubble, Sender, Conversations, type ConversationsProps } from '@ant-design/x';
+import { GetRef } from 'antd';
+
+const App: React.FC = () => {
+  const [conversations, setConversations] = useState([{ key: '1', label: 'New Conversation' }]);
+  const [activeKey, setActiveKey] = useState('1');
+  const senderRef = useRef<GetRef<typeof Sender>>(null);
+  // Create new conversation
+  const handleNewConversation = () => {
+    const newKey = Date.now().toString();
+    const newConversation = {
+      key: newKey,
+      label: `Conversation ${conversations.length + 1}`,
+    };
+    setConversations((prev) => [...prev, newConversation]);
+    setActiveKey(newKey);
+  };
+
+  // Delete conversation
+  const handleDeleteConversation = (key: string) => {
+    setConversations((prev) => {
+      const filtered = prev.filter((item) => item.key !== key);
+      if (filtered.length === 0) {
+        // If no conversations left, create a new one
+        const newKey = Date.now().toString();
+        return [{ key: newKey, label: 'New Conversation' }];
+      }
+      return filtered;
+    });
+
+    // If deleted current active conversation, switch to first one
+    if (activeKey === key) {
+      setActiveKey(conversations[0]?.key || '1');
+    }
+  };
+
+  const { messages, onRequest, isRequesting, abort } = useXChat<
+    ChatMessage,
+    ChatMessage,
+    { query: string },
+    { content: string; time: string; status: 'success' | 'error' }
+  >({
+    provider: chatProvider,
+    conversationKey: activeKey,
+    requestFallback: (_, { error }) => {
+      if (error.name === 'AbortError') {
+        return { content: 'Cancelled', role: 'assistant' as const, timestamp: Date.now() };
+      }
+      return { content: 'Request failed', role: 'assistant' as const, timestamp: Date.now() };
+    },
+  });
+
+  const menuConfig: ConversationsProps['menu'] = (conversation) => ({
+    items: [
+      {
+        label: 'Delete',
+        key: 'delete',
+        danger: true,
+      },
+    ],
+    onClick: ({ key: menuKey }) => {
+      if (menuKey === 'delete') {
+        handleDeleteConversation(conversation.key);
+      }
+    },
+  });
+
+  return (
+    <div style={{ display: 'flex', height: '100vh' }}>
+      {/* Conversation List */}
+      <div
+        style={{
+          width: 240,
+          borderRight: '1px solid #f0f0f0',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <Conversations
+          creation={{
+            onClick: handleNewConversation,
+          }}
+          items={conversations}
+          activeKey={activeKey}
+          menu={menuConfig}
+          onActiveChange={setActiveKey}
+        />
+      </div>
+
+      {/* Chat Area */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+        <div
+          style={{ padding: 16, borderBottom: '1px solid #f0f0f0', fontSize: 16, fontWeight: 500 }}
+        >
+          {conversations.find((c) => c.key === activeKey)?.label || 'Conversation'}
+        </div>
+
+        <div style={{ flex: 1, padding: 16, overflow: 'auto' }}>
+          <Bubble.List
+            role={{
+              assistant: {
+                placement: 'start',
+              },
+              user: {
+                placement: 'end',
+              },
+            }}
+            items={messages.map((msg) => ({
+              key: msg.id,
+              content: msg.message.content,
+              role: msg.message.role,
+              loading: msg.status === 'loading',
+            }))}
+          />
+        </div>
+
+        <div style={{ padding: 16, borderTop: '1px solid #f0f0f0' }}>
+          <Sender
+            loading={isRequesting}
+            ref={senderRef}
+            onSubmit={(content: string) => {
+              onRequest({ query: content });
+              senderRef.current?.clear?.();
+            }}
+            onCancel={abort}
+            placeholder="Enter message..."
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+export default App;
+```
+################
+一级标题：Complete Example Projects
+二级标题：With State Management Resend
+内容：
+```tsx
+import React, { useRef, useState } from 'react';
+import { useXChat } from '@ant-design/x-sdk';
+import { Bubble, Sender } from '@ant-design/x';
+import { Button, type GetRef } from 'antd';
+import { chatProvider } from '../services/chatService';
+import type { ChatMessage } from '../providers/ChatProvider';
+
+const ChatWithRegenerate: React.FC = () => {
+  const senderRef = useRef<GetRef<typeof Sender>>(null);
+  const { messages, onReload, isRequesting, onRequest, abort } = useXChat<
+    ChatMessage,
+    ChatMessage,
+    { query: string },
+    { content: string; time: string; status: 'success' | 'error' }
+  >({
+    provider: chatProvider,
+    requestPlaceholder: {
+      content: 'Thinking...',
+      role: 'assistant',
+      timestamp: Date.now(),
+    },
+    requestFallback: (_, { error, errorInfo, messageInfo }) => {
+      if (error.name === 'AbortError') {
+        return {
+          content: messageInfo?.message?.content || 'Reply cancelled',
+          role: 'assistant' as const,
+          timestamp: Date.now(),
+        };
+      }
+      return {
+        content: errorInfo?.error?.message || 'Network error, please try again later',
+        role: 'assistant' as const,
+        timestamp: Date.now(),
+      };
+    },
+  });
+
+  // Track message ID being regenerated
+  const [regeneratingId, setRegeneratingId] = useState<string | number | null>(null);
+
+  const handleRegenerate = (messageId: string | number): void => {
+    setRegeneratingId(messageId);
+    onReload(
+      messageId,
+      {},
+      {
+        extraInfo: { regenerate: true },
+      },
+    );
+  };
+
+  return (
+    <div>
+      <Bubble.List
+        role={{
+          assistant: {
+            placement: 'start',
+          },
+          user: {
+            placement: 'end',
+          },
+        }}
+        items={messages.map((msg) => ({
+          key: msg.id,
+          content: msg.message.content,
+          role: msg.message.role,
+          loading: msg.status === 'loading',
+          footer: msg.message.role === 'assistant' && (
+            <Button
+              type="text"
+              size="small"
+              loading={regeneratingId === msg.id && isRequesting}
+              onClick={() => handleRegenerate(msg.id)}
+              disabled={isRequesting && regeneratingId !== msg.id}
+            >
+              {regeneratingId === msg.id ? 'Generating...' : 'Regenerate'}
+            </Button>
+          ),
+        }))}
+      />
+      <div>
+        <Sender
+          loading={isRequesting}
+          onSubmit={(content: string) => {
+            onRequest({ query: content });
+            senderRef.current?.clear?.();
+          }}
+          onCancel={abort}
+          ref={senderRef}
+          placeholder="Enter message..."
+          allowSpeech
+          prefix={
+            <Sender.Header
+              title="AI Assistant"
+              open={false}
+              styles={{
+                content: { padding: 0 },
+              }}
+            />
+          }
+        />
+      </div>
+    </div>
+  );
+};
+
+export default ChatWithRegenerate;
+```
+################
+一级标题：🎯 Skill Positioning
+二级标题：无
+内容：
+**This skill focuses on solving one problem**: How to quickly adapt your streaming interface to Ant Design X's Chat Provider.
+
+**Not involved**: useXChat usage tutorial (that's another skill).
+################
+一级标题：🎯 Skill Positioning
+二级标题：Table of Contents
+内容：
+- [📦 Technology Stack Overview](#-technology-stack-overview)
+  - [Ant Design X Ecosystem](#ant-design-x-ecosystem)
+  - [Core Concepts](#core-concepts)
+- [🚀 Quick Start](#-quick-start)
+  - [Dependency Management](#dependency-management)
+  - [Built-in Provider](#built-in-provider)
+  - [When to Use Custom Provider](#when-to-use-custom-provider)
+- [📋 Four Steps to Implement Custom Provider](#-four-steps-to-implement-custom-provider)
+  - [Step1: Analyze Interface Format](#step1-analyze-interface-format)
+  - [Step2: Create Provider Class](#step2-create-provider-class)
+  - [Step3: Check Files](#step3-check-files)
+  - [Step4: Use Provider](#step4-use-provider)
+- [🔧 Common Scenario Adaptation](#-common-scenario-adaptation)
+- [📋 Joint Skill Usage](#-joint-skill-usage)
+  - [Scenario1: Complete AI Conversation Application](#scenario1-complete-ai-conversation-application)
+  - [Scenario2: Only Create Provider](#scenario2-only-create-provider)
+  - [Scenario3: Use Built-in Provider](#scenario3-use-built-in-provider)
+- [⚠️ Important Reminders](#️-important-reminders)
+  - [Mandatory Rule: Prohibit Writing request Method](#mandatory-rule-prohibit-writing-request-method)
+- [⚡ Quick Checklist](#-quick-checklist)
+- [🚨 Development Rules](#-development-rules)
+- [🔗 Reference Resources](#-reference-resources)
+  - [📚 Core Reference Documentation](#-core-reference-documentation)
+  - [🌐 SDK Official Documentation](#-sdk-official-documentation)
+  - [💻 Example Code](#-example-code)
+
+# 📦 Technology Stack Overview
+
+### 🏗️ Ant Design X Ecosystem Architecture
+
+| Layer | Package Name | Core Purpose | Typical Usage Scenarios |
+| --- | --- | --- | --- |
+| **UI Layer** | **@ant-design/x** | React UI component library | Build chat interfaces, bubbles, input boxes |
+| **Logic Layer** | **@ant-design/x-sdk** | Development toolkit | Data flow management, Provider, Hook |
+| **Render Layer** | **@ant-design/x-markdown** | Markdown renderer | Content display, code highlighting |
+
+> ⚠️ **Important Reminder**: These three packages have different functional positioning, please import required features from the correct package
+>
+> ```ts
+> // ✅ Correct import examples
+> import { Bubble } from '@ant-design/x'; // UI component
+> import { AbstractChatProvider } from '@ant-design/x-sdk'; // Provider base class
+> import { XRequest } from '@ant-design/x-sdk'; // Request tool
+> ```
+
+### 🔑 Core Concept Analysis
+
+```mermaid
+graph LR
+    A[Original API Interface] -->|Adapt| B[Chat Provider]
+    B -->|Provide Data| C[useXChat Hook]
+    C -->|Render| D[Ant Design X UI]
+    E[XRequest] -->|Network Request| B
+```
+
+| Concept | Role Positioning | Core Responsibility | Usage Scenario |
+| --- | --- | --- | --- |
+| **Chat Provider** | 🔄 Data Adapter | Convert any interface format to Ant Design X standard format | Private API adaptation, format conversion |
+| **useXChat** | ⚛️ React Hook | Manage conversation state, message flow, request control | Build AI conversation interface |
+| **XRequest** | 🌐 Request Tool | Handle all network communication, authentication, error handling | Unified request management |
+
+# 🚀 Quick Start
+
+### 📋 Environment Preparation
+
+#### System Requirements
+
+| Package | Version Requirement | Auto Install | Purpose |
+| --- | --- | --- | --- |
+| **@ant-design/x-sdk** | ≥2.2.2 | ✅ | Core SDK, includes Provider and Hook |
+| **@ant-design/x** | Latest version | ✅ | UI component library, build chat interface |
+
+#### 🛠️ One-click Environment Check
+
+```bash
+# Auto check and fix version
+npm ls @ant-design/x-sdk
+# If version doesn't match, auto prompt:
+npm install @ant-design/x-sdk@latest
+```
+
+#### 📊 Version Compatibility Matrix
+
+| SDK Version | Supported Features          | Compatibility            |
+| ----------- | --------------------------- | ------------------------ |
+| ≥2.2.2      | Full Provider functionality | ✅ Recommended           |
+| 2.2.0       | Basic functionality         | ⚠️ Partial compatibility |
+| <2.2.0      | Not supported               | ❌ Need upgrade          |
+
+### 🎯 Provider Selection Decision Tree
+
+```mermaid
+graph TD
+    A[Start] --> B{Use Standard API?}
+    B -->|Yes| C[Use Built-in Provider]
+    B -->|No| D{Private API?}
+    D -->|Yes| E[Custom Provider]
+    D -->|No| F{Special Format?}
+    F -->|Yes| E
+    F -->|No| C
+
+    C --> G[OpenAI/DeepSeek Provider]
+    E --> H[Four Steps to Create Custom Provider]
+```
+
+### 🏭 Built-in Provider Overview
+
+#### Out-of-the-box Providers
+
+| Provider Type         | Applicable Scenario   | Usage Method      |
+| --------------------- | --------------------- | ----------------- |
+| **OpenAI Provider**   | Standard OpenAI API   | Direct import use |
+| **DeepSeek Provider** | Standard DeepSeek API | Direct import use |
+
+#### Quick Decision Guide
+
+| Scenario                     | Recommended Solution       | Example                      |
+| ---------------------------- | -------------------------- | ---------------------------- |
+| Call official OpenAI         | Built-in OpenAI Provider   | `new OpenAIProvider()`       |
+| Call official DeepSeek       | Built-in DeepSeek Provider | `new DeepSeekProvider()`     |
+| Company internal API         | Custom Provider            | See four-step implementation |
+| Third-party non-standard API | Custom Provider            | See four-step implementation |
+
+# 📋 Four Steps to Implement Custom Provider
+################
+一级标题：🎯 Skill Positioning
+二级标题：🎯 Implementation Path Overview
+内容：
+```mermaid
+journey
+    title Custom Provider Implementation Path
+    section Analysis Phase
+      Interface Analysis: 2: User
+    section Development Phase
+      Create Class: 5: User
+      Check Validation: 1: User
+    section Integration Phase
+      Configure Usage: 1: User
+```
+################
+一级标题：🎯 Skill Positioning
+二级标题：Step1: Analyze Interface Format ⏱️ 2 minutes
+内容：
+### 📋 Interface Information Collection Table
+
+| Information Type          | Example Value               | Your Interface  |
+| ------------------------- | --------------------------- | --------------- |
+| **Interface URL**         | `https://your-api.com/chat` | `_____________` |
+| **Request Method**        | POST                        | `_____________` |
+| **Request Format**        | JSON                        | `_____________` |
+| **Response Format**       | Server-Sent Events          | `_____________` |
+| **Authentication Method** | Bearer Token                | `_____________` |
+
+### 🔍 Interface Format Template
+
+#### ✅ Request Format Example
+
+```ts
+// Your actual request format
+interface MyAPIRequest {
+  query: string; // User question
+  context?: string; // Conversation history (optional)
+  model?: string; // Model selection (optional)
+  stream?: boolean; // Whether streaming (optional)
+}
+```
+
+#### ✅ Response Format Example
+
+```ts
+// Streaming response format
+// Actual response: data: {"content": "answer content"}
+interface MyAPIResponse {
+  content: string; // Answer fragment
+  finish_reason?: string; // End marker
+}
+
+// End marker: data: [DONE]
+```
+################
+一级标题：🎯 Skill Positioning
+二级标题：Step2: Create Provider Class ⏱️ 5 minutes
+内容：
+### 🏗️ Code Template (Copy and Use)
+
+```ts
+// MyChatProvider.ts
+import { AbstractChatProvider } from '@ant-design/x-sdk';
+
+// ====== 1st modification: Define your interface types ======
+interface MyInput {
+  query: string;
+  context?: string;
+  model?: string;
+  stream?: boolean;
+}
+
+interface MyOutput {
+  content: string;
+  finish_reason?: string;
+}
+
+interface MyMessage {
+  content: string;
+  role: 'user' | 'assistant';
+  timestamp: number;
+}
+
+// ====== 2nd modification: Modify class name ======
+export class MyChatProvider extends AbstractChatProvider<MyMessage, MyInput, MyOutput> {
+  // Parameter conversion: convert useXChat parameters to your API parameters
+  transformParams(
+    requestParams: Partial<MyInput>,
+    options: XRequestOptions<MyInput, MyOutput, MyMessage>,
+  ): MyInput {
+    if (typeof requestParams !== 'object') {
+      throw new Error('requestParams must be an object');
+    }
+
+    return {
+      query: requestParams.query || '',
+      context: requestParams.context,
+      model: 'gpt-3.5-turbo', // Adjust according to your API
+      stream: true,
+      ...(options?.params || {}),
+    };
+  }
+
+  // Local message: user sent message format
+  transformLocalMessage(requestParams: Partial<MyInput>): MyMessage {
+    return {
+      content: requestParams.query || '',
+      role: 'user',
+      timestamp: Date.now(),
+    };
+  }
+
+  // ====== 3rd modification: Response data conversion ======
+  transformMessage(info: { originMessage: MyMessage; chunk: MyOutput }): MyMessage {
+    const { originMessage, chunk } = info;
+
+    // Handle end marker
+    if (!chunk?.content || chunk.content === '[DONE]') {
+      return { ...originMessage, status: 'success' as const };
+    }
+
+    // Accumulate response content
+    return {
+      ...originMessage,
+      content: `${originMessage.content || ''}${chunk.content || ''}`,
+      role: 'assistant' as const,
+      status: 'loading' as const,
+    };
+  }
+}
+```
+
+### 🚨 Development Notes
+
+- ✅ **Only change 3 places**: interface types, class name, response conversion logic
+- ✅ **Prohibit implementing request method**: Network requests handled by XRequest
+- ✅ **Maintain type safety**: Use TypeScript strict mode
+################
+一级标题：🎯 Skill Positioning
+二级标题：Step3: Check Validation ⏱️ 1 minute
+内容：
+### ✅ Quick Checklist
+
+| Check Item             | Status | Description                           |
+| ---------------------- | ------ | ------------------------------------- |
+| **Correct class name** | ⏳     | `MyChatProvider` → Your class name    |
+| **Type matching**      | ⏳     | Interface types match actual API      |
+| **Complete methods**   | ⏳     | All 3 methods implemented             |
+| **No request method**  | ⏳     | Confirm no request method implemented |
+| **Type check passed**  | ⏳     | `tsc --noEmit` no errors              |
+
+### 🔍 Validation Code
+
+```bash
+# Run type check
+npx tsc --noEmit MyChatProvider.ts
+
+# Expected result: no error output
+```
+################
+一级标题：🎯 Skill Positioning
+二级标题：Step4: Configure Usage ⏱️ 1 minute
+内容：
+### 🔧 Complete Integration Example
+
+```ts
+// 1. Import dependencies
+import { MyChatProvider } from './MyChatProvider';
+import { XRequest } from '@ant-design/x-sdk';
+
+// 2. Configure XRequest (handled by x-request skill)
+const request = XRequest('https://your-api.com/chat', {
+  // Authentication configuration
+  headers: {
+    Authorization: 'Bearer your-token-here',
+    'Content-Type': 'application/json',
+  },
+
+  // Default parameters
+  params: {
+    model: 'gpt-3.5-turbo',
+    max_tokens: 1000,
+    temperature: 0.7,
+  },
+
+  // Streaming configuration
+  manual: true,
+});
+
+// 3. Create Provider instance
+const provider = new MyChatProvider({
+  request, // Must pass XRequest instance
+});
+
+// 4. Now can be used with useXChat
+// This part is handled by use-x-chat skill
+export { provider };
+```
+
+### 🎉 Usage Advantages
+
+- **Zero network code**: XRequest handles all network details
+- **Type safety**: Complete TypeScript support
+- **Easy testing**: Can mock XRequest for unit testing
+- **Unified configuration**: Authentication, parameters, error handling centralized management
+
+# 🔧 Common Scenario Adaptation
+################
+一级标题：🎯 Skill Positioning
+二级标题：📚 Scenario Adaptation Guide
+内容：
+| Scenario Type | Difficulty | Example Link | Description |
+| --- | --- | --- | --- |
+| **Standard OpenAI** | 🟢 Simple | [Built-in Provider Example](reference/EXAMPLES.md#scenario1-openai-format) | Direct use of built-in Provider |
+| **Standard DeepSeek** | 🟢 Simple | [Built-in Provider Example](reference/EXAMPLES.md#scenario2-deepseek-format) | Direct use of built-in Provider |
+| **Private API** | 🟡 Medium | [Custom Provider Details](reference/EXAMPLES.md#scenario3-custom-provider) | Need four-step implementation |
+
+> 📖 **Complete Examples**: [EXAMPLES.md](reference/EXAMPLES.md) contains complete code for all actual scenarios
+
+# 📋 Joint Skill Usage Guide
+################
+一级标题：🎯 Skill Positioning
+二级标题：🎯 Skill Relationship Diagram
+内容：
+```mermaid
+graph TD
+    User[Developer] --> A{Choose Solution}
+
+    A -->|Standard API| B[Built-in Provider]
+    A -->|Private API| C[Custom Provider]
+
+    B --> D[use-x-chat]
+    C --> E[x-chat-provider]
+    E --> D
+
+    D --> F[x-request]
+    F --> G[Final Application]
+```
+################
+一级标题：🎯 Skill Positioning
+二级标题：📊 Skill Comparison Table
+内容：
+| Skill Role | Skill Name | Prerequisites | Core Responsibility | Usage Scenario |
+| --- | --- | --- | --- | --- |
+| **🏗️ Creator** | **x-chat-provider** | None | Create custom Provider | Adapt private/non-standard APIs |
+| **⚛️ User** | **use-x-chat** | Needs Provider | Build AI conversation interface | React component development |
+| **🔧 Configurer** | **x-request** | None | Configure request parameters authentication | Unified network request management |
+################
+一级标题：🎯 Skill Positioning
+二级标题：🎯 Combined Usage Scenarios
+内容：
+### 🚀 Scenario1: Complete AI Conversation Application
+
+**Applicable**: Build complete AI conversation product from scratch
+
+```mermaid
+sequenceDiagram
+    participant Dev as Developer
+    participant CP as x-chat-provider
+    participant UX as use-x-chat
+    participant XR as x-request
+
+    Dev->>CP: 1. Create custom Provider
+    CP->>Dev: Return adapted Provider
+    Dev->>XR: 2. Configure XRequest parameters
+    XR->>Dev: Return configured request
+    Dev->>UX: 3. Use Provider to build interface
+    UX->>Dev: Complete AI conversation application
+```
+
+**Implementation Steps**:
+
+1. **x-chat-provider** → Create custom Provider (four-step implementation)
+2. **x-request** → Configure authentication, parameters, error handling
+3. **use-x-chat** → Build React chat interface
+
+### 🎯 Scenario2: Only Create Provider
+
+**Applicable**: Provide Provider for other frameworks or teams
+
+```mermaid
+graph LR
+    A[Private API] -->|Adapt| B[Custom Provider]
+    B -->|Export| C[Other Framework Usage]
+    B -->|Publish| D[NPM Package]
+```
+
+**Core Value**:
+
+- 🔧 **Decoupling**: Provider separated from UI framework
+- 📦 **Reusability**: Can be used by multiple projects
+- 🚀 **Efficiency**: Develop once, use everywhere
+
+### ⚡ Scenario3: Use Built-in Provider
+
+**Applicable**: Quick prototype development or standard API calls
+
+```mermaid
+graph LR
+    A[Standard API] -->|Built-in| B[OpenAI/DeepSeek Provider]
+    B -->|Direct Use| C[use-x-chat]
+    C -->|Configure| D[x-request]
+    D --> E[Quick Launch]
+```
+
+**Advantages**:
+
+- ⚡ **Zero Development**: No need for custom Provider
+- 🎯 **Zero Configuration**: Built-in best practices
+- 🚀 **Ultra-fast Launch**: Complete in 5 minutes
+################
+一级标题：🎯 Skill Positioning
+二级标题：⚠️ Important Reminders
+内容：
+### 🚨 Mandatory Rule: Prohibit Writing request Method!
+
+**Mandatory Requirements**:
+
+- 🚫 **Absolutely prohibit** implementing `request` method in Provider
+- ✅ **Must use** XRequest to handle all network requests
+- ✅ **Only focus** on data conversion logic (transformParams, transformLocalMessage, transformMessage)
+
+**❌ Serious Error (Absolutely Prohibited)**:
+
+```ts
+// ❌ Serious error: implement request method yourself
+class MyProvider extends AbstractChatProvider {
+  async request(params: any) {
+    // Prohibit writing network request logic!
+    const response = await fetch(this.url, { ... });
+    return response;
+  }
+}
+```
+
+**✅ Mandatory Requirement (Only Correct Way)**:
+
+```ts
+// ✅ Mandatory requirement: use XRequest, prohibit implementing request method
+class MyProvider extends AbstractChatProvider {
+  // Prohibit implementing request method!
+  transformParams(params) {
+    /* ... */
+  }
+  transformLocalMessage(params) {
+    /* ... */
+  }
+  transformMessage(info) {
+    /* ... */
+  }
+}
+
+// Mandatory use of XRequest:
+const provider = new MyProvider({
+  request: XRequest('https://your-api.com/chat'),
+});
+```
+
+# ⚡ Quick Checklist
+
+Before creating Provider, confirm:
+
+- [ ] Interface documentation obtained
+- [ ] Request/response format confirmed
+- [ ] Message structure defined
+- [ ] Interface availability tested
+- [ ] **Decided to use XRequest** (avoid writing request method yourself!)
+
+After completion:
+
+- [ ] Provider class can be instantiated normally
+- [ ] **Only implemented three required methods** (transformParams, transformLocalMessage, transformMessage)
+- [ ] **Absolutely prohibit implementing request method** (mandatory use XRequest for network requests)
+- [ ] Edge cases handled (empty data, error responses)
+- [ ] **Type check passed** (ensure all TypeScript types are correct)
+- [ ] **Remove unused exports** (clean up unused export items)
+
+# 🚨 Development Rules
+################
+一级标题：🎯 Skill Positioning
+二级标题：Test Case Rules
+内容：
+- **If the user does not explicitly need test cases, do not add test files**
+- **Only create test cases when the user explicitly requests them**
+################
+一级标题：🎯 Skill Positioning
+二级标题：Code Quality Rules
+内容：
+- **After completion, must check types**: Run `tsc --noEmit` to ensure no type errors
+- **Keep code clean**: Remove all unused variables and imports
+
+# 🔗 Reference Resources
+################
+一级标题：🎯 Skill Positioning
+二级标题：📚 Core Reference Documentation
+内容：
+- [EXAMPLES.md](reference/EXAMPLES.md) - Practical example code
+################
+一级标题：🎯 Skill Positioning
+二级标题：🌐 SDK Official Documentation
+内容：
+- [useXChat Official Documentation](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/use-x-chat.en-US.md)
+- [XRequest Official Documentation](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/x-request.en-US.md)
+- [Chat Provider Official Documentation](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/chat-provider.en-US.md)
+################
+一级标题：🎯 Skill Positioning
+二级标题：💻 Example Code
+内容：
+- [custom-provider-width-ui.tsx](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/demos/chat-providers/custom-provider-width-ui.tsx) - Complete example of custom Provider
+################
+一级标题：🎯 Skill Positioning
+二级标题：无
+内容：
+**This skill focuses on one job**: render Markdown correctly and predictably with `@ant-design/x-markdown`.
+
+It covers:
+
+- Basic rendering and package boundaries
+- LLM streaming output and incomplete syntax handling
+- Custom component mapping for rich chat or data-display blocks
+- Plugins, themes, and safe rendering defaults
+################
+一级标题：🎯 Skill Positioning
+二级标题：Table of Contents
+内容：
+- [📦 Package Boundaries](#-package-boundaries)
+- [🚀 Quick Start Decision Guide](#-quick-start-decision-guide)
+- [🛠 Recommended Workflow](#-recommended-workflow)
+- [🚨 Development Rules](#-development-rules)
+- [🤝 Skill Collaboration](#-skill-collaboration)
+- [🔗 Reference Resources](#-reference-resources)
+
+# 📦 Package Boundaries
+
+| Layer | Package | Responsibility |
+| --- | --- | --- |
+| **UI layer** | `@ant-design/x` | Chat UI, bubble lists, sender, rich interaction components |
+| **Data layer** | `@ant-design/x-sdk` | Providers, requests, streaming data flow, state management |
+| **Render layer** | `@ant-design/x-markdown` | Markdown parsing, streaming rendering, plugins, themes, custom renderers |
+
+> ⚠️ `x-markdown` is not a chat-state tool. Use it to render content after `@ant-design/x` and `@ant-design/x-sdk` have already produced the message data.
+
+# 🚀 Quick Start Decision Guide
+
+| If you need to... | Read first | Typical outcome |
+| --- | --- | --- |
+| Render Markdown with the smallest setup | [CORE.md](reference/CORE.md) | `XMarkdown` renders trusted content with basic styling |
+| Render LLM streaming chunks | [STREAMING.md](reference/STREAMING.md) | Correct `hasNextChunk`, placeholders, tail indicator, loading states |
+| Replace tags with business components | [EXTENSIONS.md](reference/EXTENSIONS.md) | Stable `components` map for custom tags and code blocks |
+| Add plugins or theme overrides | [EXTENSIONS.md](reference/EXTENSIONS.md) | Plugin imports, theme class wiring, minimal CSS overrides |
+| Check prop details and defaults | [API.md](reference/API.md) | Full prop table for `XMarkdown` and streaming options |
+
+# 🛠 Recommended Workflow
+
+1. Start with [CORE.md](reference/CORE.md) and get a plain render working first.
+2. Add [STREAMING.md](reference/STREAMING.md) only when the content arrives chunk-by-chunk.
+3. Add [EXTENSIONS.md](reference/EXTENSIONS.md) when you need custom tags, plugins, syntax blocks, or themes.
+4. Use [API.md](reference/API.md) to confirm prop names and defaults instead of guessing.
+################
+一级标题：🎯 Skill Positioning
+二级标题：Minimal Setup Reminder
+内容：
+```tsx
+import { XMarkdown } from '@ant-design/x-markdown';
+
+export default () => <XMarkdown content="# Hello" />;
+```
+
+# 🚨 Development Rules
+
+- Prefer a stable `components` object. Do not create new inline component mappings on every render.
+- Use `streaming.hasNextChunk = false` on the final chunk, otherwise incomplete placeholders will not flush into final content.
+- Treat raw HTML carefully. Prefer `escapeRawHtml` when raw HTML should stay visible as text.
+- If raw HTML must be rendered, keep `dompurifyConfig` explicit and minimal.
+- Keep theme overrides small. Start from `x-markdown-light` or `x-markdown-dark` and override only the variables you need.
+- If a custom component depends on complete syntax, branch on `streamStatus === 'done'`.
+
+# 🤝 Skill Collaboration
+
+| Scenario | Recommended skill combination | Why |
+| --- | --- | --- |
+| Rich assistant replies in chat | `x-chat-provider` → `x-request` → `use-x-chat` → `x-markdown` | Provider and request handle data flow, `x-markdown` handles final rendering |
+| Built-in provider with Markdown replies | `x-request` → `use-x-chat` → `x-markdown` | Keep request config and rendering concerns separate |
+| Standalone Markdown page or docs viewer | `x-markdown` only | No chat data flow needed |
+################
+一级标题：🎯 Skill Positioning
+二级标题：Boundary Rules
+内容：
+- Use **`x-chat-provider`** when adapting an API shape.
+- Use **`x-request`** when configuring transport, auth, retries, or streaming separators.
+- Use **`use-x-chat`** when managing chat state in React.
+- Use **`x-markdown`** when the content itself needs Markdown parsing, streaming recovery, or rich component rendering.
+
+# 🔗 Reference Resources
+
+- [CORE.md](reference/CORE.md) - Package boundaries, install/setup, safe defaults, common render patterns
+- [STREAMING.md](reference/STREAMING.md) - Chunked rendering, incomplete syntax recovery, loading vs done behavior
+- [EXTENSIONS.md](reference/EXTENSIONS.md) - Components, plugins, themes, custom tag guidance
+- [API.md](reference/API.md) - Generated API reference from the official `x-markdown` docs
+################
+一级标题：🎯 Skill Positioning
+二级标题：Official Docs
+内容：
+- [XMarkdown Introduction](https://github.com/ant-design/x/blob/main/packages/x/docs/x-markdown/introduce.en-US.md)
+- [XMarkdown Examples](https://github.com/ant-design/x/blob/main/packages/x/docs/x-markdown/examples.en-US.md)
+- [XMarkdown Streaming](https://github.com/ant-design/x/blob/main/packages/x/docs/x-markdown/streaming.en-US.md)
+- [XMarkdown Components](https://github.com/ant-design/x/blob/main/packages/x/docs/x-markdown/components.en-US.md)
+- [XMarkdown Plugins](https://github.com/ant-design/x/blob/main/packages/x/docs/x-markdown/plugins.en-US.md)
+- [XMarkdown Themes](https://github.com/ant-design/x/blob/main/packages/x/docs/x-markdown/themes.en-US.md)
+################
+一级标题：Core Guide
+二级标题：无
+内容：
+
+################
+一级标题：Core Guide
+二级标题：Package Boundaries
+内容：
+| Need                                  | Package                  |
+| ------------------------------------- | ------------------------ |
+| Render message content as Markdown    | `@ant-design/x-markdown` |
+| Build chat UI containers              | `@ant-design/x`          |
+| Manage provider/request/message state | `@ant-design/x-sdk`      |
+################
+一级标题：Core Guide
+二级标题：Install and Minimal Render
+内容：
+```bash
+npm install @ant-design/x-markdown
+```
+
+```tsx
+import { XMarkdown } from '@ant-design/x-markdown';
+
+const content = `
+# Hello
+
+- item 1
+- item 2
+`;
+
+export default () => <XMarkdown content={content} />;
+```
+################
+一级标题：Core Guide
+二级标题：Safe Defaults
+内容：
+- Use `content` or `children`, not both.
+- Start with plain Markdown before adding plugins or custom components.
+- Use `openLinksInNewTab` when model output may contain external links.
+- Use `escapeRawHtml` when raw HTML should remain visible but should not execute.
+- If real HTML rendering is required, explicitly review `dompurifyConfig`.
+################
+一级标题：Core Guide
+二级标题：Common Integration Patterns
+内容：
+### Basic content block
+
+```tsx
+<XMarkdown content={message} className="x-markdown-light" />
+```
+
+### Chat message rendering
+
+Render plain text or Markdown from message data after `useXChat` has already produced the message list.
+
+```tsx
+<XMarkdown content={message.message.content} openLinksInNewTab escapeRawHtml />
+```
+
+### Minimal checklist
+
+- Confirm the content is actually Markdown, not a structured component schema.
+- Keep rendering concerns out of Provider classes.
+- Keep transport concerns out of `XMarkdown`.
+- Add themes and custom components only after basic rendering works.
+################
+一级标题：Core Guide
+二级标题：When to Read Other References
+内容：
+- Read [STREAMING.md](STREAMING.md) when content arrives incrementally from an LLM.
+- Read [EXTENSIONS.md](EXTENSIONS.md) when you need custom tags, code blocks, plugins, or themes.
+- Read `API.md` for the full prop tables.
+################
+一级标题：Extensions Guide
+二级标题：无
+内容：
+
+################
+一级标题：Extensions Guide
+二级标题：Components
+内容：
+`components` is the main extension point. Use it to map Markdown or custom HTML tags to React components.
+
+```tsx
+import { Mermaid, Sources, Think } from '@ant-design/x';
+import { XMarkdown } from '@ant-design/x-markdown';
+
+<XMarkdown
+  content={content}
+  components={{
+    mermaid: Mermaid,
+    think: Think,
+    sources: Sources,
+  }}
+/>;
+```
+
+### Rules for component mappings
+
+- Keep the mapping object stable across renders.
+- Use `streamStatus` to separate temporary loading UI from final rendering.
+- If a custom component contains block children, consider `paragraphTag` to avoid invalid nested markup.
+- Keep custom tags semantically clear and avoid ambiguous mixed Markdown/HTML blocks.
+################
+一级标题：Extensions Guide
+二级标题：Plugins
+内容：
+Built-in plugins are imported from `@ant-design/x-markdown/plugins/...` and wired through `config`.
+
+```tsx
+import Latex from '@ant-design/x-markdown/plugins/Latex';
+
+<XMarkdown
+  content={content}
+  config={{
+    extensions: Latex(),
+  }}
+/>;
+```
+
+Use a plugin when the syntax extension belongs in parsing, not when it is only a visual replacement of a rendered node.
+################
+一级标题：Extensions Guide
+二级标题：Themes
+内容：
+Start from a built-in theme stylesheet.
+
+```tsx
+import '@ant-design/x-markdown/themes/light.css';
+
+<XMarkdown className="x-markdown-light" content={content} />;
+```
+
+For customization:
+
+1. Keep the built-in theme class.
+2. Add one custom class.
+3. Override only the CSS variables you actually need.
+################
+一级标题：Extensions Guide
+二级标题：Custom Tag Guidance
+内容：
+- Keep custom tag blocks well formed.
+- Avoid stray blank lines inside custom HTML blocks unless the syntax is intentional.
+- If newlines inside custom tags matter, review `protectCustomTagNewlines`.
+################
+一级标题：Extensions Guide
+二级标题：Pick the Right Tool
+内容：
+- Use `components` for replacing rendered nodes with React components.
+- Use plugins for parsing new syntax.
+- Use themes for typography, spacing, and color.
+- Use `dompurifyConfig` and `escapeRawHtml` for safety, not for visual customization.
+################
+一级标题：Streaming Guide
+二级标题：无
+内容：
+
+################
+一级标题：Streaming Guide
+二级标题：When to Use
+内容：
+Use streaming mode when the Markdown content is appended chunk-by-chunk and may temporarily contain incomplete syntax.
+
+Typical examples:
+
+- partial links like `[docs](https://example`
+- partial tables
+- unfinished code fences
+- a tail cursor while the assistant is still generating
+################
+一级标题：Streaming Guide
+二级标题：Core Rule
+内容：
+`hasNextChunk` must reflect reality:
+
+- `true` while more chunks are expected
+- `false` for the final chunk so cached incomplete fragments flush into the final render
+################
+一级标题：Streaming Guide
+二级标题：Minimal Streaming Setup
+内容：
+```tsx
+<XMarkdown
+  content={content}
+  streaming={{
+    hasNextChunk,
+    enableAnimation: true,
+    tail: true,
+  }}
+/>
+```
+################
+一级标题：Streaming Guide
+二级标题：Incomplete Syntax Handling
+内容：
+Use `incompleteMarkdownComponentMap` when unfinished fragments should show custom loading UI instead of broken Markdown.
+
+```tsx
+<XMarkdown
+  content={content}
+  streaming={{
+    hasNextChunk,
+    incompleteMarkdownComponentMap: {
+      link: 'link-loading',
+      table: 'table-loading',
+    },
+  }}
+  components={{
+    'link-loading': LinkSkeleton,
+    'table-loading': TableSkeleton,
+  }}
+/>
+```
+################
+一级标题：Streaming Guide
+二级标题：Loading vs Done
+内容：
+Custom components receive `streamStatus`:
+
+- `loading`: syntax may still be incomplete
+- `done`: final content is available
+
+Use this to delay expensive parsing or API calls until the syntax is complete.
+################
+一级标题：Streaming Guide
+二级标题：Chat-Oriented Guidance
+内容：
+- Use a tail indicator only while the assistant is still generating.
+- Keep placeholder components lightweight.
+- If a component depends on a closed block or fenced payload, wait for `streamStatus === 'done'`.
+- Do not keep `hasNextChunk` stuck at `true`, or the final Markdown will never settle.
+################
+一级标题：Streaming Guide
+二级标题：Debugging Checklist
+内容：
+- Final chunk still looks incomplete: confirm `hasNextChunk` becomes `false`.
+- Placeholder never disappears: confirm the mapped tag name exists in `components`.
+- Performance looks unstable: disable animation and placeholder components first, then add them back selectively.
+################
+一级标题：🎯 Skill Positioning
+二级标题：无
+内容：
+**This skill focuses on solving**: How to correctly configure XRequest to adapt to various streaming interface requirements.
+
+# Table of Contents
+
+- [🚀 Quick Start](#-quick-start) - Get started in 3 minutes
+  - [Dependency Management](#dependency-management)
+  - [Basic Configuration](#basic-configuration)
+- [📦 Technology Stack Overview](#-technology-stack-overview)
+- [🔧 Core Configuration Details](#-core-configuration-details)
+  - [Global Configuration](#1-global-configuration)
+  - [Security Configuration](#2-security-configuration)
+  - [Streaming Configuration](#3-streaming-configuration)
+- [🛡️ Security Guide](#️-security-guide)
+  - [Environment Security Configuration](#environment-security-configuration)
+  - [Authentication Methods Comparison](#authentication-methods-comparison)
+- [🔍 Debugging and Testing](#-debugging-and-testing)
+  - [Debug Configuration](#debug-configuration)
+  - [Configuration Validation](#configuration-validation)
+- [📋 Usage Scenarios](#-usage-scenarios)
+  - [Standalone Usage](#standalone-usage)
+  - [Integration with Other Skills](#integration-with-other-skills)
+- [🚨 Development Rules](#-development-rules)
+- [🔗 Reference Resources](#-reference-resources)
+  - [📚 Core Reference Documentation](#-core-reference-documentation)
+  - [🌐 SDK Official Documentation](#-sdk-official-documentation)
+  - [💻 Example Code](#-example-code)
+
+# 🚀 Quick Start
+################
+一级标题：🎯 Skill Positioning
+二级标题：Dependency Management
+内容：
+### 📋 System Requirements
+
+| Package               | Version Requirement | Auto Install | Purpose                          |
+| --------------------- | ------------------- | ------------ | -------------------------------- |
+| **@ant-design/x-sdk** | ≥2.2.2              | ✅           | Core SDK, includes XRequest tool |
+
+### 🛠️ One-click Installation
+
+```bash
+# Recommended to use tnpm
+tnpm install @ant-design/x-sdk
+
+# Or use npm
+npm add @ant-design/x-sdk
+
+# Check version
+npm ls @ant-design/x-sdk
+```
+################
+一级标题：🎯 Skill Positioning
+二级标题：Basic Configuration
+内容：
+### Simplest Usage
+
+```typescript
+import { XRequest } from '@ant-design/x-sdk';
+
+// Minimal configuration: only need to provide API URL
+const request = XRequest('https://api.example.com/chat');
+
+// For manual control (used in Provider scenarios)
+const providerRequest = XRequest('https://api.example.com/chat', {
+  manual: true, // Usually only this needs explicit configuration
+});
+```
+
+> 💡 **Tip**: XRequest has built-in reasonable default configurations. In most cases, you only need to provide the API URL to use it.
+
+# 📦 Technology Stack Overview
+################
+一级标题：🎯 Skill Positioning
+二级标题：🏗️ Technology Stack Architecture
+内容：
+```mermaid
+graph TD
+    A[XRequest] --> B[Network Requests]
+    A --> C[Authentication Management]
+    A --> D[Error Handling]
+    A --> E[Streaming Processing]
+    B --> F[fetch Wrapper]
+    C --> G[Token Management]
+    D --> H[Retry Mechanism]
+    E --> I[Server-Sent Events]
+```
+################
+一级标题：🎯 Skill Positioning
+二级标题：🔑 Core Concepts
+内容：
+| Concept | Role Positioning | Core Responsibilities | Usage Scenarios |
+| --- | --- | --- | --- |
+| **XRequest** | 🌐 Request Tool | Handle all network communication, authentication, error handling | Unified request management |
+| **Global Config** | ⚙️ Config Center | Configure once, use everywhere | Reduce duplicate code |
+| **Streaming Config** | 🔄 Streaming Processing | Support SSE and JSON response formats | AI conversation scenarios |
+
+# 🔧 Core Configuration Details
+
+Core functionality reference content [CORE.md](reference/CORE.md)
+
+# 🛡️ Security Guide
+################
+一级标题：🎯 Skill Positioning
+二级标题：Environment Security Configuration
+内容：
+### 🌍 Security Strategies for Different Environments
+
+| Runtime Environment | Security Level | Configuration Method | Risk Description |
+| --- | --- | --- | --- |
+| **Browser Frontend** | 🔴 High Risk | ❌ Prohibit key configuration | Keys will be directly exposed to users |
+| **Node.js Backend** | 🟢 Safe | ✅ Environment variable configuration | Keys stored on server side |
+| **Proxy Service** | 🟢 Safe | ✅ Same-origin proxy forwarding | Keys managed by proxy service |
+
+### 🔐 Authentication Methods Comparison
+
+| Authentication Method | Applicable Environment | Configuration Example | Security |
+| --- | --- | --- | --- |
+| **Bearer Token** | Node.js | `Bearer ${process.env.API_KEY}` | ✅ Safe |
+| **API Key Header** | Node.js | `X-API-Key: ${process.env.KEY}` | ✅ Safe |
+| **Proxy Forwarding** | Browser | `/api/proxy/service` | ✅ Safe |
+| **Direct Configuration** | Browser | `Bearer sk-xxx` | ❌ Dangerous |
+
+# 🔍 Debugging and Testing
+################
+一级标题：🎯 Skill Positioning
+二级标题：Debug Configuration
+内容：
+### 🛠️ Debug Templates
+
+**Node.js Debug Configuration**:
+
+```typescript
+// Safe debug configuration (Node.js environment)
+const debugRequest = XRequest('https://your-api.com/chat', {
+  headers: {
+    Authorization: `Bearer ${process.env.DEBUG_API_KEY}`,
+  },
+  params: { query: 'test message' },
+});
+```
+
+**Frontend Debug Configuration**:
+
+```typescript
+// Safe debug configuration (frontend environment)
+const debugRequest = XRequest('/api/debug/chat', {
+  params: { query: 'test message' },
+});
+```
+################
+一级标题：🎯 Skill Positioning
+二级标题：Configuration Validation
+内容：
+### ✅ Security Check Tools
+
+```typescript
+// Security configuration validation function
+const validateSecurity = (config: any) => {
+  const isBrowser = typeof window !== 'undefined';
+  const hasAuth = config.headers?.Authorization || config.headers?.authorization;
+
+  if (isBrowser && hasAuth) {
+    throw new Error(
+      '❌ Frontend environment prohibits Authorization configuration, risk of key leakage!',
+    );
+  }
+
+  console.log('✅ Security configuration check passed');
+  return true;
+};
+
+// Usage example
+validateSecurity({
+  headers: {
+    // Do not include Authorization
+  },
+});
+```
+
+# 📋 Usage Scenarios
+################
+一级标题：🎯 Skill Positioning
+二级标题：Standalone Usage
+内容：
+### 🎯 Direct Request Initiation
+
+```typescript
+import { XRequest } from '@ant-design/x-sdk';
+
+// Test interface availability
+const testRequest = XRequest('https://httpbin.org/post', {
+  params: { test: 'data' },
+});
+
+// Send request immediately
+const response = await testRequest();
+console.log(response);
+```
+################
+一级标题：🎯 Skill Positioning
+二级标题：Integration with Other Skills
+内容：
+### 🔄 Skill Collaboration Workflow
+
+```mermaid
+graph TD
+    A[x-request] -->|Configure Request| B[x-chat-provider]
+    A -->|Configure Request| C[use-x-chat]
+    B -->|Provide Provider| C
+    A --> D[Direct Request]
+```
+
+| Usage Method | Cooperating Skill | Purpose | Example |
+| --- | --- | --- | --- |
+| **Standalone** | None | Direct network request initiation | Test interface availability |
+| **With x-chat-provider** | x-chat-provider | Configure requests for custom Provider | Configure private API |
+| **With use-x-chat** | use-x-chat | Configure requests for built-in Provider | Configure OpenAI API |
+| **Complete AI Application** | x-request → x-chat-provider → use-x-chat | Configure requests for entire system | Complete AI conversation application |
+
+### ⚠️ useXChat Integration Security Warning
+
+**Important Warning: useXChat is only for frontend environments, XRequest configuration must not contain Authorization!**
+
+**❌ Incorrect Configuration (Dangerous)**:
+
+```typescript
+// Extremely dangerous: keys will be directly exposed to browser
+const unsafeRequest = XRequest('https://api.openai.com/v1/chat/completions', {
+  headers: {
+    Authorization: 'Bearer sk-xxxxxxxxxxxxxx', // ❌ Dangerous!
+  },
+  manual: true,
+});
+```
+
+**✅ Correct Configuration (Safe)**:
+
+```typescript
+// Frontend security configuration: use proxy service
+const safeRequest = XRequest('/api/proxy/openai', {
+  params: {
+    model: 'gpt-3.5-turbo',
+    stream: true,
+  },
+  manual: true,
+});
+```
+
+# 🚨 Development Rules
+################
+一级标题：🎯 Skill Positioning
+二级标题：Test Case Rules
+内容：
+- **If the user does not explicitly need test cases, do not add test files**
+- **Only create test cases when the user explicitly requests them**
+################
+一级标题：🎯 Skill Positioning
+二级标题：Code Quality Rules
+内容：
+- **After completion, must check types**: Run `tsc --noEmit` to ensure no type errors
+- **Keep code clean**: Remove all unused variables and imports
+################
+一级标题：🎯 Skill Positioning
+二级标题：✅ Configuration Checklist
+内容：
+Before using XRequest, please confirm the following configurations are correctly set:
+
+### 🔍 Configuration Checklist
+
+| Check Item | Status | Description |
+| --- | --- | --- |
+| **API URL** | ✅ Must Configure | `XRequest('https://api.xxx.com')` |
+| **Auth Info** | ⚠️ Environment Related | Frontend❌Prohibited, Node.js✅Available |
+| **manual Config** | ✅ Provider Scenario | In Provider needs to be set to `true`, other scenarios need to be set according to actual situation |
+| **Other Config** | ❌ No Need to Configure | Built-in reasonable default values |
+| **Interface Availability** | ✅ Recommended Test | Verify with debug configuration |
+
+### 🛠️ Quick Verification Script
+
+```typescript
+// Check configuration before running
+const checkConfig = () => {
+  const checks = [
+    {
+      name: 'Global Configuration',
+      test: () => {
+        // Check if global configuration has been set
+        return true; // Check according to actual situation
+      },
+    },
+    {
+      name: 'Security Configuration',
+      test: () => validateSecurity(globalConfig),
+    },
+    {
+      name: 'Type Check',
+      test: () => {
+        // Run tsc --noEmit
+        return true;
+      },
+    },
+  ];
+
+  checks.forEach((check) => {
+    console.log(`${check.name}: ${check.test() ? '✅' : '❌'}`);
+  });
+};
+```
+################
+一级标题：🎯 Skill Positioning
+二级标题：🎯 Skill Collaboration
+内容：
+```mermaid
+graph LR
+    A[x-request] -->|Configure Request| B[x-chat-provider]
+    A -->|Configure Request| C[use-x-chat]
+    B -->|Provide Provider| C
+```
+
+### 📊 Skill Usage Comparison Table
+
+| Usage Scenario | Required Skills | Usage Order | Completion Time |
+| --- | --- | --- | --- |
+| **Test Interface** | x-request | Direct Use | 2 minutes |
+| **Private API Adaptation** | x-request → x-chat-provider | Configure request first, then create Provider | 10 minutes |
+| **Standard AI Application** | x-request → use-x-chat | Configure request first, then build interface | 15 minutes |
+| **Complete Customization** | x-request → x-chat-provider → use-x-chat | Complete workflow | 30 minutes |
+
+# 🔗 Reference Resources
+################
+一级标题：🎯 Skill Positioning
+二级标题：📚 Core Reference Documentation
+内容：
+- [API.md](reference/API.md) - Complete API reference documentation
+- [EXAMPLES_SERVICE_PROVIDER.md](reference/EXAMPLES_SERVICE_PROVIDER.md) - Configuration examples for various service providers
+################
+一级标题：🎯 Skill Positioning
+二级标题：🌐 SDK Official Documentation
+内容：
+- [useXChat Official Documentation](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/use-x-chat.en-US.md)
+- [XRequest Official Documentation](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/x-request.en-US.md)
+- [Chat Provider Official Documentation](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/chat-provider.en-US.md)
+################
+一级标题：🎯 Skill Positioning
+二级标题：💻 Example Code
+内容：
+- [custom-provider-width-ui.tsx](https://github.com/ant-design/x/blob/main/packages/x/docs/x-sdk/demos/chat-providers/custom-provider-width-ui.tsx) - Complete example of custom Provider
+################
+一级标题：1. Built-in Default Configuration
+二级标题：无
+内容：
+XRequest has built-in reasonable default configurations, **no additional configuration needed to use**.
+
+**Built-in Default Values**:
+
+- `method: 'POST'`
+- `headers: { 'Content-Type': 'application/json' }`
+
+# 2. Security Configuration
+################
+一级标题：1. Built-in Default Configuration
+二级标题：🔐 Authentication Configuration Comparison
+内容：
+| Environment Type | Configuration Method | Security | Example |
+| --- | --- | --- | --- |
+| **Frontend Browser** | ❌ Prohibit direct configuration | Dangerous | Keys will be exposed to users |
+| **Node.js** | ✅ Environment variables | Safe | `process.env.API_KEY` |
+| **Proxy Service** | ✅ Same-origin proxy | Safe | `/api/proxy/chat` |
+################
+一级标题：1. Built-in Default Configuration
+二级标题：🛡️ Security Configuration Templates
+内容：
+**Node.js Environment Security Configuration**:
+
+```typescript
+const nodeConfig = {
+  baseURL: 'https://api.openai.com/v1',
+  headers: {
+    Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+  },
+};
+```
+
+**Frontend Environment Security Configuration**:
+
+```typescript
+const browserConfig = {
+  baseURL: '/api/proxy/openai', // Through same-origin proxy
+};
+```
+
+# 3. Basic Usage
+
+```typescript
+import { XRequest } from '@ant-design/x-sdk';
+
+// ⚠️ Note: The following examples apply to Node.js environment
+// Frontend environments should use proxy services to avoid token leakage
+const request = XRequest('https://your-api.com/chat', {
+  headers: {
+    Authorization: 'Bearer your-token', // ⚠️ Only for Node.js environment
+  },
+  params: {
+    query: 'Hello',
+  },
+  manual: true, // ⚠️ Must be set to true when used in provider
+  callbacks: {
+    onSuccess: (messages) => {
+      setStatus('success');
+      console.log('onSuccess', messages);
+    },
+    onError: (error) => {
+      setStatus('error');
+      console.error('onError', error);
+    },
+    onUpdate: (msg) => {
+      setLines((pre) => [...pre, msg]);
+      console.log('onUpdate', msg);
+    },
+  },
+});
+```
+
+> ⚠️ **Important Reminder**: When XRequest is used in x-chat-provider or use-x-chat provider, `manual: true` is a required configuration, otherwise the request will be sent immediately instead of waiting for invocation.
+
+````
+
+### With URL Parameters
+
+```typescript
+const request = XRequest('https://your-api.com/chat', {
+  method: 'GET',
+  params: {
+    model: 'gpt-3.5-turbo',
+    max_tokens: 1000,
+  },
+});
+````
+
+# 4. Streaming Configuration
+################
+一级标题：1. Built-in Default Configuration
+二级标题：🔄 Streaming Response Configuration
+内容：
+```typescript
+// Streaming response configuration (AI conversation scenarios)
+const streamConfig = {
+  params: {
+    stream: true, // Enable streaming response
+    model: 'gpt-3.5-turbo',
+    max_tokens: 1000,
+  },
+  manual: true, // Manual control of requests
+};
+
+// Non-streaming response configuration (regular API scenarios)
+const jsonConfig = {
+  params: {
+    stream: false, // Disable streaming response
+  },
+};
+```
+
+# 5. Dynamic Request Headers
+
+```typescript
+// ❌ Unsafe: Frontend directly exposes API key
+// const request = XRequest('https://your-api.com/chat', {
+//   headers: {
+//     'Authorization': `Bearer ${apiKey}`, // Don't do this!
+//   },
+//   params: {
+//     messages: [{ role: 'user', content: 'Hello' }],
+//   },
+// });
+
+// ✅ Safe: Node.js environment uses environment variables
+const request = XRequest('https://your-api.com/chat', {
+  headers: {
+    Authorization: `Bearer ${process.env.API_KEY}`, // Safe for Node.js environment
+  },
+  params: {
+    messages: [{ role: 'user', content: 'Hello' }],
+  },
+});
+
+// ✅ Safe: Frontend uses proxy service
+const request = XRequest('/api/proxy/chat', {
+  headers: {
+    // No Authorization needed, handled by backend proxy
+  },
+  params: {
+    messages: [{ role: 'user', content: 'Hello' }],
+  },
+});
+```
+
+# 6. Custom Stream Transformers
+
+When AI service providers return non-standard formats, use `transformStream` for custom data transformation.
+
+#### Basic Example
+
+```typescript
+const request = XRequest('https://api.example.com/chat', {
+  params: { message: 'Hello' },
+  transformStream: () =>
+    new TransformStream({
+      transform(chunk, controller) {
+        // TextDecoder converts binary data to string
+        const text = new TextDecoder().decode(chunk);
+        const lines = text.split('\n');
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const data = line.slice(6);
+            if (data !== '[DONE]') {
+              // TextEncoder converts string back to binary
+              controller.enqueue(new TextEncoder().encode(data));
+            }
+          }
+        }
+      },
+    }),
+});
+```
+
+#### Common Transformation Templates
+
+```typescript
+// OpenAI format
+const openaiStream = () =>
+  new TransformStream({
+    transform(chunk, controller) {
+      const text = new TextDecoder().decode(chunk);
+      const data = JSON.parse(text);
+      const content = data.choices?.[0]?.delta?.content || '';
+      controller.enqueue(new TextEncoder().encode(content));
+    },
+  });
+
+// Usage example
+const request = XRequest(url, {
+  params: { message: 'Hello' },
+  transformStream: openaiStream,
+});
+```
+
+> ⚠️ **Note**: ReadableStream can only be locked by one reader, avoid reusing the same instance.
+
+#### 🔍 TextDecoder/TextEncoder Explanation
+
+**When are they needed?**
+
+| Scenario                     | Data Type                 | Need Conversion?          |
+| ---------------------------- | ------------------------- | ------------------------- |
+| **Standard fetch API**       | `Uint8Array` binary       | ✅ Need TextDecoder       |
+| **XRequest wrapper**         | May be string             | ❌ May not need           |
+| **Custom stream processing** | Depends on implementation | 🤔 Need to determine type |
+
+**Practical Usage Suggestions:**
+
+```typescript
+transformStream: () =>
+  new TransformStream({
+    transform(chunk, controller) {
+      // Safe approach: check type first
+      const text = typeof chunk === 'string' ? chunk : new TextDecoder().decode(chunk);
+
+      // Now text is definitely a string
+      controller.enqueue(text);
+    },
+  });
+```
+################
+一级标题：安装 utoo
+二级标题：无
+内容：
+$ npm i -g utoo
+
+# 安装项目依赖 (by utoo)
+$ ut [install]
+
+# 启动项目
+$ ut start # 方式一: 通过主包的 script 启动
+$ ut start --workspace packages/x # 方式二: 通过 workspace 参数启动
+$ ut start --workspace @ant-design/x # 方式三: 通过 package.name 启动 (utoo only)
+$ cd packages/x && ut start # 方式四: 进入子包目录单独启动
+
+
+# 添加依赖
+$ ut install [pkg@version] # 为主包添加依赖
+$ ut install [pkg@version] --workspace packages/x # 为子包添加依赖
+$ cd packages/x && ut install [pkg@version] # 为子包添加依赖
+
+# 依赖更新
+$ ut update # utoo only
+```
+################
+一级标题：安装 utoo
+二级标题：如何贡献
+内容：
+在任何形式的参与前，请先阅读 [贡献者文档](https://github.com/ant-design/ant-design/blob/master/.github/CONTRIBUTING.md)。如果你希望参与贡献，欢迎提交 [Pull Request](https://github.com/ant-design/ant-design/pulls)，或给我们 [报告 Bug](http://new-issue.ant.design/)。
+
+> 强烈推荐阅读 [《提问的智慧》](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way)、[《如何向开源社区提问题》](https://github.com/seajs/seajs/issues/545) 和 [《如何有效地报告 Bug》](http://www.chiark.greenend.org.uk/%7Esgtatham/bugs-cn.html)、[《如何向开源项目提交无法解答的问题》](https://zhuanlan.zhihu.com/p/25795393)，更好的问题更容易获得帮助。
+################
+一级标题：安装 utoo
+二级标题：社区互助
+内容：
+如果您在使用的过程中碰到问题，可以通过下面几个途径寻求帮助，同时我们也鼓励资深用户通过下面的途径给新人提供帮助。
+
+通过 GitHub Discussions 提问时，建议使用 `Q&A` 标签。
+
+1. [GitHub Discussions](https://github.com/ant-design/x/discussions)
+2. [GitHub Issues](https://github.com/ant-design/x/issues)
+
+<a href="https://openomy.app/github/ant-design/x" target="_blank" style="display: block; width: 100%;" align="center">
+  <img src="https://openomy.app/svg?repo=ant-design/x&chart=bubble&latestMonth=3" target="_blank" alt="Contribution Leaderboard" style="display: block; width: 100%;" />
+ </a>
+################
+一级标题：Install utoo
+二级标题：无
+内容：
+$ npm i -g utoo
+
+# Install project dependencies (by utoo)
+$ ut [install]
+
+# Start project
+$ ut start # Method 1: Start via main package script
+$ ut start --workspace packages/x # Method 2: Start via workspace parameter
+$ ut start --workspace @ant-design/x # Method 3: Start via package.name (utoo only)
+$ cd packages/x && ut start # Method 4: Start in subpackage directory
+
+# Add dependencies
+$ ut install [pkg@version] # Add dependency to main package
+$ ut install [pkg@version] --workspace packages/x # Add dependency to subpackage
+$ cd packages/x && ut install [pkg@version] # Add dependency to subpackage
+
+# Update dependencies
+$ ut update # utoo only
+```
+################
+一级标题：Install utoo
+二级标题：How to Contribute
+内容：
+Before participating in any form, please read the [Contributor Guide](https://github.com/ant-design/ant-design/blob/master/.github/CONTRIBUTING.md). If you wish to contribute, feel free to submit a [Pull Request](https://github.com/ant-design/ant-design/pulls) or [Report a Bug](http://new-issue.ant.design/).
+
+> Highly recommended reading [How To Ask Questions The Smart Way](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way), [How to Ask Questions in Open Source Community](https://github.com/seajs/seajs/issues/545), [How to Report Bugs Effectively](http://www.chiark.greenend.org.uk/%7Esgtatham/bugs.html), and [How to Submit Unsolvable Issues to Open Source Projects](https://zhuanlan.zhihu.com/p/25795393) for better help.
+################
+一级标题：Install utoo
+二级标题：Community Support
+内容：
+If you encounter problems during use, you can seek help through the following channels. We also encourage experienced users to help newcomers through these channels.
+
+When asking questions in GitHub Discussions, please use the `Q&A` label.
+
+1. [GitHub Discussions](https://github.com/ant-design/x/discussions)
+2. [GitHub Issues](https://github.com/ant-design/x/issues)
+
+<a href="https://openomy.app/github/ant-design/x" target="_blank" style="display: block; width: 100%;" align="center">
+  <img src="https://openomy.app/svg?repo=ant-design/x&chart=bubble&latestMonth=3" target="_blank" alt="Contribution Leaderboard" style="display: block; width: 100%;" />
+ </a>
+################

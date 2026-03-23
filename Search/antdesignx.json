@@ -1,0 +1,2128 @@
+{
+  "documents": [
+    {
+      "theme": "SKILL",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/.codefuse/skills/components/SKILL.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/.codefuse/skills/components/SKILL.html",
+      "title": "Ant Design X 组件开发规范指南"
+    },
+    {
+      "theme": "PULL_REQUEST_TEMPLATE",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/.github/PULL_REQUEST_TEMPLATE.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/.github/PULL_REQUEST_TEMPLATE.html",
+      "title": ""
+    },
+    {
+      "theme": "PULL_REQUEST_TEMPLATE_CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/.github/PULL_REQUEST_TEMPLATE_CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/.github/PULL_REQUEST_TEMPLATE_CN.html",
+      "title": ""
+    },
+    {
+      "theme": "CHANGELOG.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/CHANGELOG.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/CHANGELOG.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "CHANGELOG.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/CHANGELOG.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/CHANGELOG.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "README-zh_CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/README-zh_CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/README-zh_CN.html",
+      "title": "安装 utoo"
+    },
+    {
+      "theme": "README",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/README.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/README.html",
+      "title": "Install utoo"
+    },
+    {
+      "theme": "README-zh_CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-markdown/README-zh_CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-markdown/README-zh_CN.html",
+      "title": "Hello World"
+    },
+    {
+      "theme": "README",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-markdown/README.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-markdown/README.html",
+      "title": "Hello World"
+    },
+    {
+      "theme": "README",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-markdown/src/XMarkdown/__benchmark__/README.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-markdown/src/XMarkdown/__benchmark__/README.html",
+      "title": "Markdown 渲染器性能基准测试"
+    },
+    {
+      "theme": "test",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-markdown/src/XMarkdown/__benchmark__/tests/test.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-markdown/src/XMarkdown/__benchmark__/tests/test.html",
+      "title": "Performance Test Document - Complex Markdown Structure Benchmark"
+    },
+    {
+      "theme": "README-zh_CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-sdk/README-zh_CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-sdk/README-zh_CN.html",
+      "title": ""
+    },
+    {
+      "theme": "README",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-sdk/README.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-sdk/README.html",
+      "title": ""
+    },
+    {
+      "theme": "README-zh_CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/README-zh_CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/README-zh_CN.html",
+      "title": "全局安装技能库"
+    },
+    {
+      "theme": "README",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/README.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/README.html",
+      "title": "Install skill library globally"
+    },
+    {
+      "theme": "SKILL",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/use-x-chat/SKILL.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/use-x-chat/SKILL.html",
+      "title": "🎯 技能定位"
+    },
+    {
+      "theme": "API",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/use-x-chat/reference/API.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/use-x-chat/reference/API.html",
+      "title": ""
+    },
+    {
+      "theme": "CORE",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/use-x-chat/reference/CORE.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/use-x-chat/reference/CORE.html",
+      "title": ""
+    },
+    {
+      "theme": "EXAMPLES",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/use-x-chat/reference/EXAMPLES.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/use-x-chat/reference/EXAMPLES.html",
+      "title": "完整示例项目"
+    },
+    {
+      "theme": "SKILL",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-chat-provider/SKILL.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-chat-provider/SKILL.html",
+      "title": "🎯 技能定位"
+    },
+    {
+      "theme": "EXAMPLES",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-chat-provider/reference/EXAMPLES.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-chat-provider/reference/EXAMPLES.html",
+      "title": ""
+    },
+    {
+      "theme": "SKILL",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-markdown/SKILL.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-markdown/SKILL.html",
+      "title": "🎯 技能定位"
+    },
+    {
+      "theme": "API",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-markdown/reference/API.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-markdown/reference/API.html",
+      "title": ""
+    },
+    {
+      "theme": "CORE",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-markdown/reference/CORE.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-markdown/reference/CORE.html",
+      "title": "核心指南"
+    },
+    {
+      "theme": "EXTENSIONS",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-markdown/reference/EXTENSIONS.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-markdown/reference/EXTENSIONS.html",
+      "title": "扩展指南"
+    },
+    {
+      "theme": "STREAMING",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-markdown/reference/STREAMING.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-markdown/reference/STREAMING.html",
+      "title": "流式渲染指南"
+    },
+    {
+      "theme": "SKILL",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-request/SKILL.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-request/SKILL.html",
+      "title": "🎯 技能定位"
+    },
+    {
+      "theme": "API",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-request/reference/API.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-request/reference/API.html",
+      "title": ""
+    },
+    {
+      "theme": "CORE",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-request/reference/CORE.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-request/reference/CORE.html",
+      "title": "1. 内置默认配置"
+    },
+    {
+      "theme": "EXAMPLES_SERVICE_PROVIDER",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-request/reference/EXAMPLES_SERVICE_PROVIDER.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills-zh/x-request/reference/EXAMPLES_SERVICE_PROVIDER.html",
+      "title": ""
+    },
+    {
+      "theme": "SKILL",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/use-x-chat/SKILL.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/use-x-chat/SKILL.html",
+      "title": "🎯 Skill Positioning"
+    },
+    {
+      "theme": "API",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/use-x-chat/reference/API.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/use-x-chat/reference/API.html",
+      "title": ""
+    },
+    {
+      "theme": "CORE",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/use-x-chat/reference/CORE.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/use-x-chat/reference/CORE.html",
+      "title": ""
+    },
+    {
+      "theme": "EXAMPLES",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/use-x-chat/reference/EXAMPLES.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/use-x-chat/reference/EXAMPLES.html",
+      "title": "Complete Example Projects"
+    },
+    {
+      "theme": "SKILL",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-chat-provider/SKILL.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-chat-provider/SKILL.html",
+      "title": "🎯 Skill Positioning"
+    },
+    {
+      "theme": "EXAMPLES",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-chat-provider/reference/EXAMPLES.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-chat-provider/reference/EXAMPLES.html",
+      "title": ""
+    },
+    {
+      "theme": "SKILL",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-markdown/SKILL.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-markdown/SKILL.html",
+      "title": "🎯 Skill Positioning"
+    },
+    {
+      "theme": "API",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-markdown/reference/API.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-markdown/reference/API.html",
+      "title": ""
+    },
+    {
+      "theme": "CORE",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-markdown/reference/CORE.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-markdown/reference/CORE.html",
+      "title": "Core Guide"
+    },
+    {
+      "theme": "EXTENSIONS",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-markdown/reference/EXTENSIONS.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-markdown/reference/EXTENSIONS.html",
+      "title": "Extensions Guide"
+    },
+    {
+      "theme": "STREAMING",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-markdown/reference/STREAMING.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-markdown/reference/STREAMING.html",
+      "title": "Streaming Guide"
+    },
+    {
+      "theme": "SKILL",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-request/SKILL.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-request/SKILL.html",
+      "title": "🎯 Skill Positioning"
+    },
+    {
+      "theme": "API",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-request/reference/API.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-request/reference/API.html",
+      "title": ""
+    },
+    {
+      "theme": "CORE",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-request/reference/CORE.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-request/reference/CORE.html",
+      "title": "1. Built-in Default Configuration"
+    },
+    {
+      "theme": "EXAMPLES_SERVICE_PROVIDER",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-request/reference/EXAMPLES_SERVICE_PROVIDER.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x-skill/skills/x-request/reference/EXAMPLES_SERVICE_PROVIDER.html",
+      "title": ""
+    },
+    {
+      "theme": "README-zh_CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/README-zh_CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/README-zh_CN.html",
+      "title": "安装 utoo"
+    },
+    {
+      "theme": "README",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/README.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/README.html",
+      "title": "Install utoo"
+    },
+    {
+      "theme": "basic",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/actions/demo/basic.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/actions/demo/basic.html",
+      "title": ""
+    },
+    {
+      "theme": "fadeIn",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/actions/demo/fadeIn.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/actions/demo/fadeIn.html",
+      "title": ""
+    },
+    {
+      "theme": "preset",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/actions/demo/preset.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/actions/demo/preset.html",
+      "title": ""
+    },
+    {
+      "theme": "sub",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/actions/demo/sub.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/actions/demo/sub.html",
+      "title": ""
+    },
+    {
+      "theme": "variant",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/actions/demo/variant.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/actions/demo/variant.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/actions/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/actions/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/actions/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/actions/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "basic",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/attachments/demo/basic.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/attachments/demo/basic.html",
+      "title": ""
+    },
+    {
+      "theme": "overflow",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/attachments/demo/overflow.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/attachments/demo/overflow.html",
+      "title": ""
+    },
+    {
+      "theme": "placeholder",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/attachments/demo/placeholder.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/attachments/demo/placeholder.html",
+      "title": ""
+    },
+    {
+      "theme": "select-files",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/attachments/demo/select-files.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/attachments/demo/select-files.html",
+      "title": ""
+    },
+    {
+      "theme": "with-sender",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/attachments/demo/with-sender.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/attachments/demo/with-sender.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/attachments/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/attachments/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/attachments/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/attachments/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "animation",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/animation.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/animation.html",
+      "title": ""
+    },
+    {
+      "theme": "basic",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/basic.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/basic.html",
+      "title": ""
+    },
+    {
+      "theme": "custom-content",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/custom-content.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/custom-content.html",
+      "title": ""
+    },
+    {
+      "theme": "divider",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/divider.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/divider.html",
+      "title": ""
+    },
+    {
+      "theme": "editable",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/editable.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/editable.html",
+      "title": ""
+    },
+    {
+      "theme": "footer",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/footer.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/footer.html",
+      "title": ""
+    },
+    {
+      "theme": "gpt-vis",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/gpt-vis.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/gpt-vis.html",
+      "title": ""
+    },
+    {
+      "theme": "header",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/header.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/header.html",
+      "title": ""
+    },
+    {
+      "theme": "list-extra",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/list-extra.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/list-extra.html",
+      "title": ""
+    },
+    {
+      "theme": "list-scroll",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/list-scroll.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/list-scroll.html",
+      "title": ""
+    },
+    {
+      "theme": "list",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/list.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/list.html",
+      "title": ""
+    },
+    {
+      "theme": "loading",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/loading.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/loading.html",
+      "title": ""
+    },
+    {
+      "theme": "markdown",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/markdown.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/markdown.html",
+      "title": ""
+    },
+    {
+      "theme": "semantic-list-custom",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/semantic-list-custom.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/semantic-list-custom.html",
+      "title": ""
+    },
+    {
+      "theme": "sider-and-placement",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/sider-and-placement.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/sider-and-placement.html",
+      "title": ""
+    },
+    {
+      "theme": "stream",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/stream.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/stream.html",
+      "title": ""
+    },
+    {
+      "theme": "system",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/system.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/system.html",
+      "title": ""
+    },
+    {
+      "theme": "variant-and-shape",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/variant-and-shape.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/demo/variant-and-shape.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/bubble/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/code-highlighter/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/code-highlighter/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/code-highlighter/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/code-highlighter/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "basic",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/basic.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/basic.html",
+      "title": ""
+    },
+    {
+      "theme": "controlled-collapsible",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/controlled-collapsible.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/controlled-collapsible.html",
+      "title": ""
+    },
+    {
+      "theme": "controlled-mode",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/controlled-mode.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/controlled-mode.html",
+      "title": ""
+    },
+    {
+      "theme": "custom-new-chat",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/custom-new-chat.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/custom-new-chat.html",
+      "title": ""
+    },
+    {
+      "theme": "group-collapsible",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/group-collapsible.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/group-collapsible.html",
+      "title": ""
+    },
+    {
+      "theme": "group",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/group.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/group.html",
+      "title": ""
+    },
+    {
+      "theme": "infinite-load",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/infinite-load.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/infinite-load.html",
+      "title": ""
+    },
+    {
+      "theme": "menu-trigger",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/menu-trigger.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/menu-trigger.html",
+      "title": ""
+    },
+    {
+      "theme": "new-chat",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/new-chat.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/new-chat.html",
+      "title": ""
+    },
+    {
+      "theme": "shortcutKeys",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/shortcutKeys.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/shortcutKeys.html",
+      "title": ""
+    },
+    {
+      "theme": "with-menu",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/with-menu.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/demo/with-menu.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/conversations/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "audio",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/audio.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/audio.html",
+      "title": ""
+    },
+    {
+      "theme": "basic",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/basic.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/basic.html",
+      "title": ""
+    },
+    {
+      "theme": "custom-description",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/custom-description.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/custom-description.html",
+      "title": ""
+    },
+    {
+      "theme": "icon",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/icon.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/icon.html",
+      "title": ""
+    },
+    {
+      "theme": "image-loading",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/image-loading.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/image-loading.html",
+      "title": ""
+    },
+    {
+      "theme": "image",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/image.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/image.html",
+      "title": ""
+    },
+    {
+      "theme": "list",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/list.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/list.html",
+      "title": ""
+    },
+    {
+      "theme": "mask",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/mask.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/mask.html",
+      "title": ""
+    },
+    {
+      "theme": "overflow",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/overflow.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/overflow.html",
+      "title": ""
+    },
+    {
+      "theme": "size",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/size.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/demo/size.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/file-card/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "basic",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/demo/basic.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/demo/basic.html",
+      "title": ""
+    },
+    {
+      "theme": "custom-icons",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/demo/custom-icons.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/demo/custom-icons.html",
+      "title": ""
+    },
+    {
+      "theme": "custom-service",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/demo/custom-service.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/demo/custom-service.html",
+      "title": ""
+    },
+    {
+      "theme": "file-controlled",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/demo/file-controlled.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/demo/file-controlled.html",
+      "title": ""
+    },
+    {
+      "theme": "fully-controlled",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/demo/fully-controlled.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/demo/fully-controlled.html",
+      "title": ""
+    },
+    {
+      "theme": "preview-render",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/demo/preview-render.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/demo/preview-render.html",
+      "title": ""
+    },
+    {
+      "theme": "searchable",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/demo/searchable.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/demo/searchable.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/folder/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/introduce/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/introduce/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/introduce/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/introduce/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/mermaid/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/mermaid/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/mermaid/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/mermaid/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "close_tag",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/notification/demo/close_tag.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/notification/demo/close_tag.html",
+      "title": ""
+    },
+    {
+      "theme": "duration",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/notification/demo/duration.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/notification/demo/duration.html",
+      "title": ""
+    },
+    {
+      "theme": "hooks",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/notification/demo/hooks.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/notification/demo/hooks.html",
+      "title": ""
+    },
+    {
+      "theme": "static-method",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/notification/demo/static-method.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/notification/demo/static-method.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/notification/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/notification/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/notification/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/notification/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/overview/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/overview/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/overview/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/overview/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "basic",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/demo/basic.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/demo/basic.html",
+      "title": ""
+    },
+    {
+      "theme": "disabled",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/demo/disabled.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/demo/disabled.html",
+      "title": ""
+    },
+    {
+      "theme": "fadeIn",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/demo/fadeIn.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/demo/fadeIn.html",
+      "title": ""
+    },
+    {
+      "theme": "flex-vertical",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/demo/flex-vertical.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/demo/flex-vertical.html",
+      "title": ""
+    },
+    {
+      "theme": "flex-wrap-fixed",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/demo/flex-wrap-fixed.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/demo/flex-wrap-fixed.html",
+      "title": ""
+    },
+    {
+      "theme": "flex-wrap",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/demo/flex-wrap.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/demo/flex-wrap.html",
+      "title": ""
+    },
+    {
+      "theme": "nest",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/demo/nest.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/demo/nest.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/prompts/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "agent",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/agent.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/agent.html",
+      "title": ""
+    },
+    {
+      "theme": "basic",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/basic.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/basic.html",
+      "title": ""
+    },
+    {
+      "theme": "disable-ctrl-slot",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/disable-ctrl-slot.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/disable-ctrl-slot.html",
+      "title": ""
+    },
+    {
+      "theme": "disable-ctrl",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/disable-ctrl.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/disable-ctrl.html",
+      "title": ""
+    },
+    {
+      "theme": "footer",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/footer.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/footer.html",
+      "title": ""
+    },
+    {
+      "theme": "header-fixed",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/header-fixed.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/header-fixed.html",
+      "title": ""
+    },
+    {
+      "theme": "header",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/header.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/header.html",
+      "title": ""
+    },
+    {
+      "theme": "paste-image",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/paste-image.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/paste-image.html",
+      "title": ""
+    },
+    {
+      "theme": "ref-action",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/ref-action.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/ref-action.html",
+      "title": ""
+    },
+    {
+      "theme": "send-style",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/send-style.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/send-style.html",
+      "title": ""
+    },
+    {
+      "theme": "slot-filling",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/slot-filling.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/slot-filling.html",
+      "title": ""
+    },
+    {
+      "theme": "slot-with-suggestion",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/slot-with-suggestion.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/slot-with-suggestion.html",
+      "title": ""
+    },
+    {
+      "theme": "speech-custom",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/speech-custom.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/speech-custom.html",
+      "title": ""
+    },
+    {
+      "theme": "speech",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/speech.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/speech.html",
+      "title": ""
+    },
+    {
+      "theme": "submitType",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/submitType.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/submitType.html",
+      "title": ""
+    },
+    {
+      "theme": "suffix",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/suffix.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/suffix.html",
+      "title": ""
+    },
+    {
+      "theme": "switch",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/switch.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/demo/switch.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sender/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "basic",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sources/demo/basic.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sources/demo/basic.html",
+      "title": ""
+    },
+    {
+      "theme": "expand",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sources/demo/expand.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sources/demo/expand.html",
+      "title": ""
+    },
+    {
+      "theme": "icon",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sources/demo/icon.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sources/demo/icon.html",
+      "title": ""
+    },
+    {
+      "theme": "inline",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sources/demo/inline.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sources/demo/inline.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sources/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sources/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sources/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/sources/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "basic",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/suggestion/demo/basic.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/suggestion/demo/basic.html",
+      "title": ""
+    },
+    {
+      "theme": "block",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/suggestion/demo/block.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/suggestion/demo/block.html",
+      "title": ""
+    },
+    {
+      "theme": "trigger",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/suggestion/demo/trigger.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/suggestion/demo/trigger.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/suggestion/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/suggestion/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/suggestion/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/suggestion/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "basic",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/think/demo/basic.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/think/demo/basic.html",
+      "title": ""
+    },
+    {
+      "theme": "expand",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/think/demo/expand.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/think/demo/expand.html",
+      "title": ""
+    },
+    {
+      "theme": "status",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/think/demo/status.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/think/demo/status.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/think/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/think/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/think/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/think/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "basic",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/demo/basic.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/demo/basic.html",
+      "title": ""
+    },
+    {
+      "theme": "collapsible",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/demo/collapsible.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/demo/collapsible.html",
+      "title": ""
+    },
+    {
+      "theme": "controlled-collapsible",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/demo/controlled-collapsible.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/demo/controlled-collapsible.html",
+      "title": ""
+    },
+    {
+      "theme": "customization",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/demo/customization.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/demo/customization.html",
+      "title": ""
+    },
+    {
+      "theme": "nested",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/demo/nested.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/demo/nested.html",
+      "title": ""
+    },
+    {
+      "theme": "simple",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/demo/simple.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/demo/simple.html",
+      "title": ""
+    },
+    {
+      "theme": "single-row",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/demo/single-row.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/demo/single-row.html",
+      "title": ""
+    },
+    {
+      "theme": "status",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/demo/status.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/demo/status.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/thought-chain/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "background",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/welcome/demo/background.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/welcome/demo/background.html",
+      "title": ""
+    },
+    {
+      "theme": "basic",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/welcome/demo/basic.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/welcome/demo/basic.html",
+      "title": ""
+    },
+    {
+      "theme": "variant",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/welcome/demo/variant.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/welcome/demo/variant.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/welcome/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/welcome/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/welcome/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/welcome/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "direction",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/x-provider/demo/direction.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/x-provider/demo/direction.html",
+      "title": ""
+    },
+    {
+      "theme": "locale",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/x-provider/demo/locale.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/x-provider/demo/locale.html",
+      "title": ""
+    },
+    {
+      "theme": "shortcutKeys",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/x-provider/demo/shortcutKeys.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/x-provider/demo/shortcutKeys.html",
+      "title": ""
+    },
+    {
+      "theme": "theme",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/x-provider/demo/theme.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/x-provider/demo/theme.html",
+      "title": ""
+    },
+    {
+      "theme": "index.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/x-provider/index.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/x-provider/index.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "index.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/x-provider/index.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/components/x-provider/index.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "agent-tbox.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/playground/agent-tbox.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/playground/agent-tbox.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "agent-tbox.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/playground/agent-tbox.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/playground/agent-tbox.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "copilot.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/playground/copilot.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/playground/copilot.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "copilot.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/playground/copilot.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/playground/copilot.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "independent.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/playground/independent.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/playground/independent.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "independent.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/playground/independent.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/playground/independent.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "ultramodern.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/playground/ultramodern.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/playground/ultramodern.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "ultramodern.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/playground/ultramodern.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/playground/ultramodern.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "agent-use-tbox.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/agent-use-tbox.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/agent-use-tbox.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "agent-use-tbox.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/agent-use-tbox.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/agent-use-tbox.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "common-props.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/common-props.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/common-props.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "common-props.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/common-props.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/common-props.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "compatible-style.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/compatible-style.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/compatible-style.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "compatible-style.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/compatible-style.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/compatible-style.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "contributing.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/contributing.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/contributing.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "contributing.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/contributing.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/contributing.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "faq.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/faq.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/faq.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "faq.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/faq.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/faq.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "introduce.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/introduce.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/introduce.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "introduce.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/introduce.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/introduce.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "migration-v2.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/migration-v2.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/migration-v2.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "migration-v2.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/migration-v2.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/migration-v2.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "model-use-openai.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/model-use-openai.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/model-use-openai.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "model-use-openai.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/model-use-openai.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/model-use-openai.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "model-use-qwen.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/model-use-qwen.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/model-use-qwen.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "model-use-qwen.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/model-use-qwen.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/model-use-qwen.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "use-with-create-react-app.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-create-react-app.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-create-react-app.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "use-with-create-react-app.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-create-react-app.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-create-react-app.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "use-with-next.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-next.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-next.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "use-with-next.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-next.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-next.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "use-with-rsbuild.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-rsbuild.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-rsbuild.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "use-with-rsbuild.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-rsbuild.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-rsbuild.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "use-with-umi.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-umi.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-umi.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "use-with-umi.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-umi.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-umi.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "use-with-vite.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-vite.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-vite.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "use-with-vite.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-vite.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/react/use-with-vite.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "authentic-consistent.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/authentic-consistent.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/authentic-consistent.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "authentic-consistent.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/authentic-consistent.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/authentic-consistent.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "confirm-generation-process.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/confirm-generation-process.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/confirm-generation-process.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "confirm-generation-process.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/confirm-generation-process.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/confirm-generation-process.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "confirm.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/confirm.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/confirm.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "confirm.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/confirm.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/confirm.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "conversation-design.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/conversation-design.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/conversation-design.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "conversation-design.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/conversation-design.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/conversation-design.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "define-intention-type.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/define-intention-type.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/define-intention-type.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "define-intention-type.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/define-intention-type.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/define-intention-type.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "end.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/end.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/end.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "end.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/end.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/end.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "error.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/error.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/error.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "error.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/error.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/error.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "expression-user-input.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/expression-user-input.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/expression-user-input.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "expression-user-input.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/expression-user-input.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/expression-user-input.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "expression-user-send.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/expression-user-send.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/expression-user-send.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "expression-user-send.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/expression-user-send.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/expression-user-send.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "feedback-result-application.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/feedback-result-application.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/feedback-result-application.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "feedback-result-application.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/feedback-result-application.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/feedback-result-application.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "feedback-result-display.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/feedback-result-display.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/feedback-result-display.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "feedback-result-display.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/feedback-result-display.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/feedback-result-display.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "follow-up.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/follow-up.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/follow-up.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "follow-up.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/follow-up.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/follow-up.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "guide-intention-expression.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/guide-intention-expression.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/guide-intention-expression.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "guide-intention-expression.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/guide-intention-expression.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/guide-intention-expression.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "hint.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/hint.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/hint.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "hint.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/hint.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/hint.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "human-touch.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/human-touch.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/human-touch.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "human-touch.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/human-touch.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/human-touch.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "hybrid-ui-design.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/hybrid-ui-design.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/hybrid-ui-design.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "hybrid-ui-design.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/hybrid-ui-design.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/hybrid-ui-design.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "intention-introduce.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/intention-introduce.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/intention-introduce.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "intention-introduce.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/intention-introduce.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/intention-introduce.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "introduce.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/introduce.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/introduce.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "introduce.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/introduce.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/introduce.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "provide-intention-expectation.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/provide-intention-expectation.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/provide-intention-expectation.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "provide-intention-expectation.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/provide-intention-expectation.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/provide-intention-expectation.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "role-design.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/role-design.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/role-design.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "role-design.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/role-design.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/role-design.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "smooth-natural.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/smooth-natural.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/smooth-natural.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "smooth-natural.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/smooth-natural.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/smooth-natural.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "start.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/start.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/start.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "start.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/start.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/start.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "wake-up-ai-icon.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/wake-up-ai-icon.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/wake-up-ai-icon.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "wake-up-ai-icon.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/wake-up-ai-icon.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/wake-up-ai-icon.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "wake-up-welcome-message.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/wake-up-welcome-message.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/wake-up-welcome-message.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "wake-up-welcome-message.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/wake-up-welcome-message.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/spec/wake-up-welcome-message.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "chat-enhancement.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/chat-enhancement.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/chat-enhancement.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "chat-enhancement.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/chat-enhancement.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/chat-enhancement.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "components.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/components.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/components.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "components.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/components.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/components.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "custom-plugin.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/custom-plugin.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/custom-plugin.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "custom-plugin.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/custom-plugin.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/custom-plugin.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "data-display.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/data-display.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/data-display.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "data-display.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/data-display.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/data-display.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "examples.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/examples.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/examples.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "examples.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/examples.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/examples.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "introduce.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/introduce.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/introduce.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "introduce.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/introduce.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/introduce.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "playground.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/playground.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/playground.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "playground.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/playground.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/playground.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "plugin-latex.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/plugin-latex.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/plugin-latex.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "plugin-latex.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/plugin-latex.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/plugin-latex.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "plugins.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/plugins.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/plugins.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "plugins.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/plugins.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/plugins.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "rich-text.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/rich-text.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/rich-text.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "rich-text.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/rich-text.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/rich-text.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "streaming.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/streaming.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/streaming.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "streaming.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/streaming.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/streaming.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "themes.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/themes.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/themes.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "themes.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/themes.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-markdown/themes.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "chat-provider-custom.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/chat-provider-custom.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/chat-provider-custom.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "chat-provider-custom.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/chat-provider-custom.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/chat-provider-custom.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "chat-provider-deepseek.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/chat-provider-deepseek.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/chat-provider-deepseek.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "chat-provider-deepseek.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/chat-provider-deepseek.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/chat-provider-deepseek.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "chat-provider-open-ai.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/chat-provider-open-ai.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/chat-provider-open-ai.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "chat-provider-open-ai.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/chat-provider-open-ai.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/chat-provider-open-ai.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "chat-provider.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/chat-provider.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/chat-provider.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "chat-provider.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/chat-provider.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/chat-provider.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "custom-provider-width-ui",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/chat-providers/custom-provider-width-ui.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/chat-providers/custom-provider-width-ui.html",
+      "title": ""
+    },
+    {
+      "theme": "deep-seek-chat-provider",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/chat-providers/deep-seek-chat-provider.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/chat-providers/deep-seek-chat-provider.html",
+      "title": ""
+    },
+    {
+      "theme": "default-chat-provider-width-ui",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/chat-providers/default-chat-provider-width-ui.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/chat-providers/default-chat-provider-width-ui.html",
+      "title": ""
+    },
+    {
+      "theme": "default-chat-provider",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/chat-providers/default-chat-provider.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/chat-providers/default-chat-provider.html",
+      "title": ""
+    },
+    {
+      "theme": "open-ai-chat-provider",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/chat-providers/open-ai-chat-provider.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/chat-providers/open-ai-chat-provider.html",
+      "title": ""
+    },
+    {
+      "theme": "async-defaultMessages",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-chat/async-defaultMessages.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-chat/async-defaultMessages.html",
+      "title": ""
+    },
+    {
+      "theme": "custom-request-fetch",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-chat/custom-request-fetch.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-chat/custom-request-fetch.html",
+      "title": ""
+    },
+    {
+      "theme": "deepSeek",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-chat/deepSeek.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-chat/deepSeek.html",
+      "title": ""
+    },
+    {
+      "theme": "defaultMessages",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-chat/defaultMessages.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-chat/defaultMessages.html",
+      "title": ""
+    },
+    {
+      "theme": "developer",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-chat/developer.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-chat/developer.html",
+      "title": ""
+    },
+    {
+      "theme": "openai-callback",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-chat/openai-callback.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-chat/openai-callback.html",
+      "title": ""
+    },
+    {
+      "theme": "openai",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-chat/openai.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-chat/openai.html",
+      "title": ""
+    },
+    {
+      "theme": "request-openai-node",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-chat/request-openai-node.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-chat/request-openai-node.html",
+      "title": ""
+    },
+    {
+      "theme": "async-defaultMessages",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-conversations/async-defaultMessages.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-conversations/async-defaultMessages.html",
+      "title": ""
+    },
+    {
+      "theme": "basic",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-conversations/basic.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-conversations/basic.html",
+      "title": ""
+    },
+    {
+      "theme": "multi-instances",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-conversations/multi-instances.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-conversations/multi-instances.html",
+      "title": ""
+    },
+    {
+      "theme": "operations",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-conversations/operations.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-conversations/operations.html",
+      "title": ""
+    },
+    {
+      "theme": "session-key",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-conversations/session-key.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-conversations/session-key.html",
+      "title": ""
+    },
+    {
+      "theme": "with-x-chat",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-conversations/with-x-chat.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-conversations/with-x-chat.html",
+      "title": ""
+    },
+    {
+      "theme": "basic",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-request/basic.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-request/basic.html",
+      "title": ""
+    },
+    {
+      "theme": "custom-params-headers",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-request/custom-params-headers.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-request/custom-params-headers.html",
+      "title": ""
+    },
+    {
+      "theme": "custom-transformer",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-request/custom-transformer.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-request/custom-transformer.html",
+      "title": ""
+    },
+    {
+      "theme": "manual",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-request/manual.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-request/manual.html",
+      "title": ""
+    },
+    {
+      "theme": "stream-separator",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-request/stream-separator.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-request/stream-separator.html",
+      "title": ""
+    },
+    {
+      "theme": "stream-timeout",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-request/stream-timeout.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-request/stream-timeout.html",
+      "title": ""
+    },
+    {
+      "theme": "timeout",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-request/timeout.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-request/timeout.html",
+      "title": ""
+    },
+    {
+      "theme": "custom-protocol",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-stream/custom-protocol.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-stream/custom-protocol.html",
+      "title": ""
+    },
+    {
+      "theme": "default-protocol",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-stream/default-protocol.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/demos/x-stream/default-protocol.html",
+      "title": ""
+    },
+    {
+      "theme": "introduce.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/introduce.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/introduce.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "introduce.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/introduce.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/introduce.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "use-x-chat.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/use-x-chat.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/use-x-chat.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "use-x-chat.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/use-x-chat.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/use-x-chat.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "use-x-conversations.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/use-x-conversations.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/use-x-conversations.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "use-x-conversations.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/use-x-conversations.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/use-x-conversations.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "x-request.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/x-request.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/x-request.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "x-request.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/x-request.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/x-request.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "x-stream.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/x-stream.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/x-stream.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "x-stream.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/x-stream.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-sdk/x-stream.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "introduce.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-skill/introduce.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-skill/introduce.en-US.html",
+      "title": "Install skill library globally"
+    },
+    {
+      "theme": "introduce.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-skill/introduce.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-skill/introduce.zh-CN.html",
+      "title": "全局安装技能库"
+    },
+    {
+      "theme": "prompt.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-skill/prompt.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-skill/prompt.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "prompt.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-skill/prompt.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-skill/prompt.zh-CN.html",
+      "title": ""
+    },
+    {
+      "theme": "skills.en-US",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-skill/skills.en-US.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-skill/skills.en-US.html",
+      "title": ""
+    },
+    {
+      "theme": "skills.zh-CN",
+      "url": "https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-skill/skills.zh-CN.md",
+      "html_url": "https://ant-design-x.antgroup.com/https://raw.githubusercontent.com/ant-design/x/main/packages/x/docs/x-skill/skills.zh-CN.html",
+      "title": ""
+    }
+  ]
+}
