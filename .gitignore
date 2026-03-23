@@ -17,3 +17,5 @@ test/key/
 .gradio/
 __pycache__/
 .idea/
+user_questions.db
+faiss_index_scratch_all/index.faiss
